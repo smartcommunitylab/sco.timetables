@@ -1,0 +1,9 @@
+{
+    "TRENTO": {
+        "resource_folder": "config/instances/TRENTO",
+        "widget_id" : "it.smartcommunitylab.orari.trento",
+        "version": "1.0.0",
+        "version_code": "1",
+        "app_name": "Trento Orari Trasporti"
+    }
+}
