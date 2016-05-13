@@ -137,6 +137,9 @@ angular.module('viaggia.services.conf', [])
     }
 
     return {
+        getWeLiveAppId: function() {
+          return weliveAppId;
+        },
         init: function () {
             var deferred = $q.defer();
             if (mapJsonConfig != null) deferred.resolve(true);

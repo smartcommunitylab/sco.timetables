@@ -195,11 +195,29 @@ angular.module('viaggia', [
             controller: 'TTCtrl'
           }
         }
-      });
+      })
+      .state('app.termine', {
+          url: '/termine'
+          , views: {
+              'menuContent': {
+                  templateUrl: 'templates/termine.html'
+                  , controller: 'TermsCtrl'
+              }
+          }
+      })
+    ;
 
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/app/home');
+    $urlRouterProvider.otherwise(function ($injector) {
+        var acceptStr = localStorage["orariapp_isPrivacyAccepted"];
+        var isPrivacyAccepted = acceptStr == 'true';
+        if (isPrivacyAccepted) {
+            return '/app/home';
+        } else {
+            return '/app/termine';
+        }
+    });
 
     $translateProvider.translations('it', {
       menu_home: 'Home',
@@ -218,6 +236,7 @@ angular.module('viaggia', [
       menu_real_time_park: 'Parcheggi',
       menu_credits: "Credits",
       menu_questionary: "Questionario",
+      menu_terms_of_service: "Termini di utilizzo",
       menu_login: "Login",
       menu_logout: "Logout",
       plan_from: 'Da',
@@ -368,7 +387,9 @@ angular.module('viaggia', [
       empty_home_label_2: 'Vai nei PREFERITI per ripristinare i contenuti che ti interessano',
       menu_betatesting_bug: 'Segnala un problema',
       news_empty_list: 'Non ci sono notizie in questo momento',
-      news_title: 'News'
+      news_title: 'News',
+      lbl_accept: "Accetto",
+      lbl_reject: "Rifiuto"
 
     });
 
@@ -390,6 +411,7 @@ angular.module('viaggia', [
       menu_real_time_park: 'Parking lots',
       menu_credits: "Credits",
       menu_questionary: "Survey",
+      menu_terms_of_service: "Terms of use",
       menu_login: "Login",
       menu_logout: "Logout",
       plan_from: 'From',
@@ -541,6 +563,9 @@ angular.module('viaggia', [
       menu_betatesting_bug: 'Report an issue',
       news_empty_list: 'There are no news at the moment',
       news_title: 'News',
+      lbl_accept: "Accept",
+      lbl_reject: "Reject"
+
     });
 
 
