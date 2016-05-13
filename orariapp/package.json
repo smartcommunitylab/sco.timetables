@@ -32,7 +32,7 @@
     "net.yoik.cordova.plugins.screenorientation"
   ],
   "cordovaPlatforms": [
-    "android",
-    "ios"
+    "ios",
+    "android"
   ]
 }
