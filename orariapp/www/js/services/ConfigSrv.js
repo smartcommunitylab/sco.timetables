@@ -22,7 +22,7 @@ angular.module('viaggia.services.conf', [])
     };
 
     var weliveAppId = 'trento_transporttimes';
-    var weliveLoggingToken = '';
+    var weliveLoggingToken = LOGGING_TOKEN;
 
     var HTTP_CONFIG = {
         timeout: 5000
