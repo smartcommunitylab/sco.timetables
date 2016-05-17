@@ -141,6 +141,8 @@ angular.module('viaggia.controllers.common', [])
         }
     }
 
+    $rootScope.credits_info_p1 = $filter('translate')('credits_info');
+
 })
 
 .factory('Toast', function ($rootScope, $timeout, $ionicPopup, $cordovaToast) {

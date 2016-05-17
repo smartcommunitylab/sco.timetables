@@ -389,8 +389,8 @@ angular.module('viaggia', [
       news_empty_list: 'Non ci sono notizie in questo momento',
       news_title: 'News',
       lbl_accept: "Accetto",
-      lbl_reject: "Rifiuto"
-
+      lbl_reject: "Rifiuto",
+      "credits_info": "The WeLive project has been financed under European Commission's H2020 programme for research, development and innovation under agreement #64584"
     });
 
 
@@ -564,7 +564,8 @@ angular.module('viaggia', [
       news_empty_list: 'There are no news at the moment',
       news_title: 'News',
       lbl_accept: "Accept",
-      lbl_reject: "Reject"
+      lbl_reject: "Reject",
+      "credits_info": "The WeLive project has been financed under European Commission's H2020 programme for research, development and innovation under agreement #64584"
 
     });
 
