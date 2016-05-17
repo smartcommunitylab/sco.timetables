@@ -390,7 +390,7 @@ angular.module('viaggia', [
       news_title: 'News',
       lbl_accept: "Accetto",
       lbl_reject: "Rifiuto",
-      "credits_info": "The WeLive project has been financed under European Commission's H2020 programme for research, development and innovation under agreement #64584"
+      "credits_info": "Il progetto WeLive è stato finanziato dal programma H2020  della Commissione Europea per la ricerca, lo sviluppo tecnologico e l'innovazione secondo l'accordo N° 645845"
     });
 
 
