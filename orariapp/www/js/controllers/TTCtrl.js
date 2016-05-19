@@ -571,10 +571,6 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
                         type: 'button-close'
                     },
                     {
-                        text: '<i class="icon ion-navigate"></i>',
-                        onTap: $scope.navigate,
-                },
-                    {
                         text: '<i class="icon ion-android-time"></i>',
                         onTap: $scope.showStopData
                 }
