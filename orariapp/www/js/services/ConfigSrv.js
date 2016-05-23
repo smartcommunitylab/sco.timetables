@@ -1,6 +1,22 @@
 angular.module('viaggia.services.conf', [])
 
-.factory('Config', function ($q, $http, $window, $filter, $rootScope, $ionicLoading) {
+.factory('Config', function ($q, $http, $window, $filter, $rootScope, $ionicPlatform, $translate, $ionicLoading) {
+
+    var langPromise = $q.defer();
+
+    $ionicPlatform.ready(function () { // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+      if (typeof navigator.globalization !== "undefined") {
+        navigator.globalization.getPreferredLanguage(function (language) {
+          $translate.use((language.value).split("-")[0]).then(function (data) {
+            console.log("SUCCESS -> " + data);
+            langPromise.resolve($translate.use());
+          }, function (error) {
+            console.log("ERROR -> " + error);
+            langPromise.resolve($translate.use());
+          });
+        }, null);
+      }
+    });
 
     var isDarkColor = function (color) {
         if (!color) return true;
@@ -201,20 +217,11 @@ angular.module('viaggia.services.conf', [])
                 browserLanguage = $window.navigator.userLanguage || $window.navigator.language;
             }
             var lang = browserLanguage.substring(0, 2);
-            if (lang != 'it' && lang != 'en' && lang != 'de') lang = 'en';
+            if (lang != 'it' && lang != 'en') lang = 'en';
             return lang;
         },
         getLanguage: function () {
-
-            navigator.globalization.getLocaleName(
-                function (locale) {
-                    alert('locale: ' + locale.value + '\n');
-                },
-                function () {
-                    alert('Error getting locale\n');
-                }
-            );
-
+          return langPromise.promise;
         },
         loading: function () {
             $ionicLoading.show();

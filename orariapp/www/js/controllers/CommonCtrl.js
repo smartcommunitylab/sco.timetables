@@ -103,7 +103,7 @@ angular.module('viaggia.controllers.common', [])
         var questionnaireWindow = null;
         var processThat = false;
 
-        var url = 'https://in-app.welive.smartcommunitylab.it/html/index.html?app=' + Config.getWeLiveAppId() + '&callback=http://localhost' + '&lang=' + $translate.use().toUpperCase();
+        var url = 'https://in-app.welive.smartcommunitylab.it/html/index.html?app=' + Config.getWeLiveAppId() + '&pilotId=Trento&callback=http://localhost' + '&lang=' + $translate.use().toUpperCase();
 
         //Open the questionnaire page in the InAppBrowser
         if (!questionnaireWindow) {
@@ -178,11 +178,15 @@ angular.module('viaggia.controllers.common', [])
 
 .controller('TutorialCtrl', function ($scope, $ionicLoading) {})
 
-.controller('TermsCtrl', function ($scope, $ionicHistory, $state, $filter, $ionicPopup, $ionicSideMenuDelegate, $timeout, $translate) {
+.controller('TermsCtrl', function ($scope, $ionicHistory, $state, $filter, $ionicPopup, $ionicSideMenuDelegate, $timeout, $translate, Config) {
 
         // before routine.
         $scope.$on('$ionicView.enter', function () {
-            $scope.termsfile = 'templates/terms/terms-' + $translate.use() + '.html';
+            Config.loading();
+            Config.getLanguage().then(function(data) {
+              Config.loaded();
+              $scope.termsfile = 'templates/terms/terms-' + data + '.html';
+            });
             var acceptStr = localStorage["orariapp_isPrivacyAccepted"];
             $scope.accepting = acceptStr != 'true';
         });
