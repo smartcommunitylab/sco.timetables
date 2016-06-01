@@ -107,7 +107,7 @@ angular.module('viaggia', [
         } else {
           DataManager.syncStopData();
         }
-        Config.log({action:'start'});
+        Config.log('AppStarted',{});
       });
 
       $rootScope.platform = ionic.Platform;

@@ -277,11 +277,13 @@ angular.module('viaggia.services.conf', [])
             return ttJsonConfig.stopVisualization[agencyId];
         },
         isDarkColor: isDarkColor,
-        log: function(customAttrs) {
+        log: function(type, customAttrs) {
+          if (customAttrs == null) customAttrs = {};
           customAttrs.uuid = ionic.Platform.device().uuid;
+          customAttrs.appname = mapJsonConfig['appname'];
           $http.post('https://dev.welive.eu/dev/api/log/'+weliveAppId,{
             appId: weliveAppId,
-            type: 'AppCustom',
+            type: type,
             timestamp: new Date().getTime(),
             custom_attr: customAttrs
           },{headers:{Authorization:'Bearer '+weliveLoggingToken}})
