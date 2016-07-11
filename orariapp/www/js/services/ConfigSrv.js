@@ -37,7 +37,7 @@ angular.module('viaggia.services.conf', [])
         return '#000';
     };
 
-    var weliveAppId = 'trento_transporttimes';
+    var weliveAppId = 'OrariTrasporti';
     var weliveLoggingToken = LOGGING_TOKEN;
 
     var HTTP_CONFIG = {
@@ -280,7 +280,7 @@ angular.module('viaggia.services.conf', [])
         log: function(type, customAttrs) {
           if (customAttrs == null) customAttrs = {};
           customAttrs.uuid = ionic.Platform.device().uuid;
-          customAttrs.appname = mapJsonConfig['appname'];
+          customAttrs.appname = weliveAppId;
           $http.post('https://dev.welive.eu/dev/api/log/'+weliveAppId,{
             appId: weliveAppId,
             type: type,
