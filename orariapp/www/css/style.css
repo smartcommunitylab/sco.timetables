@@ -412,7 +412,15 @@
 }
 
 .bar-positive-100 {
-    background-color: #4c9fd7 !important;
+    background-color: #1e64ae !important;
+    height: 56px;
+}
+ion-nav-title{
+   
+}
+.title.title-left.header-item{
+    margin-top:2%;
+    text-align:center;
 }
 
 .placeautocomplete ul {
@@ -1222,7 +1230,6 @@ ion-header-bar .title {
   border-color: #1e64ae !important;
 }
 
-<<<<<<< HEAD
 .tab-item .icon {
     /* display: block; */
     /* margin: 0 auto; */
@@ -1230,8 +1237,7 @@ ion-header-bar .title {
     width: 24px;
     /* margin-top: 0px; */
     font-size: 24px;
-=======
+}
 .disableFocus{
     pointer-events:none;
->>>>>>> e1f14d86e626d1a36aadb7a0e24dc1d233277230
 }

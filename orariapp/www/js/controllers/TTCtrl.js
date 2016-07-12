@@ -137,7 +137,9 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
         console.log("sassobuffo loaded");
         document.getElementsByClassName("tab-item-active")[0].setAttribute("role", "tab");
         document.getElementsByClassName("tab-item-active")[0].setAttribute("aria-label", "selezionato, i miei viaggi");
-        document.getElementsByClassName("tab-title")[0].setAttribute("aria-label", "true");        
+        document.getElementsByClassName("tab-title")[0].setAttribute("aria-label", "true");
+        
+        console.log($(".tab-item-active").toArray());
     })
 })
 
