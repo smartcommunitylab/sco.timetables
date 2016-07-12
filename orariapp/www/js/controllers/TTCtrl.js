@@ -37,6 +37,7 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
                 groupId: groupId ? (groupId + ',' + e.group.label) : e.group.label
             });
         }
+       
     }
 
     var prepareGrid = function () {
@@ -130,7 +131,12 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
         ttService.setTTMapData(vis);
         $state.go('app.ttmap');
     };
-
+    $timeout(function(){
+        console.log("sassobuffo loaded");
+        document.getElementsByClassName("tab-item-active")[0].setAttribute("role", "tab");
+        document.getElementsByClassName("tab-item-active")[0].setAttribute("aria-label", "selezionato, i miei viaggi");
+        document.getElementsByClassName("tab-title")[0].setAttribute("aria-label", "true");        
+    })
 })
 
 .controller('TTCtrl', function ($scope, $rootScope, $state, $location, $stateParams, $ionicPosition, $ionicScrollDelegate, $timeout, $filter, ttService, Config, Toast, bookmarkService) {
