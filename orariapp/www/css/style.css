@@ -421,8 +421,8 @@
     background-color: #1e64ae !important;
     height: 56px;
 }
-ion-nav-title{
-   
+.nav-buttons-lat{
+    margin-top:5px;
 }
 .title.title-left.header-item{
     margin-top:2%;
@@ -1257,17 +1257,10 @@ ion-header-bar .title {
 
 .disableFocus{
     pointer-events:none;
-
->>>>>>> 251001141dd574bdd3e924264c316d9308a56a7f
-=======
-.disableFocus{
-    pointer-events:none;
     font-size: 24px !important;
-    pointer-events: none;
 }
 
 .tab-title{
   font-size: 10px;
   pointer-events: none;
->>>>>>> a46b04f948cbb1434c1f0f392e8396fe665ef523
 }
