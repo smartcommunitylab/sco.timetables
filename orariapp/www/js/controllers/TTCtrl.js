@@ -134,13 +134,24 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
     
   // SCRIPT ACCESSIBILITA' PER TAB
     $timeout(function(){
+<<<<<<< HEAD
         console.log("sassobuffo loaded");
         document.getElementsByClassName("tab-item-active")[0].setAttribute("role", "tab");
         document.getElementsByClassName("tab-item-active")[0].setAttribute("aria-label", "selezionato, i miei viaggi");
         document.getElementsByClassName("tab-title")[0].setAttribute("aria-label", "true");
         
         console.log($(".tab-item-active").toArray());
+=======
+      console.log('loaded');
+      var myEl = angular.element( document.querySelector( '.tab-item' )[0] );
+      myEl.attr('aria-label',"trasporti urbani");
+      
+//        document.getElementsByClassName("tab-item-active")[0].setAttribute("role", "tab");
+//        document.getElementsByClassName("tab-item-active")[0].setAttribute("aria-label", "trasporti urbani");
+//        document.getElementsByClassName("tab-title")[0].setAttribute("aria-label", "true"); 
+>>>>>>> 251001141dd574bdd3e924264c316d9308a56a7f
     })
+    
 })
 
 .controller('TTCtrl', function ($scope, $rootScope, $state, $location, $stateParams, $ionicPosition, $ionicScrollDelegate, $timeout, $filter, ttService, Config, Toast, bookmarkService) {
