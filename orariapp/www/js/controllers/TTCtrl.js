@@ -131,6 +131,8 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
         ttService.setTTMapData(vis);
         $state.go('app.ttmap');
     };
+    
+  // SCRIPT ACCESSIBILITA' PER TAB
     $timeout(function(){
         console.log("sassobuffo loaded");
         document.getElementsByClassName("tab-item-active")[0].setAttribute("role", "tab");
