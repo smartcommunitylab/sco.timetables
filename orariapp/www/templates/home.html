@@ -13,7 +13,7 @@
         </ion-view>
       </ion-tab>
 
-      <ion-tab icon="ic_train" on-select="select(1)" title="Orari Extraurbani" role="tab">
+      <ion-tab icon="ic_train" on-select="select(1)" title="Orari Treni" role="tab">
         <ion-view ng-if="tab == 1">
           <ion-content has-header="true"  ng-controller="TTRouteListCtrl" ng-init="init('trains')">
             <div ng-include="'templates/ttroutelist.html'"></div>

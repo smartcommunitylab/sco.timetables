@@ -349,8 +349,8 @@
 .route-grid-element span {
     text-align: center;
     vertical-align: middle;
-    font-size: 48px;
-    line-height: 80px;
+    font-size: 42px !important;
+    line-height: 85px;
     font-weight: bold;
 }
 
