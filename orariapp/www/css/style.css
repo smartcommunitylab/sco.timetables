@@ -412,7 +412,22 @@
 }
 
 .bar-positive-100 {
-    background-color: #4c9fd7 !important;
+  background-color: #1e64ae !important;
+  height: 56px;
+}
+
+.bar .button.button-clear {
+    padding-right: 2px;
+    padding-left: 2px;
+    font-weight: 300;
+    margin-top: 6px;
+    font-size: 17px;
+}
+
+.bar .title {
+    font-size: 19px;
+    line-height: 44px;
+    margin-top: 6px;
 }
 
 .placeautocomplete ul {
@@ -560,6 +575,11 @@
 
 ion-header-bar .title {
     color: #fff !important;
+}
+
+
+.bar .button.button-icon:before{
+  font-size: 24px !important;
 }
 
 .close-modal {
