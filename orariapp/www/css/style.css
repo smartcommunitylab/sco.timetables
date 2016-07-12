@@ -1220,3 +1220,7 @@ ion-header-bar .title {
   background-color: #1e64ae !important;
   border-color: #1e64ae !important;
 }
+
+.disableFocus{
+    pointer-events:none;
+}
