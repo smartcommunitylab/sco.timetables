@@ -3,7 +3,7 @@
         <button class="button button-icon button-clear" ng-class="bookmarkStyle" role="button" aria-label="Aggiungi la linea nei preferiti" ng-click="bookmark()"></button>
     </ion-nav-buttons>
     <ion-content id="content" has-header="true" has-bouncing="false">
-        <div class="row date-bar" style="background-color: {{color}}; color: {{textColor(color)}} !important;">
+        <div class="row date-bar" style="background-color: {{color}}; color: {{textColor(color)}} !important; margin-top:13px;">
             <div class="col col-25 tt-day btn" ng-click="prevDate()" role="button" aria-label="Giorno precedente"><a><i class="icon ion-arrow-left-b"></i></a>
             </div>
             <div class="col col-50 tt-day">{{runningDate | dowDate}} {{runningDate | date : 'dd/MM/yyyy'}}</div>
@@ -17,7 +17,7 @@
         </div>-->
         
         <div ng-controller="BusRideCtrl">
-            <h6>Fermata più vicina</h6>
+            <h6 class="bus-ride-text">Fermata più vicina</h6>
             <div class="card">
                 <div class="item item-text-wrap">
                     <div class="row">
@@ -56,7 +56,7 @@
                 </div>
             </div>
 
-            <h6>Elenco fermate</h6>
+            <h6 class="bus-ride-text">Elenco fermate</h6>
 
             <div class="card">
                 <div class="item item-text-wrap">
@@ -72,28 +72,12 @@
                     </div>                
                 </div>
             </div>
-
-            <div class="bar bar-footer">
-                <div class="tabs tabs-icon-left bus-ride">
-                    <a class="tab-item">
-                        <i class="icon ion-arrow-left-b"></i>
-                        Corsa Precedente
-                    </a>
-                    <a class="tab-item">
-                        Imposta Ora
-                    </a>
-                    <a class="tab-item">
-                        Corsa Successiva
-                        <i class="icon ion-arrow-right-b"></i>
-                    </a>
-                </div>
-            </div>
-
+        </div>
 
             <!-- ####################################################################################
                                                     TABELLA OLD
                #################################################################################### -->
-          <!--  <div class="row table-container" ng-if="dataStr">
+            <!--  <div class="row table-container" ng-if="dataStr">
 
                 <ion-scroll direction="xy" has-bouncing="false" id="tablescroll" style="height:{{scrollHeight}}px; width: {{scrollWidth}}px" class="overlapDiv" on-scroll="doScroll()" delegate-handle="list">
                     <div id="table-col" ng-bind-html="colStr"
@@ -128,10 +112,28 @@
                 <ngc-range top="header_row_number" bottom="tt.stops.length+header_row_number" left="1" right="tt.tripIds.length+1" style-fn="styleFn"></ngc-range>
             </div>
     -->
-        </div>
+        
         <div ng-if="tt && tt.tripIds.length == 0" class="text-center">
             <h4>{{'no_tt' | translate}}</h4>
         </div>
         <div id="measurer" style="white-space: nowrap;font-family: RobotoMono;font-size: 12px;color: transparent;background-color: transparent;position:absolute;">123456789</div>
+        
     </ion-content>
+    
+    <div class="bar bar-footer">
+        <div class="tabs tabs-icon-left bus-ride">
+            <a class="tab-item">
+                <i class="icon ion-arrow-left-b"></i>
+                <span class="bus-ride-text-footer">Corsa Precedente</span>
+            </a>
+            <a class="tab-item">
+                <span class="bus-ride-text-footer">Inserisci Ora</span>
+            </a>
+            <a class="tab-item">
+                <span class="bus-ride-text-footer">Corsa Successiva</span>
+                <i class="icon ion-arrow-right-b"></i>
+            </a>
+        </div>
+    </div>
+    
 </ion-view>
