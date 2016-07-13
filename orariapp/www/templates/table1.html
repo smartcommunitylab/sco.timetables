@@ -10,12 +10,87 @@
             <div class="col col-25 tt-day btn" ng-click="nextDate()"><a><i class="icon ion-arrow-right-b"></i></a>
             </div>
         </div>
+        <!--
         <div ng-if="dataStr" id="table-corner" style="width:{{stopsColWidth}}px; height:{{tableHeaderHeight}}px">
             <div>{{tableCornerStr[0]}}</div>
             <div ng-if="header_row_number == 2">{{tableCornerStr[1]}}</div>
+        </div>-->
+        
+        <h6>Fermata più vicina</h6>
+        <div class="card">
+            <div class="item item-text-wrap">
+                <div class="row">
+                    <div class="col">
+                        <h6>Fermata:</h6>
+                        <h2>AAAAAA</h2>
+                    </div>
+                    <div class="col">
+                        <h6>Ora di arrivo:</h6>
+                        <h2>00:00</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <h6>La fermata si trova ad ore X rispetto alla tua posizione attuale</h6>
+                </div>
+                
+            </div>
+            <div class="item item-divider">
+                <div class="tabs tabs-icon-only">
+                    <a class="tab-item">
+                        <i class="icon ion-ios-cart"></i>
+                    </a>
+                    <a class="tab-item">
+                        <i class="icon ion-clock"></i>
+                    </a>
+                    <a class="tab-item">
+                        <i class="icon ion-ios-star-outline"></i>
+                    </a>
+                    <a class="tab-item">
+                        <i class="icon ion-ios-location"></i>
+                    </a>
+                </div>
+            </div>
         </div>
-
-        <div class="row table-container" ng-if="dataStr">
+        
+        <h6>Elenco fermate</h6>
+        
+        <div class="card">
+            <div class="item item-text-wrap">
+                <div class="row">
+                    <div class="col">
+                        <h6>Fermata:</h6>
+                        <h2>AAAAAA</h2>
+                    </div>
+                    <div class="col">
+                        <h6>Ora di arrivo:</h6>
+                        <h2>00:00</h2>
+                    </div>
+                </div>                
+            </div>
+        </div>
+        
+        
+        <div class="bar bar-footer">
+            <div class="tabs tabs-icon-left">
+                <a class="tab-item">
+                    <i class="icon ion-arrow-left-b"></i>
+                    Corsa Precedente
+                </a>
+                <a class="tab-item">
+                    Imposta Ora
+                </a>
+                <a class="tab-item">
+                    Corsa Successiva
+                    <i class="icon ion-arrow-right-b"></i>
+                </a>
+            </div>
+        </div>
+       
+        
+        <!-- ####################################################################################
+                                                TABELLA OLD
+           #################################################################################### -->
+      <!--  <div class="row table-container" ng-if="dataStr">
 
             <ion-scroll direction="xy" has-bouncing="false" id="tablescroll" style="height:{{scrollHeight}}px; width: {{scrollWidth}}px" class="overlapDiv" on-scroll="doScroll()" delegate-handle="list">
                 <div id="table-col" ng-bind-html="colStr"

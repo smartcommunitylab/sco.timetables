@@ -417,6 +417,10 @@
     background-color: #1e64ae;
 }
 
+.textmenu *{
+    font-size: 20px !important;
+}
+
 .bar-positive-100 {
   background-color: #1e64ae !important;
   height: 56px;
