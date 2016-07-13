@@ -16,115 +16,119 @@
             <div ng-if="header_row_number == 2">{{tableCornerStr[1]}}</div>
         </div>-->
         
-        <h6>Fermata più vicina</h6>
-        <div class="card">
-            <div class="item item-text-wrap">
-                <div class="row">
-                    <div class="col">
-                        <h6>Fermata:</h6>
-                        <h2>AAAAAA</h2>
+        <div ng-controller="BusRideCtrl">
+            <h6>Fermata più vicina</h6>
+            <div class="card">
+                <div class="item item-text-wrap">
+                    <div class="row">
+                        <div class="col">
+                            <h6>Fermata:</h6>
+                            <h2>AAAAAA</h2>
+                        </div>
+                        <div class="col">
+                            <h6>Ora di arrivo:</h6>
+                            <h2>00:00</h2>
+                        </div>
                     </div>
-                    <div class="col">
-                        <h6>Ora di arrivo:</h6>
-                        <h2>00:00</h2>
-                    </div>
-                </div>
-                <div class="row">
-                    <h6>La fermata si trova ad ore X rispetto alla tua posizione attuale</h6>
-                </div>
-                
-            </div>
-            <div class="item item-divider">
-                <div class="tabs tabs-icon-only">
-                    <a class="tab-item">
-                        <i class="icon ion-ios-cart"></i>
-                    </a>
-                    <a class="tab-item">
-                        <i class="icon ion-clock"></i>
-                    </a>
-                    <a class="tab-item">
-                        <i class="icon ion-ios-star-outline"></i>
-                    </a>
-                    <a class="tab-item">
-                        <i class="icon ion-ios-location"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        
-        <h6>Elenco fermate</h6>
-        
-        <div class="card">
-            <div class="item item-text-wrap">
-                <div class="row">
-                    <div class="col">
-                        <h6>Fermata:</h6>
-                        <h2>AAAAAA</h2>
-                    </div>
-                    <div class="col">
-                        <h6>Ora di arrivo:</h6>
-                        <h2>00:00</h2>
-                    </div>
-                </div>                
-            </div>
-        </div>
-        
-        
-        <div class="bar bar-footer">
-            <div class="tabs tabs-icon-left">
-                <a class="tab-item">
-                    <i class="icon ion-arrow-left-b"></i>
-                    Corsa Precedente
-                </a>
-                <a class="tab-item">
-                    Imposta Ora
-                </a>
-                <a class="tab-item">
-                    Corsa Successiva
-                    <i class="icon ion-arrow-right-b"></i>
-                </a>
-            </div>
-        </div>
-       
-        
-        <!-- ####################################################################################
-                                                TABELLA OLD
-           #################################################################################### -->
-      <!--  <div class="row table-container" ng-if="dataStr">
+                    <div class="row">
+                        <div class="col">
+                            <h6>La fermata si trova ad ore X rispetto alla tua posizione attuale</h6>
+                        </div>
 
-            <ion-scroll direction="xy" has-bouncing="false" id="tablescroll" style="height:{{scrollHeight}}px; width: {{scrollWidth}}px" class="overlapDiv" on-scroll="doScroll()" delegate-handle="list">
-                <div id="table-col" ng-bind-html="colStr"
-                     style="width:{{stopsColWidth}}px;
-                            line-height: {{stopsColLineHeight}}px;
-                            top: {{tableHeaderHeight}}px;
-                            background-size: 100% {{rowHeight*2}}px;
-                            background-image:
-                            -webkit-linear-gradient(90deg,#fff, #fff {{rowHeight}}px, #eee {{rowHeight}}px, #eee {{rowHeight*2}}px);
-                            background-image:
-                            linear-gradient(180deg,#fff, #fff {{rowHeight}}px, #eee {{rowHeight}}px, #eee {{rowHeight*2}}px);"
-                     ng-click="showStop($event)"></div>
-                <div id="table-header" style="left:{{stopsColWidth}}px;">
-                    <div ng-bind-html="headStr[0]"></div>
-                    <div ng-if="header_row_number == 2" ng-bind-html="headStr[1]"></div>
+                    </div>
+
                 </div>
+                <div class="item item-divider full-width-card-icons">
+                    <div class="tabs tabs-icon-only">
+                        <a class="tab-item">
+                            <i class="icon ion-ios-cart"></i>
+                        </a>
+                        <a class="tab-item">
+                            <i class="icon ion-clock"></i>
+                        </a>
+                        <a class="tab-item">
+                            <i class="icon ion-ios-star-outline"></i>
+                        </a>
+                        <a class="tab-item">
+                            <i class="icon ion-ios-location"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
 
-                <div id="table-table" ng-bind-html="dataStr"
-                     style="left:{{stopsColWidth}}px;
-                            top: {{tableHeaderHeight}}px;
-                            background-size: 100% {{rowHeight*2}}px;
-                            background-image:
-                            -webkit-linear-gradient(90deg,transparent, transparent {{rowHeight}}px, #eee {{rowHeight}}px, #eee {{rowHeight*2}}px);
-                            background-image:
-                            linear-gradient(180deg,transparent, transparent {{rowHeight}}px, #eee {{rowHeight}}px, #eee {{rowHeight*2}}px);"></div>
-            </ion-scroll>
-        </div>
+            <h6>Elenco fermate</h6>
 
-        <!--
-        <div ng-if="tt && tt.tripIds.length > 0" ngc-table data="data" scroll-delay="0" show-footer="false" left-column-number="1" left-column-widths="'100'" header-row-number="header_row_number" header-row-heights="row_height" right-column-number="0" show-row-numbers="false" show-column-names="false" center-column-widths="[column_width]" center-column-number="column_number" row-number="row_number" row-heights="[row_height]" scroll-left-position="scrollLeftPosition">
-            <ngc-range top="0" bottom="header_row_number" left="1" right="tt.tripIds.length+1" style-fn="styleFn"></ngc-range>
-            <ngc-range top="header_row_number" bottom="tt.stops.length+header_row_number" left="1" right="tt.tripIds.length+1" style-fn="styleFn"></ngc-range>
+            <div class="card">
+                <div class="item item-text-wrap">
+                    <div class="row">
+                        <div class="col">
+                            <h6>Fermata:</h6>
+                            <h2>AAAAAA</h2>
+                        </div>
+                        <div class="col">
+                            <h6>Ora di arrivo:</h6>
+                            <h2>00:00</h2>
+                        </div>
+                    </div>                
+                </div>
+            </div>
+
+            <div class="bar bar-footer">
+                <div class="tabs tabs-icon-left bus-ride">
+                    <a class="tab-item">
+                        <i class="icon ion-arrow-left-b"></i>
+                        Corsa Precedente
+                    </a>
+                    <a class="tab-item">
+                        Imposta Ora
+                    </a>
+                    <a class="tab-item">
+                        Corsa Successiva
+                        <i class="icon ion-arrow-right-b"></i>
+                    </a>
+                </div>
+            </div>
+
+
+            <!-- ####################################################################################
+                                                    TABELLA OLD
+               #################################################################################### -->
+          <!--  <div class="row table-container" ng-if="dataStr">
+
+                <ion-scroll direction="xy" has-bouncing="false" id="tablescroll" style="height:{{scrollHeight}}px; width: {{scrollWidth}}px" class="overlapDiv" on-scroll="doScroll()" delegate-handle="list">
+                    <div id="table-col" ng-bind-html="colStr"
+                         style="width:{{stopsColWidth}}px;
+                                line-height: {{stopsColLineHeight}}px;
+                                top: {{tableHeaderHeight}}px;
+                                background-size: 100% {{rowHeight*2}}px;
+                                background-image:
+                                -webkit-linear-gradient(90deg,#fff, #fff {{rowHeight}}px, #eee {{rowHeight}}px, #eee {{rowHeight*2}}px);
+                                background-image:
+                                linear-gradient(180deg,#fff, #fff {{rowHeight}}px, #eee {{rowHeight}}px, #eee {{rowHeight*2}}px);"
+                         ng-click="showStop($event)"></div>
+                    <div id="table-header" style="left:{{stopsColWidth}}px;">
+                        <div ng-bind-html="headStr[0]"></div>
+                        <div ng-if="header_row_number == 2" ng-bind-html="headStr[1]"></div>
+                    </div>
+
+                    <div id="table-table" ng-bind-html="dataStr"
+                         style="left:{{stopsColWidth}}px;
+                                top: {{tableHeaderHeight}}px;
+                                background-size: 100% {{rowHeight*2}}px;
+                                background-image:
+                                -webkit-linear-gradient(90deg,transparent, transparent {{rowHeight}}px, #eee {{rowHeight}}px, #eee {{rowHeight*2}}px);
+                                background-image:
+                                linear-gradient(180deg,transparent, transparent {{rowHeight}}px, #eee {{rowHeight}}px, #eee {{rowHeight*2}}px);"></div>
+                </ion-scroll>
+            </div>
+
+            
+            <div ng-if="tt && tt.tripIds.length > 0" ngc-table data="data" scroll-delay="0" show-footer="false" left-column-number="1" left-column-widths="'100'" header-row-number="header_row_number" header-row-heights="row_height" right-column-number="0" show-row-numbers="false" show-column-names="false" center-column-widths="[column_width]" center-column-number="column_number" row-number="row_number" row-heights="[row_height]" scroll-left-position="scrollLeftPosition">
+                <ngc-range top="0" bottom="header_row_number" left="1" right="tt.tripIds.length+1" style-fn="styleFn"></ngc-range>
+                <ngc-range top="header_row_number" bottom="tt.stops.length+header_row_number" left="1" right="tt.tripIds.length+1" style-fn="styleFn"></ngc-range>
+            </div>
+    -->
         </div>
--->
         <div ng-if="tt && tt.tripIds.length == 0" class="text-center">
             <h4>{{'no_tt' | translate}}</h4>
         </div>

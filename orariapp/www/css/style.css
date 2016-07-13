@@ -1251,10 +1251,17 @@
     padding: 25px;
 }
 
-.tabs-positive .tabs {
-  background-color: #1e64ae !important;
-  border-color: #1e64ae !important;
-  height: 56px;
+.tabs-positive .tabs{
+      background-color: #1e64ae !important;
+      border-color: #1e64ae !important;
+      height: 56px;
+}
+
+.bus-ride{
+      background-color: #1e64ae !important;
+      border-color: #1e64ae !important;
+      color: #fff;
+      height: 56px;
 }
 
 .tab-item .icon {
@@ -1283,4 +1290,9 @@
 .tab-title{
   font-size: 10px;
   pointer-events: none;
+}
+
+.full-width-card-icons{
+    padding-left: 0px;
+    padding-right: 0px;
 }
