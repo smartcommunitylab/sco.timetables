@@ -13,20 +13,20 @@
     </ion-side-menu-content>
 
     <ion-side-menu side="left">
-        <ion-content class="leftmenu">
+        <ion-content class="leftmenu textmenu">
             <ion-list>
                 <div class="fs-header"></div>
-                <ion-item nav-clear menu-close href="#/app/home/ttbus" class="menu-main item-icon-left">
-                    <i class="icon ic_home"></i>{{'menu_home' | translate}}
+                <ion-item nav-clear menu-close href="#/app/home/ttbus" class="menu-main item-icon-left" aria-label="Home">
+                    <i class="icon ic_home disable-focus"></i>{{'menu_home' | translate}}
                 </ion-item>
-                <ion-item nav-clear menu-close ng-click="questionnaireWindow()" class="menu-main item-icon-left">
-                    <i class="icon ion-help-circled"></i>{{'menu_questionary' | translate}}
+                <ion-item nav-clear menu-close ng-click="questionnaireWindow()" class="menu-main item-icon-left" aria-label="Questionario">
+                    <i class="icon ion-help-circled disable-focus"></i>{{'menu_questionary' | translate}}
                 </ion-item>
-                <ion-item nav-clear menu-close href="#/app/termine"  class="menu-last item-icon-left">
-                    <i class="icon ion-alert-circled"></i>{{'menu_terms_of_service'| translate}}
+                <ion-item nav-clear menu-close href="#/app/termine"  class="menu-last item-icon-left" aria-label="Termini di Utilizzo">
+                    <i class="icon ion-alert-circled disable-focus"></i>{{'menu_terms_of_service'| translate}}
                 </ion-item>
-                <ion-item nav-clear menu-close ng-click="openCredits()" class="menu-last item-icon-left">
-                    <i class="icon ic_info"></i>{{'menu_credits' | translate}}
+                <ion-item nav-clear menu-close ng-click="openCredits()" class="menu-last item-icon-left" aria-label="Home">
+                    <i class="icon ic_info disable-focus"></i>{{'menu_credits' | translate}}
                 </ion-item>
 
             </ion-list>
