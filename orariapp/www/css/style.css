@@ -1288,16 +1288,6 @@
     /* margin-top: 0px; */
     font-size: 24px;
 }
-.disableFocus{
-    pointer-events:none;
-    font-size: 24px !important;
-    pointer-events: none;
-}
-
-.tab-title{
-  font-size: 10px;
-  pointer-events: none;
-}
 
 .disableFocus{
     pointer-events:none;
@@ -1315,4 +1305,29 @@
 }
 .date-bar{
   margin-top: 12px;
+}
+
+/* ttstop file style */
+
+.fermata-row{
+    font-size: 16px !important;
+    background-color: lightblue;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 2px 1px rgba(0, 0, 0, .20);
+    margin: 0;
+    padding: 20px 0;
+}
+.fermata-row-description{
+    text-align: center;
+    width: 100%;
+}
+
+.card-ttstop{
+    margin: 10px 8px !important;
+    padding: 10px;
+    text-align: center;
+}
+.font-orari{
+    font-size: 36px !important;
 }

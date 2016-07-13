@@ -1,25 +1,46 @@
-<ion-view >
-      <ion-nav-title>{{stopData.name}}</ion-nav-title>
-      <ion-nav-buttons side="right">
-          <button class="button button-icon button-clear" ng-class="bookmarkStyle" ng-click="bookmark()"></button>
-      </ion-nav-buttons>
-      <ion-content>
-        <div>
-          <div class="stop-line" ng-repeat="(routeId, route) in stopData.data">
-            <div ng-if="route.routeObject" class="stop-line-title" style="background-color: {{route.color}}; color: {{textColor(route.color)}}">
-              <span ng-if="route.routeObject.label">{{route.routeObject.label}}: </span>{{route.routeObject.title}}
+<ion-view>
+        <ion-nav-title>
+            {{stopData.name}}
+        </ion-nav-title>
+        <ion-nav-buttons side="right">
+            <button class="button button-icon button-clear" ng-class="bookmarkStyle" ng-click="bookmark()"></button>
+        </ion-nav-buttons>
+        <ion-content>
+        <div ng-repeat="(routeId, route) in stopData.data">
+            <div class="row fermata-row">
+                <div class="fermata-row-description">
+                    FERMATA: {{stopData.name}}
+                </div>
             </div>
-            <div ng-if="!route.routeObject" class="stop-line-title"  style="background-color: #eee">
-              <span ng-if="route.route">{{route.route}}: </span>{{route.name}}
+            <div class="card card-ttstop" ng-repeat="t in route.times">
+                <div class="item item-text-wrap font-orari text-center">{{t.time | date:'HH.mm'}}</div>
             </div>
-            <div class="row">
-              <div class="col text-center" ng-repeat="t in route.times">{{t.time | date:'HH:mm'}}</div>
-            </div>
-          </div>
-        </div>
-        <div ng-if="isEmpty()" class="text-center">
-          <h4>{{'no_data' | translate}}</h4>
-        </div>
-    </ion-content>
+            
+            <div class="stop-line">
+                <div ng-if="route.routeObject" class="stop-line-title">
+                    <span ng-if="route.routeObject.label">{{route.routeObject.label}}: </span>{{route.routeObject.title}}
+                </div>
+                <div ng-if="!route.routeObject" class="stop-line-title"  style="background-color: #eee">
+                    <span ng-if="route.route">{{route.route}}: </span>{{route.name}}
+                </div>
+                <div class="col">
 
+                </div>
+            </div>
+            <div ng-if="isEmpty()" class="text-center">
+                <h4>{{'no_data' | translate}}</h4>
+            </div>
+        </div>
+        <div style="margin-top: 20px; font-size: 15px;">
+                <p ng-repeat="route in stopData.data">
+                {{route}}
+                {{route.color}}
+                {{textColor(route.color)}}
+                </p>
+                <p>
+                {{stopData.data.color}}
+                </p>
+        </div>
+            </ion-content>
+        </div>
 </ion-view>
