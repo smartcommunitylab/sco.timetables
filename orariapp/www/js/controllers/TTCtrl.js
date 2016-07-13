@@ -664,7 +664,7 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
             }
         }
     }
-
+    
     $scope.stopData = ttService.getTTStopData();
     if ($scope.stopData) {
         Config.loading();
@@ -679,6 +679,24 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
         init($scope.stopData);
 
     }
+    
+    $scope.$on('$ionicView.beforeEnter', function () {
+        
+        for(var key in $scope.stopData.data){
+            var stop = $scope.stopData.data[key];
+            $scope.routeObject = stop.routeObject;
+            
+            $scope.route = stop.route;
+            $scope.color = stop.routeElement.color;
+            $scope.label = stop.routeObject.label;
+            $scope.title = stop.routeObject.title;
+            $scope.times = stop.times;
+        }
+            console.log($scope.stopData.data);
+        console.log($scope.route);
+ 
+    });
+    
     $scope.bookmarkStyle = bookmarkService.getBookmarkStyle($location.path());
 
     $scope.isEmpty = function () {
