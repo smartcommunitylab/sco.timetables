@@ -1280,3 +1280,7 @@
   font-size: 10px;
   pointer-events: none;
 }
+
+.date-bar{
+  margin-top: 12px;
+}
