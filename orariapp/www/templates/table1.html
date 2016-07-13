@@ -1,13 +1,13 @@
 <ion-view title="{{title}}">
     <ion-nav-buttons side="right">
-        <button class="button button-icon button-clear" ng-class="bookmarkStyle" ng-click="bookmark()"></button>
+        <button class="button button-icon button-clear" ng-class="bookmarkStyle" role="button" aria-label="Aggiungi la linea nei preferiti" ng-click="bookmark()"></button>
     </ion-nav-buttons>
     <ion-content id="content" has-header="true" has-bouncing="false">
-        <div class="row" style="background-color: {{color}}; color: {{textColor(color)}} !important;">
-            <div class="col col-25 tt-day btn" ng-click="prevDate()"><a><i class="icon ion-arrow-left-b"></i></a>
+        <div class="row date-bar" style="background-color: {{color}}; color: {{textColor(color)}} !important;">
+            <div class="col col-25 tt-day btn" ng-click="prevDate()" role="button" aria-label="Giorno precedente"><a><i class="icon ion-arrow-left-b"></i></a>
             </div>
             <div class="col col-50 tt-day">{{runningDate | dowDate}} {{runningDate | date : 'dd/MM/yyyy'}}</div>
-            <div class="col col-25 tt-day btn" ng-click="nextDate()"><a><i class="icon ion-arrow-right-b"></i></a>
+            <div class="col col-25 tt-day btn" ng-click="nextDate()" aria-label="Giorno successivo"><a><i class="icon ion-arrow-right-b"></i></a>
             </div>
         </div>
         <!--
