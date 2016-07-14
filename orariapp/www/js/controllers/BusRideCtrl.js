@@ -23,6 +23,17 @@ angular.module('viaggia.controllers.busRide', ['ionic','ionic-timepicker'])
             }
         }
     };
+    $scope.currentTime = function(){
+        var currentTime = new Date();
+        $scope.time.hours = currentTime.getHours();
+        var mins = currentTime.getMinutes();
+        if(mins<10){
+            $scope.time.minutes="0"+mins;
+        }
+        else{
+            $scope.time.minutes = mins;
+        }
+    }
     $scope.openTimePicker = function(){
         ionicTimePicker.openTimePicker(ipObj1);
     }
