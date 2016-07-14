@@ -195,6 +195,34 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
         //        alert('colwidth:' + $scope.colwidth);
         $scope.load();
     });
+    
+        // initialize
+    $scope.load = function () {
+        $scope.route = Config.getTTData($stateParams.ref, $stateParams.agencyId, $stateParams.groupId, $stateParams.routeId);
+        $scope.title = ($scope.route.label ? ($scope.route.label + ': ') : '') + $scope.route.title;
+        $scope.bookmarkStyle = bookmarkService.getBookmarkStyle($location.path());
+
+
+        if (!$scope.route.color) {
+            var group = Config.getTTData($stateParams.ref, $stateParams.agencyId, $stateParams.groupId);
+            if (group && group.color) $scope.color = group.color;
+        } else {
+            $scope.color = $scope.route.color;
+        }
+        $scope.getTT($scope.runningDate.getTime());
+    }
+
+    // go to next date
+    $scope.nextDate = function () {
+            $scope.runningDate.setDate($scope.runningDate.getDate() + 1);
+            $scope.getTT($scope.runningDate.getTime());
+        }
+        // go to prev date
+    $scope.prevDate = function () {
+        $scope.runningDate.setDate($scope.runningDate.getDate() - 1);
+        $scope.getTT($scope.runningDate.getTime());
+    }
+    
     // load timetable data
     $scope.getTT = function (date) {
         Config.loading();
@@ -414,33 +442,6 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
 
         initMeasures(data);
     };
-
-    // initialize
-    $scope.load = function () {
-        $scope.route = Config.getTTData($stateParams.ref, $stateParams.agencyId, $stateParams.groupId, $stateParams.routeId);
-        $scope.title = ($scope.route.label ? ($scope.route.label + ': ') : '') + $scope.route.title;
-        $scope.bookmarkStyle = bookmarkService.getBookmarkStyle($location.path());
-
-
-        if (!$scope.route.color) {
-            var group = Config.getTTData($stateParams.ref, $stateParams.agencyId, $stateParams.groupId);
-            if (group && group.color) $scope.color = group.color;
-        } else {
-            $scope.color = $scope.route.color;
-        }
-        $scope.getTT($scope.runningDate.getTime());
-    }
-
-    // go to next date
-    $scope.nextDate = function () {
-            $scope.runningDate.setDate($scope.runningDate.getDate() + 1);
-            $scope.getTT($scope.runningDate.getTime());
-        }
-        // go to prev date
-    $scope.prevDate = function () {
-        $scope.runningDate.setDate($scope.runningDate.getDate() - 1);
-        $scope.getTT($scope.runningDate.getTime());
-    }
 
     // $scope.styleFn = function (value, row, col) {
     //   //        var cls = col % 2 == 0 ? 'even' : 'odd';
