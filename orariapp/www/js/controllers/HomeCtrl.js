@@ -41,5 +41,6 @@ angular.module('viaggia.controllers.home', [])
       ttService.setTTMapData(vis);
       $state.go('app.ttmap');
     };
+  
 
 })
