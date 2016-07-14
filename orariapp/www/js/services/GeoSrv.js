@@ -94,6 +94,23 @@ angular.module('viaggia.services.geo', [])
         //console.log(GL.distance(myPosition, gotoPosition));
         return GL.distance(myPosition, gotoPosition);
       });
+    },
+    indexOfMin: function (array) {
+        if(array.length === 0) {
+            return -1;
+        }
+        
+        var min = array[0];
+        var minIndex = 0;
+        
+        for(var i = 1; i < array.length; i++) {
+                if(array[i] < min) {
+                    minIndex = i;
+                    min = array[i];
+                }
+        }
+        
+        return minIndex;
     }
   };
 })
