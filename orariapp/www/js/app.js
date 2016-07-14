@@ -61,7 +61,8 @@ angular.module('viaggia', [
     'viaggia.services.timetable',
     'viaggia.services.geo',
     'viaggia.services.bookmarks',
-    'viaggia.controllers.busRide'
+    'viaggia.controllers.busRide',
+    'viaggia.controllers.map'
 ])
 
 .run(function ($ionicPlatform, $cordovaFile, $rootScope, $translate, DataManager, Config, GeoLocate) {
