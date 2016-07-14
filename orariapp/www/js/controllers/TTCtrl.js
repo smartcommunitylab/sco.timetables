@@ -134,8 +134,8 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
     
   // SCRIPT ACCESSIBILITA'
     $timeout(function(){
-        document.getElementsByClassName("back-text").setAttribute("aria-label", "torna indietro");
-        document.getElementsByClassName("back-text").setAttribute("role", "button");
+//        document.getElementsByClassName("back-text").setAttribute("aria-label", "torna indietro");
+//        document.getElementsByClassName("back-text").setAttribute("role", "button");
         
 //      var myEl = angular.element( document.querySelector( '.tab-item' )[0] );
 //      myEl.attr('aria-label',"trasporti urbani");
