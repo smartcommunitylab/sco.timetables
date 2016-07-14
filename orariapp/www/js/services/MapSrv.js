@@ -66,6 +66,7 @@ angular.module('viaggia.services.map', [])
             GeoLocate.locate().then(function (e) {
                 $timeout(function () {
                     map.setView(L.latLng(e[0], e[1]), zoom);
+                    console.log("coordinate", e[0], e[1]);
                 });
             });
         });
@@ -116,7 +117,7 @@ angular.module('viaggia.services.map', [])
                 //                markers.push(getMarkerParkAndWalk(trip.leg[i]));
                 //            }
             var bound = [trip.leg[i].from.lat, trip.leg[i].from.lon];
-
+            console.log(trip.leg[i].from.lat, trip.leg[i].from.lon);
         }
         //add the arrival place
         markers.push({

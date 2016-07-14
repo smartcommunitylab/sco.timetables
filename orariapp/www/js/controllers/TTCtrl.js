@@ -478,7 +478,8 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
 
     var MAX_MARKERS = 20;
     $scope.$on('leafletDirectiveMap.ttMap.moveend', function (event) {
-        $scope.filterMarkers();
+        //$scope.filterMarkers();
+        $scope.getKilometers();
     });
 
     var getAgencies = function () {
@@ -489,6 +490,24 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
         return res;
     };
 
+    $scope.getKilometers = function() {
+        
+        console.log('Ho iniziato a contare i kilometri');
+        $scope.kilometersList = [];
+        $scope.stopNames = [];
+        var agencies = getAgencies();
+        var listOfStops = ttService.getStopData(agencies);
+        
+        for(var i = 0; i < listOfStops.length; i++) {
+            var coordinates = listOfStops[i].coordinates;
+            
+            $scope.stopNames.push(listOfStops[i].name);
+            GeoLocate.distanceTo(coordinates).then(function(km) {
+                $scope.kilometersList.push(km);
+            });
+        }   
+    }
+    
     $scope.filterMarkers = function () {
         Config.loading();
         mapService.getMap('ttMap').then(function (map) {
