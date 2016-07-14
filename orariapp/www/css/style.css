@@ -437,8 +437,9 @@
 .bar .title {
     font-size: 19px;
     line-height: 44px;
-    margin-top: 6px;
+    margin-top: 26px !important;
 }
+
 .nav-buttons-lat{
     margin-top:5px;
 }
@@ -1308,7 +1309,6 @@
 }
 
 /* ttstop file style */
-
 .fermata-row{
     font-size: 16px !important;
     color: white;
@@ -1330,6 +1330,8 @@
 .font-orari{
     font-size: 36px !important;
 }
+
+/*TimePicker style*/
 .ionic_timepicker_popup .heading{
     background-color: #1e64ae !important;
 }
@@ -1339,6 +1341,7 @@
 .ionic_timepicker_popup .button_close{
     background-color: #1e64ae !important;
 }
+<<<<<<< HEAD
 .time-picker-button{
     color: white;
     float: right;
@@ -1346,4 +1349,12 @@
 }
 .heading{
     line-height: 44px !important;
+}
+
+/*Template style for IOS */
+.platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) {
+  height: 76px !important;
+}
+.platform-ios7.platform-cordova:not(.fullscreen) .has-header {
+  top: 90px !important;
 }
