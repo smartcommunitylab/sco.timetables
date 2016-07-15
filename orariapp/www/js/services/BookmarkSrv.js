@@ -6,7 +6,7 @@ angular.module('viaggia.services.bookmarks', [])
         repo = Config.getAppId() + '_bookmarks';
     });
 
-    var getStoredBookmarks = function () {
+    var getStoredBookmarks =function () {
         var value = localStorage.getItem(repo);
         if (!value) {
             value = [];

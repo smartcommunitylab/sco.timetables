@@ -35,7 +35,7 @@ angular.module('viaggia.services.map', [])
     };
 
     mapService.getDistances = function() {
-        GeoLocate.distance(mapService.getMyLocation(), )
+        GeoLocate.distance(mapService.getMyLocation())
     }
     //init map with tile server provider and show my position
     mapService.initMap = function (mapId) {

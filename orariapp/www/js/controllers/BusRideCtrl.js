@@ -11,7 +11,7 @@ angular.module('viaggia.controllers.busRide', ['ionic','ionic-timepicker'])
     ionicTimePickerProvider.configTimePicker(timePickerObj);
 })
 
-.controller('BusRideCtrl', function ($scope, ionicTimePicker) {
+.controller('BusRideCtrl', function ($scope, $stateParams, ionicTimePicker, ttService) {
     var ipObj1={
         callback: function(val){
             if(typeof(val) === 'undefined') {
@@ -37,4 +37,13 @@ angular.module('viaggia.controllers.busRide', ['ionic','ionic-timepicker'])
     $scope.openTimePicker = function(){
         ionicTimePicker.openTimePicker(ipObj1);
     }
+    
+    ttService.getTTStopDataAsync($stateParams.ref,$stateParams.agencyId,$stateParams.stopId)
+        .then(function(stop){
+            $scope.stopData = stop;
+            console.log(stop);
+        });
+    
+    var pippo = ttService.getTTStopData();
+    console.log(pippo);
 })
