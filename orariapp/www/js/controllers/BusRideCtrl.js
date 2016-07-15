@@ -11,7 +11,7 @@ angular.module('viaggia.controllers.busRide', ['ionic','ionic-timepicker'])
     ionicTimePickerProvider.configTimePicker(timePickerObj);
 })
 
-.controller('BusRideCtrl', function ($scope, $stateParams, ionicTimePicker, ttService) {
+.controller('BusRideCtrl', function ($scope, $stateParams, $http, ionicTimePicker, ttService) {
     var ipObj1={
         callback: function(val){
             if(typeof(val) === 'undefined') {
@@ -38,12 +38,10 @@ angular.module('viaggia.controllers.busRide', ['ionic','ionic-timepicker'])
         ionicTimePicker.openTimePicker(ipObj1);
     }
     
-    ttService.getTTStopDataAsync($stateParams.ref,$stateParams.agencyId,$stateParams.stopId)
-        .then(function(stop){
-            $scope.stopData = stop;
-            console.log(stop);
-        });
-    
-    var pippo = ttService.getTTStopData();
-    console.log(pippo);
+    function getData(){
+        $http.get("http://os.smartcommunitylab.it/core.mobility/getstops/"+$stateParams.agencyId + "/" + $stateParams.routeId).then(function(res){
+            console.log(res.data);
+        })
+    }
+    getData();
 })

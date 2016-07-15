@@ -185,7 +185,7 @@ angular.module('viaggia', [
         views: {
           'menuContent': {
             templateUrl: "templates/table1.html",
-            controller: 'TTCtrl',
+            controller: 'TTCtrl'
           }
         }
       })
