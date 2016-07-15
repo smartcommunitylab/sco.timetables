@@ -109,7 +109,6 @@ angular.module('viaggia.services.geo', [])
                     min = array[i];
                 }
         }
-        
         return minIndex;
     }
   };
