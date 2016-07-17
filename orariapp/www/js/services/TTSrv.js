@@ -136,6 +136,20 @@ angular.module('viaggia.services.timetable', [])
 				//      }, errCB);
 			}, errCB);
 		};
+
+        var getStops = function(agencyId, routeId) {
+            var defer = $q.defer();
+            $http.get("http://os.smartcommunitylab.it/core.mobility/getstops/" + agencyId + "/" + routeId)
+                .success(function(data){
+                     defer.resolve(data);
+            })
+                .error(function(err){
+                     defer.reject(err);
+                     console.log(err);
+            });
+            return defer.promise;
+        };
+        
 		var getNextTrips = function (agencyId, stopId, numberOfResults) {
 			var deferred = $q.defer();
 			numberOfResults = numberOfResults || 3;
@@ -146,6 +160,7 @@ angular.module('viaggia.services.timetable', [])
 			});
 			return deferred.promise;
 		};
+    
 		var getStopData = function (ref, agencyId, stopId) {
 			var deferred = $q.defer();
 			var stop = null;
@@ -264,7 +279,11 @@ angular.module('viaggia.services.timetable', [])
 				}
 				return data.tripIds.length - 1;
 			}
-			, /**
+			,/**
+            * Read stops giving line
+            */
+            getStops: getStops
+            ,/**
 			 * Read stops for agencies
 			 */
 			getStopData: getStopsData
