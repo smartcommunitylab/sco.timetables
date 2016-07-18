@@ -61,7 +61,6 @@ angular.module('viaggia', [
     'viaggia.services.timetable',
     'viaggia.services.geo',
     'viaggia.services.bookmarks',
-    'viaggia.services.busRide',
     'viaggia.controllers.busRide',
     'viaggia.controllers.map'
 ])
