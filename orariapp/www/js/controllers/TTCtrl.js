@@ -256,11 +256,12 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
         
         for(var i = 0; i < listOfStops.length; i++) {
             GeoLocate.distanceToRealStop(listOfStops[i]).then(function(data){
-                console.log(data);
+                $scope.distanceToStop.push(data);
             })
+            //console.log($scope.distanceToStop);
             //$scope.distanceToStop.push(GeoLocate.distanceToRealStop(listOfStops[i]));
         }
-        //console.log($scope.distanceToStop);
+        console.log($scope.distanceToStop);
     };   
     
     $scope.indexOfMin = function (array) {
