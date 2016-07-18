@@ -200,7 +200,7 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
         $scope.route = Config.getTTData($stateParams.ref, $stateParams.agencyId, $stateParams.groupId, $stateParams.routeId);
         $scope.title = ($scope.route.label ? ($scope.route.label + ': ') : '') + $scope.route.title;
         $scope.bookmarkStyle = bookmarkService.getBookmarkStyle($location.path());
-        $scope.setLineStops();
+        //$scope.setLineStops();
 
         if (!$scope.route.color) {
             var group = Config.getTTData($stateParams.ref, $stateParams.agencyId, $stateParams.groupId);
@@ -244,24 +244,6 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
         });
     };
     
-    $scope.setLineStops = function() {      
-        /*Retrieve stops for line selected*/
-        ttService.getStops($stateParams.agencyId, $stateParams.routeId).then(function(data){
-            $scope.getKilometersFromStop(data);
-        });
-    };
-    
-    $scope.getKilometersFromStop = function(listOfStops) { 
-        $scope.distanceToStop = [];
-        
-        for(var i = 0; i < listOfStops.length; i++) {
-            GeoLocate.distanceToRealStop(listOfStops[i]).then(function(data){
-                console.log(data);
-            })
-            //$scope.distanceToStop.push(GeoLocate.distanceToRealStop(listOfStops[i]));
-        }
-        //console.log($scope.distanceToStop);
-    };   
     
     $scope.indexOfMin = function (array) {
         if(array.length === 0) {
