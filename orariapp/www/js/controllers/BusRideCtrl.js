@@ -12,7 +12,8 @@ angular.module('viaggia.controllers.busRide', ['ionic','ionic-timepicker'])
 })
 
 .controller('BusRideCtrl', function ($scope, $stateParams,$timeout, ionicTimePicker, ttService, GeoLocate) {
-    var lineStops = [];
+    $scope.distanceToStop = [];
+    
     var ipObj1={
         callback: function(val){
             if(typeof(val) === 'undefined') {
@@ -53,24 +54,33 @@ angular.module('viaggia.controllers.busRide', ['ionic','ionic-timepicker'])
         /*Retrieve stops for line selected*/
         ttService.getStops($stateParams.agencyId, $stateParams.routeId).then(function(data){
             $scope.getKilometersFromStop(data);
-            console.log(data);
+            //console.log(data);
         });
     };
     
-    $scope.getKilometersFromStop = function(listOfStops) { 
-        $scope.distanceToStop = [];
-        
+    $scope.getKilometersFromStop = function(listOfStops) {     
         for(var i = 0; i < listOfStops.length; i++) {
             GeoLocate.distanceToRealStop(listOfStops[i]).then(function(data){
-                console.log(data);
+                $scope.distanceToStop.push(data);
+                //console.log(data);
             })
-            //$scope.distanceToStop.push(GeoLocate.distanceToRealStop(listOfStops[i]));
+           
         }
         //console.log($scope.distanceToStop);
     };  
     
+    function sortStops(list){
+        list.sort(function(a,b){
+           return a.distance - b.distance;
+        });
+    } 
     
     $timeout(function(){
         setLineStops();
-    });
+        $scope.distanceToStop.sort(function(a,b){
+            return a.distance - b.distance;
+        });
+        for(var i = 0; i<$scope.distanceToStop.length;i++)
+            console.log($scope.distanceToStop[i].distance);
+    })
 })

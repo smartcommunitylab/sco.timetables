@@ -97,16 +97,15 @@ angular.module('viaggia.services.geo', [])
     },
     distanceToRealStop: function(stop) {
         var coordinates = [];
-        var realStop = [];
         coordinates.push(stop.latitude);
         coordinates.push(stop.longitude);
         
         return this.distanceTo(coordinates).then(function(distance) {
-            realStop.push({
+            return {
                 name: stop.name,
-                distance: distance
-            });
-            return realStop;
+                distance: distance,
+                wheelchair: stop.wheelChairBoarding
+            };
         })
         
         coordinates.slice(0, coordinates.length);
