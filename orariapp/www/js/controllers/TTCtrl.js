@@ -244,7 +244,6 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
         });
     };
     
-    
     $scope.indexOfMin = function (array) {
         if(array.length === 0) {
             return -1;
