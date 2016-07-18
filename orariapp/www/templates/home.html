@@ -3,7 +3,7 @@
     <ion-nav-buttons side="right">
         <button class="button button-icon button-clear ion-map nav-buttons-lat" ng-class="{'ion-map': tab != 2, 'ion-help': tab == 2}" ng-click="action()" aria-label="Visualizza Mappa"></button>
     </ion-nav-buttons>
-    <ion-tabs class="tabs-icon-only tabs-positive">
+    <ion-tabs class="tabs-icon-only tabs-positive" role="tablist">
 
       <ion-tab icon="ic_urban-bus" on-select="select(0)" aria-label="Orari Urbani" title="Orari urbani" role="tab">
         <ion-view ng-if="tab == 0">
