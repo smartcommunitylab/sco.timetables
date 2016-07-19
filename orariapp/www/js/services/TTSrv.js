@@ -160,7 +160,10 @@ angular.module('viaggia.services.timetable', [])
             return {
                 name: stop.name,
                 distance: distance,
-                wheelchair: stop.wheelChairBoarding
+                wheelchair: stop.wheelChairBoarding,
+                lat: stop.latitude,
+                lng: stop.longitude,
+                id: stop.id
             };
             coordinates.slice(0, coordinates.length);
         };

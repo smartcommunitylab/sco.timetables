@@ -230,6 +230,7 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
         /*Retrieve stops for line selected*/
         Config.loading();
         ttService.getStops($stateParams.agencyId, $stateParams.routeId).then(function (data) {
+            console.log(data);
             $scope.getKilometersFromStop(data);
         });
     }
@@ -247,6 +248,14 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
     $scope.compareState = function(a,b) {
         return a.distance - b.distance;
     };
+    
+    $scope.showStopData = function () {
+        $state.go('app.ttstop', {
+            stopId: $scope.$stateParams.id,
+            agencyId: $scope.$stateParams.agencyId,
+            ref: mapData.ref
+        });
+    }
     
     // load timetable data
     $scope.getTT = function (date) {
