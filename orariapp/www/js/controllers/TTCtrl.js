@@ -146,6 +146,8 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
 
 .controller('TTCtrl', function ($scope, $rootScope, $state, $location, $stateParams, $ionicPosition, $ionicScrollDelegate, $timeout, $filter, ttService, GeoLocate, Config, Toast, bookmarkService) {
     $scope.data = [];
+    $scope.distanceToStop = [];
+    $scope.nearestStop = {};
     var rowHeight = 20;
     $scope.rowHeight = rowHeight;
     var headerRowHeight = 21; // has a border
@@ -200,7 +202,7 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
         $scope.route = Config.getTTData($stateParams.ref, $stateParams.agencyId, $stateParams.groupId, $stateParams.routeId);
         $scope.title = ($scope.route.label ? ($scope.route.label + ': ') : '') + $scope.route.title;
         $scope.bookmarkStyle = bookmarkService.getBookmarkStyle($location.path());
-        //$scope.setLineStops();
+        $scope.setLineStops();
 
         if (!$scope.route.color) {
             var group = Config.getTTData($stateParams.ref, $stateParams.agencyId, $stateParams.groupId);
@@ -209,6 +211,7 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
             $scope.color = $scope.route.color;
         }
         $scope.getTT($scope.runningDate.getTime());
+        console.log($scope.getTT($scope.runningDate.getTime()));
     }
 
     // go to next date
@@ -222,9 +225,31 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
         $scope.getTT($scope.runningDate.getTime());
     }
     
+    //Set line Stops
+    $scope.setLineStops = function() {
+        /*Retrieve stops for line selected*/
+        Config.loading();
+        ttService.getStops($stateParams.agencyId, $stateParams.routeId).then(function (data) {
+            $scope.getKilometersFromStop(data);
+        });
+    }
+    
+    $scope.getKilometersFromStop = function (listOfStops) {
+        for (var i = 0; i < listOfStops.length; i++) {
+            $scope.distanceToStop.push(ttService.getStopByDistance(listOfStops[i]));
+            $scope.distanceToStop.sort($scope.compareState);
+        }
+        Config.loaded();
+        $scope.nearestStop = $scope.distanceToStop[0];
+    };
+    
+    $scope.compareState = function(a,b) {
+        return a.distance - b.distance;
+    };
+
+    
     // load timetable data
     $scope.getTT = function (date) {
-        Config.loading();
         ttService.getTT($stateParams.agencyId, $scope.route.routeSymId, date).then(
         function (data) {
           if (data.delays && data.delays.length > 0) {
@@ -240,50 +265,9 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
         },
         function(data) {
           constructTable(data);
-          Config.loaded();
         });
+
     };
-    
-    $scope.indexOfMin = function (array) {
-        if(array.length === 0) {
-            return -1;
-        }
-        
-        var min = array[0];
-        var minIndex = 0;
-        
-        for(var i = 1; i < array.length; i++) {
-                if(array[i] < min) {
-                    minIndex = i;
-                    min = array[i];
-                }
-        }
-        return minIndex;
-    };
-    
-    $scope.getKilometers = function() {
-        
-        console.log('Ho iniziato a contare i kilometri');
-        $scope.kilometersList = [];
-        $scope.stopNames = [];
-        var agencies = getAgencies();
-        var listOfStops = ttService.getStopData(agencies);
-        
-        for(var i = 0; i < listOfStops.length; i++) {
-            var coordinates = listOfStops[i].coordinates;
-            
-            $scope.stopNames.push(listOfStops[i].name);
-            GeoLocate.distanceTo(coordinates).then(function(km) {
-                $scope.kilometersList.push(km);
-                console.log($scope.kilometersList.length);
-            });
-        }
-        
-        var i = GeoLocate.indexOfMin($scope.kilometersList);
-        console.log(i);
-        console.log($scope.stopNames.length);
-        console.log($scope.kilometersList.length);
-    }
 
     // convert delay object to string
     var getDelayValue = function (delay) {

@@ -2,7 +2,7 @@ angular.module('viaggia.services.timetable', [])
 	/**
 	 * A SERVICE TO WORK WITH TIMETABLE DATA BOTH FROM DB AND FROM SERVER
 	 */
-	.factory('ttService', function ($http, $q, $filter, Config, DataManager) {
+	.factory('ttService', function ($http, $rootScope, $q, $filter, Config, DataManager, GeoLocate) {
 		var calendarCache = {};
 		var ttMapData = {};
 		var ttStopData = {};
@@ -150,6 +150,21 @@ angular.module('viaggia.services.timetable', [])
             return defer.promise;
         };
         
+        var getStopByDistance = function(stop) {
+            var coordinates = [];
+            coordinates.push(stop.latitude);
+            coordinates.push(stop.longitude);
+
+            var distance = GeoLocate.distance($rootScope.myPosition, coordinates);
+
+            return {
+                name: stop.name,
+                distance: distance,
+                wheelchair: stop.wheelChairBoarding
+            };
+            coordinates.slice(0, coordinates.length);
+        };
+        
 		var getNextTrips = function (agencyId, stopId, numberOfResults) {
 			var deferred = $q.defer();
 			numberOfResults = numberOfResults || 3;
@@ -283,6 +298,10 @@ angular.module('viaggia.services.timetable', [])
             * Read stops giving line
             */
             getStops: getStops
+            ,/**
+            * Read stop by distances
+            */
+            getStopByDistance : getStopByDistance
             ,/**
 			 * Read stops for agencies
 			 */

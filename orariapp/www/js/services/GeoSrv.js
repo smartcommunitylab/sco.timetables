@@ -94,21 +94,6 @@ angular.module('viaggia.services.geo', [])
         //console.log(GL.distance(myPosition, gotoPosition));
         return GL.distance(myPosition, gotoPosition);
       });
-    },
-    distanceToStop: function(stop) {
-        var coordinates = [];
-        coordinates.push(stop.latitude);
-        coordinates.push(stop.longitude);
-        
-        var distance = this.distance($rootScope.myPosition, coordinates);
-        
-        return {
-            name: stop.name,
-            distance: distance,
-            wheelchair: stop.wheelChairBoarding
-        };
-        
-        coordinates.slice(0, coordinates.length);
-    }    
+    }
   };
 })
