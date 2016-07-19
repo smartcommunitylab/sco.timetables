@@ -1,6 +1,6 @@
 <ion-list class="route-list" ng-if="view == 'list'">
-	<ion-item ng-repeat="elem in elements" ng-last-repeat="elements" ng-click="selectElement(elem)">
-		<div class="card card-tt" style="{{elem.color ? ('color:'+textColor(elem.color)+';background-color: '+elem.color) : ''}}">{{elem.title}}</div>
+	<ion-item class="no-padding-item" ng-repeat="elem in elements" ng-last-repeat="elements" ng-click="selectElement(elem)">
+		<div class="card card-line" style="{{elem.color ? ('color:'+textColor(elem.color)+';background-color: '+elem.color) : ''}}">{{elem.title}}</div>
 	</ion-item>
 </ion-list>
 <div ng-if="view == 'grid'">
