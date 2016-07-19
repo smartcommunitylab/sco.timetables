@@ -152,7 +152,7 @@ angular.module('viaggia.services.bookmarks', [])
         /**
          * Add/remove a bookmark for the element of the specified type, path, and title. Returns promise for the update style.
          */
-        toggleBookmark: function (path, title, type, data) {
+        toggleBookmark: function (path, title, type, data, line) {
             var deferred = $q.defer();
             var pos = this.indexOfBookmark(path);
             if (pos >= 0) {
@@ -211,6 +211,7 @@ angular.module('viaggia.services.bookmarks', [])
                 this.addBookmark({
                     "state": path,
                     "label": title,
+                    "line": line,
                     "icon": icon,
                     "color": color,
                     type: type,

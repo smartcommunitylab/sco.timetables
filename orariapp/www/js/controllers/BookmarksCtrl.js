@@ -4,7 +4,7 @@ angular.module('viaggia.controllers.bookmarks', [])
 	$scope.languageTutorial = "en";
    
     $scope.tab = 0;
-    $scope.tabs = ["Fermate","Linee"];
+    $scope.tabs = ["FERMATE","LINEE"];
     
     $scope.select = function($index){
         $scope.tab = $index;
@@ -18,6 +18,7 @@ angular.module('viaggia.controllers.bookmarks', [])
 		Config.init().then(function () {
 			bookmarkService.getBookmarks().then(function (list) {
 				$scope.bookmarks = list;
+                console.log($scope.bookmarks);
 			});
 		});
 		initTutorial();
