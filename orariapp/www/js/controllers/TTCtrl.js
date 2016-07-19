@@ -250,7 +250,6 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
     
     // load timetable data
     $scope.getTT = function (date) {
-        Config.loading();
         ttService.getTT($stateParams.agencyId, $scope.route.routeSymId, date).then(
         function (data) {
           if (data.delays && data.delays.length > 0) {
@@ -262,11 +261,9 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
             $scope.tt = {
                 tripIds: []
             };
-            Config.loaded();
         },
         function(data) {
-          constructTable(data);
-          Config.loaded();    
+          constructTable(data);   
         });
 
     };
@@ -487,7 +484,7 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
 
     $scope.bookmark = function () {
         var ref = Config.getTTData($stateParams.ref);
-        bookmarkService.toggleBookmark($location.path(), $scope.title, ref.transportType,$scope.title).then(function (style) {
+        bookmarkService.toggleBookmark($location.path(), $scope.title, ref.transportType).then(function (style) {
             $scope.bookmarkStyle = style;
         });
     };

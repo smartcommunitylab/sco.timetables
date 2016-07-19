@@ -23,9 +23,9 @@
         <div>
             <h6 class="bus-ride-text">Fermata più vicina</h6>
             <div class="card ride">
-                <div class="item item-text-wrap">
-                    <div class="row">
-                        <div class="col">
+                <div class="item item-text-wrap no-padding-item">
+                    <div class="row stop-row">
+                        <div class="col col-60">
                             <h6>Fermata:</h6>
                             <h3>{{nearestStop.name}}</h3>
                         </div>
@@ -34,7 +34,7 @@
                             <h2>00:00</h2>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row stop-row">
                         <div class="col">
                             <h6>La fermata si trova ad ore X rispetto alla tua posizione attuale</h6>
                         </div>
@@ -61,10 +61,10 @@
         </div>
         <h6 class="bus-ride-text">Elenco fermate</h6>
 
-        <div class="card ride" ng-repeat="stop in distanceToStop | startFrom : 1" ng-click="show = !show">
-            <div class="item item-text-wrap">
-                <div class="row">
-                    <div class="col">
+        <div class="card ride" ng-repeat="stop in distanceToStop | startFrom : 1">
+            <div class="item item-text-wrap no-padding-item">
+                <div class="row stop-row">
+                    <div class="col col-60">
                         <h6>Fermata:</h6>
                         <h2>{{stop.name}}</h2>
                     </div>
@@ -72,7 +72,10 @@
                         <h6>Ora di arrivo:</h6>
                         <h2>00:00</h2>
                     </div>
-                </div>                
+                </div>     
+                <div class="row" style="color: {{color}};" ng-click="show = !show">
+                    <i class="detail-icon" ng-class="{'icon ion-ios-arrow-down': !show, 'icon ion-ios-arrow-up': show}"></i>
+                </div>
             </div>
             <div ng-show="show" class="item item-divider full-width-card-icons">
                     <div class="tabs tabs-icon-only">
@@ -89,7 +92,7 @@
                             <i class="icon ion-ios-location"></i>
                         </a>
                     </div>
-                </div>
+            </div>
     </div>
             
         <!---------------------------------------------------------------->
