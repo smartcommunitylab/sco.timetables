@@ -45,7 +45,8 @@
             <div ng-if="tab == 1" class="card bookmark-card">
                 <ion-item id="focusHere" class="item-icon-left" ng-class="{'bookmark-margin':!showReorder}" item="item" ng-repeat="m in bookmarks track by $index" ng-last-repeat="bookmarks" ng-click="go(m.state)" ng-if="m.type == 'BUS'">
                     <div class="row" ng-style="{'background-color':m.color}">
-                        <h3>{{m.data}}</h3>
+                        <h3>{{m.label}}</h3>
+                        
                     </div>
 
                     <ion-option-button ng-if="m.removable" class="button button-clear" ng-click="delete($index, $event)"><i class="icon ion-android-delete"></i></ion-option-button>

@@ -484,7 +484,7 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
 
     $scope.bookmark = function () {
         var ref = Config.getTTData($stateParams.ref);
-        bookmarkService.toggleBookmark($location.path(), $scope.title, ref.transportType).then(function (style) {
+        bookmarkService.toggleBookmark($location.path(), $scope.title, ref.transportType, $scope.title).then(function (style) {
             $scope.bookmarkStyle = style;
         });
     };
