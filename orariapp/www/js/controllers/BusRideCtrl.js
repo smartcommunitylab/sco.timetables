@@ -54,22 +54,19 @@ angular.module('viaggia.controllers.busRide', ['ionic', 'ionic-timepicker'])
         ttService.getStops($stateParams.agencyId, $stateParams.routeId).then(function (data) {
             $scope.getKilometersFromStop(data);
         });
-        $scope.nearestStop = $scope.distanceToStop[0];
     }
     
     $scope.getKilometersFromStop = function (listOfStops) {
         for (var i = 0; i < listOfStops.length; i++) {
-            GeoLocate.distanceToRealStop(listOfStops[i]).then(function (data) {
-                $scope.distanceToStop.push(data);
-                $scope.distanceToStop.sort(function (a, b) {
-                    return a.distance - b.distance;
-                });
-            });
-        };
+            $scope.distanceToStop.push(GeoLocate.distanceToStop(listOfStops[i]));
+            $scope.distanceToStop.sort($scope.compareState);
+        }
+        $scope.nearestStop = $scope.distanceToStop[0];
+    };
+    
+    $scope.compareState = function(a,b) {
+        return a.distance - b.distance;
     };
     
     setLineStops();
-    console.log($scope.distanceToStop);
-    console.log($scope.distanceToStop.length);
-    console.log($scope.nearestStop);
 })

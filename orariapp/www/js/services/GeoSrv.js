@@ -95,20 +95,20 @@ angular.module('viaggia.services.geo', [])
         return GL.distance(myPosition, gotoPosition);
       });
     },
-    distanceToRealStop: function(stop) {
+    distanceToStop: function(stop) {
         var coordinates = [];
         coordinates.push(stop.latitude);
         coordinates.push(stop.longitude);
         
-        return this.distanceTo(coordinates).then(function(distance) {
-            return {
-                name: stop.name,
-                distance: distance,
-                wheelchair: stop.wheelChairBoarding
-            };
-        })
+        var distance = this.distance($rootScope.myPosition, coordinates);
+        
+        return {
+            name: stop.name,
+            distance: distance,
+            wheelchair: stop.wheelChairBoarding
+        };
         
         coordinates.slice(0, coordinates.length);
-    },
+    }    
   };
 })
