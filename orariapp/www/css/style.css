@@ -1311,6 +1311,7 @@
 }
 
 .date-bar{
+  color: #fff !important;
   margin-top: 12px !important;
   height: 56px !important;
 }
