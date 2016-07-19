@@ -9,7 +9,8 @@ angular.module('viaggia.controllers.bookmarks', [])
     $scope.select = function($index){
         $scope.tab = $index;
         console.log("Tab Index Changed in",$scope.tab);
-    }
+    };
+    
     $scope.$on('$ionicView.beforeEnter', function () {
 		('alert 2');
 	});

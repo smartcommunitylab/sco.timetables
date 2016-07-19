@@ -1,24 +1,19 @@
-<div class="tabs-striped tabs-top tabs-background-positive tabs-color-light">
-    <div class="tabs" style="top:12px;">
-        <a ng-repeat="t in tabs" class="tab-item" ng-class="{'active': $index==tab}" ng-click="select($index)">{{t}}</a>
+<div class="row">
+    <div class="tabs-striped tabs-top tabs-background-positive tabs-color-light">
+        <div class="tabs">
+            <a ng-repeat="t in tabs" class="tab-item" ng-class="{'active': $index==tab}" ng-click="select($index)">{{t}}</a>
+        </div>
     </div>
 </div>
+<div class="row">
+    <div ng-if="tab==0" class="card" style="margin-top:50%">
+        FERMATE
+    </div>
 
-<ion-view ng-if="tab == 0">
-    <ion-content>
-        <div class="card" style="margin-top:50%">
-            FERMATE
-        </div>
-    </ion-content>
-</ion-view>
-
-<ion-view ng-if="tab == 1">
-    <ion-content>
-        <div class="card" style="margin-top:50%">
-            LINEE
-        </div>
-    </ion-content>
-</ion-view>
+    <div ng-if="tab==1" class="card" style="margin-top:50%">
+        LINEE
+    </div>
+</div>
 
 
 
