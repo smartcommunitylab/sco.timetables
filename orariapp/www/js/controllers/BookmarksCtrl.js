@@ -2,7 +2,15 @@ angular.module('viaggia.controllers.bookmarks', [])
 	
 	.controller('BookmarksCtrl', function ($scope, $rootScope, $location, $filter, $ionicHistory, $timeout, $ionicModal, $ionicListDelegate, Config, bookmarkService) {
 	$scope.languageTutorial = "en";
-	$scope.$on('$ionicView.beforeEnter', function () {
+   
+    $scope.tab = 0;
+    $scope.tabs = ["Fermate","Linee"];
+    
+    $scope.select = function($index){
+        $scope.tab = $index;
+        console.log("Tab Index Changed in",$scope.tab);
+    }
+    $scope.$on('$ionicView.beforeEnter', function () {
 		('alert 2');
 	});
 	$scope.init = function () {
