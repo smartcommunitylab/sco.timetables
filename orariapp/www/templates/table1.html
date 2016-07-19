@@ -56,7 +56,7 @@
         </div>
         <h6 class="bus-ride-text">Elenco fermate</h6>
 
-        <div class="card ride" ng-repeat="stop in distanceToStop | startFrom : 1">
+        <div class="card ride" ng-repeat="stop in distanceToStop | startFrom : 1" ng-click="show = !show">
             <div class="item item-text-wrap">
                 <div class="row">
                     <div class="col">
@@ -69,6 +69,22 @@
                     </div>
                 </div>                
             </div>
+            <div ng-show="show" class="item item-divider full-width-card-icons">
+                    <div class="tabs tabs-icon-only">
+                        <a class="tab-item">
+                            <i class="icon ion-ios-cart"></i>
+                        </a>
+                        <a class="tab-item">
+                            <i class="icon ion-clock"></i>
+                        </a>
+                        <a class="tab-item">
+                            <i class="icon ion-ios-star-outline"></i>
+                        </a>
+                        <a class="tab-item">
+                            <i class="icon ion-ios-location"></i>
+                        </a>
+                    </div>
+                </div>
     </div>
 
 

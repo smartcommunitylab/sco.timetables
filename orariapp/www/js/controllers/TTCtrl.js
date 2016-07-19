@@ -240,16 +240,17 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
             $scope.distanceToStop.sort($scope.compareState);
         }
         Config.loaded();
+        console.log($scope.distanceToStop);
         $scope.nearestStop = $scope.distanceToStop[0];
     };
     
     $scope.compareState = function(a,b) {
         return a.distance - b.distance;
     };
-
     
     // load timetable data
     $scope.getTT = function (date) {
+        Config.loading();
         ttService.getTT($stateParams.agencyId, $scope.route.routeSymId, date).then(
         function (data) {
           if (data.delays && data.delays.length > 0) {
@@ -265,6 +266,7 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
         },
         function(data) {
           constructTable(data);
+          Config.loaded();    
         });
 
     };
