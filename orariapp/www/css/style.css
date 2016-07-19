@@ -1276,6 +1276,7 @@
     font-size: 15px;
     color: dimgray;
     margin-left: 8px;
+    margin-top: 20px;
 }
 .bus-ride-text-footer{
     font-size: 12px;
@@ -1304,8 +1305,24 @@
     padding-left: 0px;
     padding-right: 0px;
 }
+
+.row.date-bar{
+  padding: 10px !important;
+}
+
 .date-bar{
-  margin-top: 12px;
+  background-color: #0977b7 !important;
+  color: #fff !important;
+  margin-top: 12px !important;
+  height: 56px !important;
+}
+
+.ride .tabs{
+  padding-top: 7px;
+}
+
+.ride .tabs i {
+  color: black;
 }
 
 /*Style TT line page */
@@ -1373,4 +1390,10 @@
 }
 .platform-ios7.platform-cordova:not(.fullscreen) .has-header {
   top: 90px !important;
+}
+
+.ride h2,
+.ride h3 {
+  font-size: 18px !important;
+  font-weight: 100;
 }
