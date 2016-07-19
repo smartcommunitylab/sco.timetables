@@ -17,12 +17,12 @@
         </div>-->
         <div ng-controller="BusRideCtrl">
                 <h6 class="bus-ride-text">Fermata più vicina</h6>
-                <div class="card">
+                <div class="card ride">
                     <div class="item item-text-wrap">
                         <div class="row">
                             <div class="col">
                                 <h6>Fermata:</h6>
-                                <h2>{{nearestStop.name}}</h2>
+                                <h3>{{nearestStop.name}}</h3>
                             </div>
                             <div class="col">
                                 <h6>Ora di arrivo:</h6>
@@ -56,7 +56,7 @@
             </div>
             <h6 class="bus-ride-text">Elenco fermate</h6>
 
-            <div class="card" ng-repeat="stop in distanceToStop | startFrom : 1">
+            <div class="card ride" ng-repeat="stop in distanceToStop | startFrom : 1">
                 <div class="item item-text-wrap">
                     <div class="row">
                         <div class="col">

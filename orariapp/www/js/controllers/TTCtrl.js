@@ -1,6 +1,6 @@
 angular.module('viaggia.controllers.timetable', ['ionic'])
 
-.controller('TTRouteListCtrl', function ($scope, $rootScope, $state, $stateParams, $timeout, $ionicPopup, $filter, ionicMaterialMotion, ionicMaterialInk, Config, ttService) {
+.controller('TTRouteListCtrl', function ($scope, $rootScope, $state, $stateParams, $timeout, $ionicPopup, $filter,$ionicScrollDelegate, ionicMaterialMotion, ionicMaterialInk, Config, ttService) {
     var min_grid_cell_width = 90;
     var ref = null;
     var agencyId = null;
