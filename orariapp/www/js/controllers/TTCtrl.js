@@ -703,8 +703,6 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
     }
     $scope.setStopDataInit = function () {
         $scope.stopData = ttService.getTTStopData();
-        console.log("setStopDataInit");
-        console.log($scope.stopData);
     }
 
     if ($scope.stopData) {
