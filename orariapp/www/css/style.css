@@ -997,14 +997,9 @@
     text-align: center;
 }
 
-.bookmark-list .list {
-    padding: 16px 8px;
-}
-
 .bookmark-list ion-item {
     padding: 0px;
-    padding-top: 1px;
-    padding-bottom: 1px;
+    margin-bottom: 20px;
     border: 1px solid #d2d2d2!important;
     width: 100% !important;
     overflow: hidden;
@@ -1021,12 +1016,6 @@
 
 .bookmark-list .ctrl {
     float: right;
-}
-
-.bookmark-margin {
-    /*    margin: 20px 10px;*/
-    /*    width: inherit !important;*/
-    /*    transition: margin 0.2s ease;*/
 }
 
 .text_books {
@@ -1385,12 +1374,41 @@
 .bookmark-list{
     width: 100%;
 }
-.bookmark-card{
-    margin-top: 20%;
-    width: 95%;
+.bookmark-item h6{
+    color: dimgray;
+    font-size: 15px;
 }
-
-
+.bookmark-item h3{
+    font-weight: 100;
+    font-size: 18px;
+}
+.full-screen-swapper{
+    margin-bottom: 0 !important;
+    margin-left: 4px !important;
+    margin-right: 4px !important;
+    margin-top: 75px !important;
+}
+.bookmark-item-lines {
+    margin: 0 !important;
+}
+.bookmarks-label {
+    font-size: 16px !important;
+}
+.item-content{
+    padding: 0 !important;
+}
+.bookmark-item-stops{
+    margin-bottom: 20px !important;
+}
+.bookmark-stop-title{
+    font-size: 14px !important;
+    text-transform: uppercase;
+    font-weight: 300 !important;
+    color: #fff;
+}
+.bookmark-stop-row{
+    padding: 14px !important;
+}
 /*TimePicker style*/
 .ionic_timepicker_popup .heading{
     background-color: #1e64ae !important;
