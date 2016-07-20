@@ -10,7 +10,7 @@
     <ion-list class="bookmark-list" can-swipe="true" show-reorder="showReorder">
         
         <div class="full-screen-swapper" ng-if="tab == 0">
-            <ion-item class="item-icon-left bookmark-item bookmarks-item-stops" ng-class="{'bookmark-margin':!showReorder}" item="item" ng-repeat="m in bookmarks track by $index" ng-last-repeat="bookmarks" ng-click="go(m.state)" ng-if="m.type == 'BUSSTOP'">
+            <ion-item class="item-icon-left bookmark-item bookmark-item-stops" ng-class="{'bookmark-margin':!showReorder}" item="item" ng-repeat="m in bookmarks track by $index" ng-last-repeat="bookmarks" ng-click="go(m.state)" ng-if="m.type == 'BUSSTOP'">
                 
                 <div class="row bookmark-stop-row" ng-style="{'background-color':m.color}">
                     <h3 class="bookmark-stop-title">LINEA {{m.data}}</h3>
@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 <div class="row stop-row">
-                    <div class="col">
+                    <div class="col col-80">
                         <h6>La fermata si trova ad ore X rispetto alla tua posizione attuale</h6>
                     </div>
                 </div>
@@ -50,8 +50,8 @@
         </div>
             
         <div class="card full-screen-swapper" ng-if="tab == 1">
-            <ion-item class="item-icon-left bookmark-item bookmarks-item-lines" item="item" ng-repeat="m in bookmarks track by $index" ng-last-repeat="bookmarks" ng-click="go(m.state)" ng-if="m.type == 'BUS'">
-                <div class="row stop-row">
+            <ion-item class="item-icon-left bookmark-item bookmark-item-lines" item="item" ng-repeat="m in bookmarks track by $index" ng-last-repeat="bookmarks" ng-click="go(m.state)" ng-if="m.type == 'BUS'">
+                <div class="row">
                     <div class="col icon-col"> 
                         <i class="icon img" ng-class="m.icon" style="{{'color: '+m.color}}"></i>
                     </div>
@@ -65,65 +65,6 @@
             </ion-item>
         </div>
     </div>
-
-    <!--
-    <ion-list class="bookmark-list" can-swipe="true" show-reorder="showReorder">
-            <div ng-if="tab == 0" class="card bookmark-card">
-                <ion-item class="item-icon-left" ng-class="{'bookmark-margin':!showReorder}" item="item" ng-repeat="m in bookmarks track by $index" ng-last-repeat="bookmarks" ng-click="go(m.state)" ng-if="m.type == 'BUSSTOP'">
-                    <div class="row" ng-style="{'background-color':m.color}">
-                        <h3>{{m.data}}</h3>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <h6>Fermata:</h6>
-                            <h3>{{m.label | translate}}</h3>
-                        </div>
-                    </div>
-                    
-                    <div class="item item-divider full-width-card-icons">
-                        <div class="tabs tabs-icon-only">
-                            <a class="tab-item">
-                                <i class="icon ion-ios-cart"></i>
-                            </a>
-                            <a class="tab-item">
-                                <i class="icon ion-clock"></i>
-                            </a>
-                            <a class="tab-item">
-                                <i class="icon ion-ios-star-outline"></i>
-                            </a>
-                            <a class="tab-item">
-                                <i class="icon ion-ios-location"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <ion-option-button ng-if="m.removable" class="button button-clear" ng-click="delete($index, $event)"><i class="icon ion-android-delete"></i></ion-option-button>
-                    <ion-reorder-button class="button button-clear ion-drag" on-reorder="reorder($fromIndex, $toIndex)"></ion-reorder-button>
-                </ion-item>
-            </div>
-        
-        
-            <div ng-if="tab == 1" class="card bookmark-card">
-                <ion-item class="item-icon-left bookmarks-item-lines" ng-class="{'bookmark-margin':!showReorder}" item="item" ng-repeat="m in bookmarks track by $index" ng-last-repeat="bookmarks" ng-click="go(m.state)" ng-if="m.type == 'BUS'">
-                    <div class="row stop-row">
-                        <div class="col icon-col"> 
-                            <i class="icon img" ng-class="m.icon" style="{{'color: '+m.color}}"></i>
-                        </div>
-                        <div class="col col-80">
-                           <h3 class="bookmarks-label">{{m.label | translate}}</h3>
-                        </div>
-                    </div>
-
-                    <ion-option-button ng-if="m.removable" class="button button-clear" ng-click="delete($index, $event)"><i class="icon ion-android-delete"></i></ion-option-button>
-                    <ion-reorder-button class="button button-clear ion-drag" on-reorder="reorder($fromIndex, $toIndex)"></ion-reorder-button>
-                </ion-item>
-            </div>
-        </div>
-    </ion-list>
-    
-</div>
-
--->
 
 
         <!--<ion-list class="bookmark-list" can-swipe="true" show-reorder="showReorder">
