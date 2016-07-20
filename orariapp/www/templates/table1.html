@@ -42,7 +42,7 @@
                     </div>
 
                 </div>
-                <div class="item item-divider full-width-card-icons">
+                <div class="item item-divider full-width-card-icons" ng-controller="TTStopCtrl" ng-init="setStopDataInit()">
                     <div class="tabs tabs-icon-only">
                         <a class="tab-item">
                             <i class="icon ion-ios-cart"></i>
@@ -51,7 +51,7 @@
                             <i class="icon ion-clock"></i>
                         </a>
                         <a class="tab-item">
-                            <i class="icon ion-ios-star-outline"></i>
+                            <i ng-class="bookmarkStyle" ng-click="bookmark()"></i>
                         </a>
                         <a class="tab-item">
                             <i class="icon ion-ios-location"></i>
@@ -86,7 +86,7 @@
                             <i class="icon ion-clock"></i>
                         </a>
                         <a class="tab-item">
-                            <i class="icon ion-ios-star-outline"></i>
+                            <i ng-class="bookmarkStyle" ng-click="bookmark()"></i>
                         </a>
                         <a class="tab-item">
                             <i class="icon ion-ios-location"></i>

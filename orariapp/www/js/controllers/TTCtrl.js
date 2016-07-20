@@ -679,6 +679,8 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
 
 .controller('TTStopCtrl', function ($scope, $state, $stateParams, $timeout, $location, $ionicPopup, $filter, ionicMaterialMotion, ionicMaterialInk, Config, ttService, bookmarkService) {
     var init = function (stopData) {
+        $scope.setStopDataInit();
+        stopData = $scope.stopData;
         if (stopData.data) {
             var d = new Date();
             d.setHours(0);
@@ -697,9 +699,12 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
             }
         }
     }
+    $scope.setStopDataInit=function(){
+        $scope.stopData = ttService.getTTStopData();    
+    }
     
-    $scope.stopData = ttService.getTTStopData();
     if ($scope.stopData) {
+        console.log($scope.stopData);
         Config.loading();
         ttService.getTTStopDataAsync($stateParams.ref, $stateParams.agencyId, $stateParams.stopId).then(function (stop) {
             $scope.stopData = stop;
@@ -738,7 +743,8 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
 
     $scope.bookmark = function () {
         var ref = Config.getTTData($stateParams.ref);
-        bookmarkService.toggleBookmark($location.path(), $scope.stopData.name, ref.transportType + 'STOP', $scope.route+': '+$scope.title).then(function (style) {
+        console.log($scope.stopData);
+        bookmarkService.toggleBookmark($location.path(), $scope.stopData.name, ref.transportType + 'STOP', $scope.title).then(function (style) {
             $scope.bookmarkStyle = style;
         });
     };
