@@ -13,7 +13,7 @@ angular.module('viaggia.controllers.bookmarks', [])
     
     $scope.$on('$ionicView.beforeEnter', function () {
 		('alert 2');
-	});
+    });
 	$scope.init = function () {
 		Config.init().then(function () {
 			bookmarkService.getBookmarks().then(function (list) {

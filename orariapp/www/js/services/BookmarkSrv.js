@@ -224,3 +224,15 @@ angular.module('viaggia.services.bookmarks', [])
         }
     };
 })
+
+.service('stopNameSrv', function () {
+    var names = [];
+    return {
+        getName: function (index) {
+            return names[index].name;
+        },
+        setName: function(value){
+            names = value;
+        }
+    }
+})

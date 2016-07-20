@@ -51,7 +51,7 @@
                             <i class="icon ion-clock"></i>
                         </a>
                         <a class="tab-item">
-                            <i ng-class="bookmarkStyle" ng-click="bookmark()"></i>
+                            <i ng-class="bookmarkStyle" ng-click="bookmark(0)"></i>
                         </a>
                         <a class="tab-item">
                             <i class="icon ion-ios-location"></i>
@@ -77,7 +77,7 @@
                     <i class="detail-icon" ng-class="{'icon ion-ios-arrow-down': !show, 'icon ion-ios-arrow-up': show}"></i>
                 </div>
             </div>
-            <div ng-show="show" class="item item-divider full-width-card-icons">
+            <div ng-show="show" class="item item-divider full-width-card-icons" ng-controller="TTStopCtrl" ng-init="setStopDataInit()">
                     <div class="tabs tabs-icon-only">
                         <a class="tab-item" ng-show="stop.wheelchair >= 1">
                             <i class="icon ion-ios-cart"></i>
@@ -86,7 +86,7 @@
                             <i class="icon ion-clock"></i>
                         </a>
                         <a class="tab-item">
-                            <i ng-class="bookmarkStyle" ng-click="bookmark()"></i>
+                            <i ng-class="bookmarkStyle" ng-click="bookmark($index+1)"></i>
                         </a>
                         <a class="tab-item">
                             <i class="icon ion-ios-location"></i>

@@ -144,7 +144,7 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
     
 })
 
-.controller('TTCtrl', function ($scope, $rootScope, $state, $location, $stateParams, $ionicPosition, $ionicScrollDelegate, $timeout, $filter, ttService, GeoLocate, Config, Toast, bookmarkService) {
+.controller('TTCtrl', function ($scope, $rootScope, $state, $location, $stateParams, $ionicPosition, $ionicScrollDelegate, $timeout, $filter, ttService, GeoLocate, Config, Toast, bookmarkService, stopNameSrv) {
     $scope.data = [];
     $scope.distanceToStop = [];
     $scope.nearestStop = {};
@@ -243,6 +243,8 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
         Config.loaded();
         console.log($scope.distanceToStop);
         $scope.nearestStop = $scope.distanceToStop[0];
+        stopNameSrv.setName($scope.distanceToStop);
+
     };
     
     $scope.compareState = function(a,b) {
@@ -677,7 +679,7 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
     });
 })
 
-.controller('TTStopCtrl', function ($scope, $state, $stateParams, $timeout, $location, $ionicPopup, $filter, ionicMaterialMotion, ionicMaterialInk, Config, ttService, bookmarkService) {
+.controller('TTStopCtrl', function ($scope, $state, $stateParams, $timeout, $location, $ionicPopup, $filter, ionicMaterialMotion, ionicMaterialInk, Config, ttService, bookmarkService, stopNameSrv) {
     var init = function (stopData) {
         $scope.setStopDataInit();
         stopData = $scope.stopData;
@@ -700,7 +702,9 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
         }
     }
     $scope.setStopDataInit=function(){
-        $scope.stopData = ttService.getTTStopData();    
+        $scope.stopData = ttService.getTTStopData();
+        console.log("setStopDataInit");
+        console.log($scope.stopData);
     }
     
     if ($scope.stopData) {
@@ -741,10 +745,10 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
         return angular.equals($scope.stopData.data, {});
     };
 
-    $scope.bookmark = function () {
+    $scope.bookmark = function (index) {
         var ref = Config.getTTData($stateParams.ref);
         console.log($scope.stopData);
-        bookmarkService.toggleBookmark($location.path(), $scope.stopData.name, ref.transportType + 'STOP', $scope.title).then(function (style) {
+        bookmarkService.toggleBookmark($location.path(), stopNameSrv.getName(index), ref.transportType + 'STOP', $scope.title).then(function (style) {
             $scope.bookmarkStyle = style;
         });
     };
