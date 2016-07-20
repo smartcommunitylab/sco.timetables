@@ -1350,8 +1350,9 @@
     padding: 5px;
     font-size: 25px;
 }
-.col-60{
-    max-width: 60% !important;
+.col-64{
+    flex: 0 0 64% !important;
+    max-width: 64% !important;
 }
 
 /* ttstop file style */
