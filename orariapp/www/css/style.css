@@ -1359,8 +1359,7 @@
     color: white;
     font-weight: bold;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .30);
-    margin-top: 12px;
-    padding: 20px 0;
+    padding: 24px 0;
 }
 
 .fermata-row-description {
@@ -1372,6 +1371,7 @@
     font-weight: 200;
     color: #fff;
     text-transform: uppercase;
+    margin: 0 auto;
 }
 
 .card-ttstop {
