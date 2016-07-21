@@ -31,6 +31,14 @@ angular.module('viaggia.services.conf', [])
         return luma < 128;
     };
 
+    var rebuildDestination = function(lineTitle) {
+        
+        var newTitle = lineTitle.split("-");
+        for(var i = 0; i < newTitle.length; i++){
+           newTitle[i] = newTitle[i].trim();
+        }     
+        return "da " + newTitle[0] + " a " + newTitle[newTitle.length-1];     
+    };
 
     $rootScope.textColor = function (color) {
         if (isDarkColor(color)) return '#fff';
@@ -191,6 +199,8 @@ angular.module('viaggia.services.conf', [])
             }
             return COLORS_TRIP[transportType];
         },
+        getNewDestination: rebuildDestination
+        ,
         getAppId: function () {
             return mapJsonConfig["appid"];
         },

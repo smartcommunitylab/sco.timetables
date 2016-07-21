@@ -10,11 +10,11 @@
     <ion-content id="content" has-header="true" has-bouncing="false">
         <div class="row date-bar" style="background-color: {{color}}; color: {{textColor(color)}} !important; margin-top:13px;">
             <div class="col col-25 tt-day btn" ng-click="prevDate()" role="button" aria-label="Giorno precedente">
-                <a><i class="icon ion-arrow-left-b"></i></a>
+                <a><i class="icon ion-arrow-left-b disableFocusItem"></i></a>
             </div>
             <div class="col col-50 tt-day">{{runningDate | dowDate}} {{runningDate | date : 'dd/MM/yyyy'}}</div>
-            <div class="col col-25 tt-day btn" ng-click="nextDate()" aria-label="Giorno successivo">
-                <a><i class="icon ion-arrow-right-b"></i></a>
+            <div class="col col-25 tt-day btn" ng-click="nextDate()" aria-label="Giorno successivo" role="button">
+                <a><i class="icon ion-arrow-right-b disableFocusItem"></i></a>
             </div>
         </div>
         <!--
@@ -23,13 +23,7 @@
             <div ng-if="header_row_number == 2">{{tableCornerStr[1]}}</div>
         </div>-->
             <h6 class="bus-ride-text">Fermata più vicina</h6>
-            <div class="card ride" aria-label="Linea {{title}}, Fermata: {{nearestStop.name}}, Ora di arrivo: 00:00" role="region">
-                <div ng-if="nearestStop.wheelchair == 2">
-                    <div aria-label="Il servizio per disabili è disponibile"></div>
-                </div>
-                <div ng-if="nearestStop.wheelchair != 2">
-                    <div aria-label="Il servizio per disabili non è disponibile"></div>
-                </div>
+            <div class="card ride" aria-label="Linea {{title}}. Fermata più vicina: {{nearestStop.name}}. Ora di arrivo: 00:00. Servizio disabili {{nearestStop.wcAvailable}}">
                     <div class="item item-text-wrap no-padding-item">
                         <div class="row stop-row">
                             <div class="col col-64">
@@ -50,68 +44,67 @@
 
                     </div>
                     <div class="item item-divider full-width-card-icons" ng-init="setStopDataInit()">
-                        <div class="tabs tabs-icon-only disableFocusItem">
-                            <a class="tab-item" ng-show="nearestStop.wheelchair > 1">
-                                <i class="icon ion-ios-cart"></i>
+                        <div class="tabs tabs-icon-only">
+                            <a class="tab-item" ng-show="nearestStop.wheelchair > 1" aria-label="Servizio disabili disponibile">
+                                <i class="icon ion-ios-cart disableFocusItem"></i>
                             </a>
-                            <a class="tab-item" aria-label="Visualizza gli orari della fermata" role="button">
-                                <i class="icon ion-clock" ng-click="showStopData(nearestStop.id)"></i>
+                            <a class="tab-item" aria-label="Visualizza gli orari della fermata" role="button" ng-click="showStopData(nearestStop.id)">
+                                <i class="icon ion-clock disableFocusItem"></i>
                             </a>
-                            <a class="tab-item" aria-label="Aggiungi la fermata ai preferiti" role="button">
-                                <i class="icon" ng-class="bookmarkStyle" ng-click="bookmark(0)"></i>
+                            <a class="tab-item" aria-label="Aggiungi la fermata ai preferiti" role="button" ng-click="bookmark(0)">
+                                <i class="icon disableFocusItem" ng-class="bookmarkStyle"></i>
                             </a>
-                            <a class="tab-item">
-                                <i class="icon ion-ios-location"></i>
+                            <a class="tab-item" aria-label="Ottieni Indicazioni Stradali" role="button">
+                                <i class="icon ion-ios-location disableFocusItem"></i>
                             </a>
                         </div>
                     </div>
                 </div>
             <h6 class="bus-ride-text">Elenco fermate</h6>
 
-            <div class="card ride" ng-repeat="stop in distanceToStop | startFrom : 1">
+            <div class="card ride" ng-repeat="stop in distanceToStop | startFrom : 1" aria-label="Linea {{title}}. Fermata: {{stop.name}}. Ora di arrivo: 00:00. Servizio disabili {{stop.wcAvailable}}>
                 <div class="item item-text-wrap no-padding-item">
                     <div class="row stop-row">
                         <div class="col col-64">
-                            <h6>Fermata:</h6>
-                            <h2>{{stop.name}}</h2>
+                            <h6 class="disableFocusItem">Fermata:</h6>
+                            <h2 class="disableFocusItem">{{stop.name}}</h2>
                         </div>
                         <div class="col">
-                            <h6>Ora di arrivo:</h6>
-                            <h2>00:00</h2>
+                            <h6 class="disableFocusItem">Ora di arrivo:</h6>
+                            <h2 class="disableFocusItem">00:00</h2>
                         </div>
                     </div>
-                    <div class="row" style="color: {{color}};" ng-click="show = !show">
-                        <i class="detail-icon" ng-class="{'icon ion-ios-arrow-down': !show, 'icon ion-ios-arrow-up': show}"></i>
+                    <div class="row" style="color: {{color}};" ng-click="show = !show" aria-label="Visualizza Dettagli fermata" role="button">
+                        <i class="detail-icon"  ng-class="{'icon ion-ios-arrow-down': !show, 'icon ion-ios-arrow-up': show}"></i>
                     </div>
                 </div>
                 <div ng-show="show" class="item item-divider full-width-card-icons" ng-controller="TTStopCtrl" ng-init="setStopDataInit()">
                     <div class="tabs tabs-icon-only">
-                        <a class="tab-item" ng-show="stop.wheelchair > 1">
-                            <i class="icon ion-ios-cart"></i>
+                        <a class="tab-item disableFocusItem" ng-show="stop.wheelchair > 1" aria-label="Servizio disabili disponibile">
+                            <i class="icon ion-ios-cart disableFocusItem"></i>
                         </a>
-                        <a class="tab-item">
-                            <i class="icon ion-clock" ng-click="showStopData(stop.id)"></i>
+                        <a class="tab-item" aria-label="Visualizza gli orari della fermata" role="button" ng-click="showStopData(stop.id)">
+                            <i class="icon ion-clock disableFocusItem"></i>
                         </a>
-                        <a class="tab-item">
-                            <i class="icon" ng-class="bookmarkStyle" ng-click="bookmark($index+1)"></i>
+                        <a class="tab-item" aria-label="Aggiungi la fermata ai preferiti" role="button" ng-click="bookmark($index+1)">
+                            <i class="icon disableFocusItem" ng-class="bookmarkStyle"></i>
                         </a>
-                        <a class="tab-item">
-                            <i class="icon ion-ios-location"></i>
+                        <a class="tab-item" aria-label="Ottieni Indicazioni Stradali" role="button">
+                            <i class="icon ion-ios-location disableFocusItem"></i>
                         </a>
                     </div>
                 </div>
 
             <!---------------------------------------------------------------->
-          </div>
+          <!--</div>-->
             <div ng-if="tt && tt.tripIds.length == 0" class="text-center">
                 <h4>{{'no_tt' | translate}}</h4>
             </div>
             <div id="measurer" style="white-space: nowrap;font-family: RobotoMono;font-size: 12px;color: transparent;background-color: transparent;position:absolute;">123456789</div>
-        </div>
+        <!--</div>-->
     </ion-content>
 
     <ion-tabs ng-controller="BusRideCtrl" class="tabs-icon-only tabs-positive" role="tablist">
-
         <ion-tab icon="ion-arrow-left-b" aria-label="Corsa precedente" title="Corsa precedente" role="tab">
         </ion-tab>
 
