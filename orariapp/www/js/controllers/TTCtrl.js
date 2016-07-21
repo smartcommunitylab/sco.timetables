@@ -148,6 +148,7 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
     $scope.data = [];
     $scope.distanceToStop = [];
     $scope.nearestStop = {};
+    $scope.wheelchairAvailable = "NON DISPONIBILE";
     var rowHeight = 20;
     $scope.rowHeight = rowHeight;
     var headerRowHeight = 21; // has a border
@@ -244,7 +245,6 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
         console.log($scope.distanceToStop);
         $scope.nearestStop = $scope.distanceToStop[0];
         stopNameSrv.setName($scope.distanceToStop);
-
     };
 
     $scope.compareState = function (a, b) {
