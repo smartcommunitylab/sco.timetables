@@ -706,6 +706,7 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
     var init = function (stopData) {
         stopData = $scope.stopData;
         $scope.stopList = [];
+        $scope.title = [];
         
         if (stopData.data) {
             
@@ -718,40 +719,19 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
             
             if($scope.stopData.data[$stateParams.routeId]) {
                 $scope.stopList.push(stopData.data[$stateParams.routeId]);
-                $scope.title = Config.getNewDestination($scope.stopList[0].routeObject.title);
+                $scope.title.push(Config.getNewDestination($scope.stopList[0].routeObject.title));
                 console.log("sono nelle fermate");
             } else {
                 for(var stop in stopData.data) {
                     $scope.stopList.push(stopData.data[stop]);
-                    $scope.title = Config.getNewDestination(stopData.data[stop].routeObject.title);
+                    $scope.title.push(Config.getNewDestination(stopData.data[stop].routeObject.title));
                     console.log("sono nella mappa")
                 }
             }
             console.log($scope.stopList);
+            console.log($scope.title);
         }
-        
-            /*
-                stop = $scope.stopData.data[$stateParams.routeId];
-                $scope.route = stop.route;
-                
-                if (stop.routeElement) {
-                    if (!stop.color) $scope.color = stop.routeElement.color ? stop.routeElement.color : stop.routeElement.route.color;
-                }
-                if (stop.routeObject) {
-                    $scope.routeObject = stop.routeObject;
-                    $scope.label = stop.routeObject.label;
-                    $scope.title = stop.routeObject.title;
-                }
-                stop.times.forEach(function (t) {
-                    if (t.time > d.getTime()) t.nextDay = true;
-                });
-                $scope.times = stop.times; 
-                
-            } else {
-               
-                 
-            }  
-            */
+    
     };
     
     $scope.setStopDataInit = function () {
