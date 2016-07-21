@@ -2,6 +2,7 @@ angular.module('viaggia.controllers.bookmarks', [])
 
 	.controller('BookmarksCtrl', function ($scope, $rootScope, $location, $filter, $ionicHistory, $timeout, $ionicModal, $ionicListDelegate, Config, bookmarkService) {
 	    $scope.languageTutorial = "en";
+        $scope.title = [];
 
 	    $scope.tab = 0;
 	    $scope.tabs = ["FERMATE", "LINEE"];
@@ -14,17 +15,35 @@ angular.module('viaggia.controllers.bookmarks', [])
 	    $scope.$on('$ionicView.beforeEnter', function () {
 	        ('alert 2');
 	    });
+    
 	    $scope.init = function () {
 	        Config.init().then(function () {
 	            bookmarkService.getBookmarks().then(function (list) {
 	                $scope.bookmarks = list;
-	                console.log($scope.bookmarks);
+                    console.log($scope.bookmarks);
+                    $scope.getBookmarkTitle(list);
+	                //console.log($scope.bookmarks);
 	            });
 	        });
 	        initTutorial();
 	        setLanguageTutorial();
 	        $scope.showTutorial();
 	    };
+    
+    
+        $scope.getBookmarkTitle = function(list) {
+            for(var key in list) {
+                var stop = list[key];
+                var split = stop.data.split(":");
+                $scope.title.push(split[0].trim() + " - " + Config.getNewDestination(split[1]));
+            } 
+            console.log($scope.title);
+        };
+    /*
+        $scope.removeBookmarkTitle = function(idx) {
+            $scope.title.splice(idx, 1);
+        };
+    */
 	    $scope.$on('ngLastRepeat.bookmarks', function (e) {
 	        $timeout(function () {
 	            ionicMaterialMotion.ripple();
@@ -37,6 +56,7 @@ angular.module('viaggia.controllers.bookmarks', [])
 	        $event.preventDefault();
 	        bookmarkService.removeBookmark(idx).then(function (list) {
 	            $scope.bookmarks = list;
+                //$scope.removeBookmarkTitle(idx);
 	            $ionicListDelegate.closeOptionButtons();
 	            Config.loaded();
 	        });
