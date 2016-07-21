@@ -1459,3 +1459,7 @@
     font-size: 18px !important;
     font-weight: 100;
 }
+
+.tab-item {
+max-width: 400px !important;
+}
