@@ -154,6 +154,11 @@ angular.module('viaggia.services.timetable', [])
             var coordinates = [];
             coordinates.push(stop.latitude);
             coordinates.push(stop.longitude);
+            var wheelchairAvailable;
+            if (stop.wheelChairBoarding > 1)
+                wheelchairAvailable = "DISPONIBILE";
+            else
+                wheelchairAvailable = "NON DISPONIBILE";
 
             var distance = GeoLocate.distance($rootScope.myPosition, coordinates);
 
@@ -161,6 +166,7 @@ angular.module('viaggia.services.timetable', [])
                 name: stop.name,
                 distance: distance,
                 wheelchair: stop.wheelChairBoarding,
+                wcAvailable:wheelchairAvailable,
                 lat: stop.latitude,
                 lng: stop.longitude,
                 id: stop.id

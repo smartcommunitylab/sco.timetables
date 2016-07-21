@@ -1287,6 +1287,9 @@
     pointer-events: none;
     font-size: 40px !important;
 }
+.disableFocusItem{
+    pointer-events:none;
+}
 
 .tab-title {
     font-size: 10px;
@@ -1449,6 +1452,7 @@
 }
 
 /*Template style for IOS */
+/*
 .platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) {
     height: 76px !important;
 }
@@ -1456,9 +1460,19 @@
 .platform-ios7.platform-cordova:not(.fullscreen) .has-header {
     top: 90px !important;
 }
+*/
 
 .ride h2,
 .ride h3 {
     font-size: 18px !important;
     font-weight: 100;
+}
+
+.tab-item {
+max-width: 400px !important;
+}
+
+.card.bookmark .item .tabs {
+  background-color: #fefefe !important;
+border-color: #fefefe !important;
 }
