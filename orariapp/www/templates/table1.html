@@ -43,7 +43,7 @@
                         </div>
 
                     </div>
-                    <div class="item item-divider full-width-card-icons" ng-init="setStopDataInit()">
+                    <div class="item item-divider full-width-card-icons" ng-controller="TTStopCtrl" ng-init="setStopDataInit()">
                         <div class="tabs tabs-icon-only">
                             <a class="tab-item" ng-show="nearestStop.wheelchair > 1" aria-label="Servizio disabili disponibile">
                                 <i class="icon ion-ios-cart disableFocusItem"></i>
@@ -62,7 +62,7 @@
                 </div>
             <h6 class="bus-ride-text">Elenco fermate</h6>
 
-            <div class="card ride" ng-repeat="stop in distanceToStop | startFrom : 1" aria-label="Linea {{title}}. Fermata: {{stop.name}}. Ora di arrivo: 00:00. Servizio disabili {{stop.wcAvailable}}>
+            <div class="card ride" ng-repeat="stop in distanceToStop | startFrom : 1" aria-label="Linea {{title}}. Fermata: {{stop.name}}. Ora di arrivo: 00:00. Servizio disabili {{stop.wcAvailable}}">
                 <div class="item item-text-wrap no-padding-item">
                     <div class="row stop-row">
                         <div class="col col-64">
@@ -78,7 +78,7 @@
                         <i class="detail-icon"  ng-class="{'icon ion-ios-arrow-down': !show, 'icon ion-ios-arrow-up': show}"></i>
                     </div>
                 </div>
-                <div ng-show="show" class="item item-divider full-width-card-icons" ng-controller="TTStopCtrl" ng-init="setStopDataInit()">
+                <div ng-show="show" class="item item-divider full-width-card-icons" ng-controller="TTStopCtrl" ng-init="setStopDataInit($index+1)">
                     <div class="tabs tabs-icon-only">
                         <a class="tab-item disableFocusItem" ng-show="stop.wheelchair > 1" aria-label="Servizio disabili disponibile">
                             <i class="icon ion-ios-cart disableFocusItem"></i>
@@ -94,7 +94,7 @@
                         </a>
                     </div>
                 </div>
-
+            </div>
             <!---------------------------------------------------------------->
           <!--</div>-->
             <div ng-if="tt && tt.tripIds.length == 0" class="text-center">
