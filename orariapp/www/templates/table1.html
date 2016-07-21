@@ -51,8 +51,8 @@
                             <a class="tab-item" aria-label="Visualizza gli orari della fermata" role="button">
                                 <i class="icon ion-clock disableFocusItem" ng-click="showStopData(nearestStop.id)"></i>
                             </a>
-                            <a class="tab-item" aria-label="Aggiungi la fermata ai preferiti" role="button">
-                                <i class="icon disableFocusItem" ng-class="bookmarkStyle" ng-click="bookmark(0)"></i>
+                            <a class="tab-item" aria-label="Aggiungi la fermata ai preferiti" role="button" ng-click="bookmark(0)">
+                                <i class="icon disableFocusItem" ng-class="bookmarkStyle"></i>
                             </a>
                             <a class="tab-item" aria-label="Ottieni Indicazioni Stradali" role="button">
                                 <i class="icon ion-ios-location disableFocusItem"></i>
@@ -86,8 +86,8 @@
                         <a class="tab-item" aria-label="Visualizza gli orari della fermata" role="button">
                             <i class="icon ion-clock disableFocusItem" ng-click="showStopData(stop.id)"></i>
                         </a>
-                        <a class="tab-item" aria-label="Aggiungi la fermata ai preferiti" role="button">
-                            <i class="icon disableFocusItem" ng-class="bookmarkStyle" ng-click="bookmark($index+1)"></i>
+                        <a class="tab-item" aria-label="Aggiungi la fermata ai preferiti" role="button" ng-click="bookmark($index+1)">
+                            <i class="icon disableFocusItem" ng-class="bookmarkStyle"></i>
                         </a>
                         <a class="tab-item" aria-label="Ottieni Indicazioni Stradali" role="button">
                             <i class="icon ion-ios-location disableFocusItem"></i>
