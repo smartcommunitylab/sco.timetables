@@ -161,7 +161,7 @@ angular.module('viaggia', [
         }
       })
       .state('app.ttstop', {
-        url: "/ttstop/:ref/:agencyId/:stopId",
+        url: "/ttstop/:ref/:agencyId/:stopId/:routeId",
         views: {
           'menuContent': {
             templateUrl: "templates/ttstop.html",

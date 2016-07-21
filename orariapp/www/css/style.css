@@ -1364,6 +1364,12 @@
     text-align: center;
     width: 100%;
 }
+.fermata-row-description h3{
+    font-size: 16px;
+    font-weight: 200;
+    color: #fff;
+    text-transform: uppercase;
+}
 
 .card-ttstop {
     margin: 10px 8px !important;

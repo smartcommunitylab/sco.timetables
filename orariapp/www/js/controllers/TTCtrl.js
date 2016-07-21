@@ -230,7 +230,6 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
         /*Retrieve stops for line selected*/
         Config.loading();
         ttService.getStops($stateParams.agencyId, $stateParams.routeId).then(function (data) {
-            console.log(data);
             $scope.getKilometersFromStop(data);
         });
     }
@@ -241,7 +240,6 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
             $scope.distanceToStop.sort($scope.compareState);
         }
         Config.loaded();
-        console.log($scope.distanceToStop);
         $scope.nearestStop = $scope.distanceToStop[0];
         stopNameSrv.setName($scope.distanceToStop);
 
@@ -250,26 +248,16 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
     $scope.compareState = function (a, b) {
         return a.distance - b.distance;
     };
-<<<<<<< HEAD
     
     $scope.showStopData = function (currentStopId) {
-        console.log(currentStopId);
-        console.log($stateParams.agencyId);
-        console.log($stateParams.ref);
-=======
-
-    $scope.showStopData = function () {
->>>>>>> 5afba2a97188d40e68af31b5f40815529ff4ad12
         $state.go('app.ttstop', {
             stopId: currentStopId,
             agencyId: $stateParams.agencyId,
-            ref: $stateParams.ref
+            ref: $stateParams.ref,
+            routeId: $stateParams.routeId,
         });
     }
-<<<<<<< HEAD
-=======
 
->>>>>>> 5afba2a97188d40e68af31b5f40815529ff4ad12
     // load timetable data
     $scope.getTT = function (date) {
         ttService.getTT($stateParams.agencyId, $scope.route.routeSymId, date).then(
@@ -520,6 +508,7 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
     $scope.markerIcon = mapData.markerIcon;
     $scope.icon = mapData.icon;
     $scope.title = mapData.title;
+    $scope.routeIds = [];
 
     var MAX_MARKERS = 20;
     $scope.$on('leafletDirectiveMap.ttMap.moveend', function (event) {
@@ -608,10 +597,11 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
         $state.go('app.ttstop', {
             stopId: $scope.popupStop.id,
             agencyId: $scope.popupStop.agencyId,
-            ref: mapData.ref
+            ref: mapData.ref,
+            routeId: "Map"
         });
-    }
-
+    };
+            
     $scope.navigate = function () {
     };
 
@@ -691,61 +681,83 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
 })
 
 .controller('TTStopCtrl', function ($scope, $state, $stateParams, $timeout, $location, $ionicPopup, $filter, ionicMaterialMotion, ionicMaterialInk, Config, ttService, bookmarkService, stopNameSrv) {
-    var init = function (stopData) {
+    
+    $scope.$on('$ionicView.beforeEnter', function() {
+        $scope.loadStopData();
+    }); 
+    
+    $scope.loadStopData = function() {
+     
         $scope.setStopDataInit();
+        if ($scope.stopData) {
+            Config.loading();
+            ttService.getTTStopDataAsync($stateParams.ref, $stateParams.agencyId, $stateParams.stopId).then(function (stop) {
+                $scope.stopData = stop;
+                init($scope.stopData);
+                Config.loaded();
+            }, function (err) {
+                Config.loaded();
+            });
+        } else {
+            init($scope.stopData);
+        }      
+    };
+    
+    var init = function (stopData) {
         stopData = $scope.stopData;
+        $scope.stopList = [];
+        
         if (stopData.data) {
+            
             var d = new Date();
             d.setHours(0);
             d.setMinutes(0);
             d.setSeconds(0);
             d.setMilliseconds(0);
             d.setDate(d.getDate() + 1);
-            for (var key in stopData.data) {
-                var r = stopData.data[key];
-                if (r.routeElement) {
-                    if (!r.color) r.color = r.routeElement.color ? r.routeElement.color : r.routeElement.route.color;
+            
+            if($scope.stopData.data[$stateParams.routeId]) {
+                $scope.stopList.push(stopData.data[$stateParams.routeId]);
+                $scope.title = Config.getNewDestination($scope.stopList[0].routeObject.title);
+                console.log("sono nelle fermate");
+            } else {
+                for(var stop in stopData.data) {
+                    $scope.stopList.push(stopData.data[stop]);
+                    $scope.title = Config.getNewDestination(stopData.data[stop].routeObject.title);
+                    console.log("sono nella mappa")
                 }
-                r.times.forEach(function (t) {
+            }
+            console.log($scope.stopList);
+        }
+        
+            /*
+                stop = $scope.stopData.data[$stateParams.routeId];
+                $scope.route = stop.route;
+                
+                if (stop.routeElement) {
+                    if (!stop.color) $scope.color = stop.routeElement.color ? stop.routeElement.color : stop.routeElement.route.color;
+                }
+                if (stop.routeObject) {
+                    $scope.routeObject = stop.routeObject;
+                    $scope.label = stop.routeObject.label;
+                    $scope.title = stop.routeObject.title;
+                }
+                stop.times.forEach(function (t) {
                     if (t.time > d.getTime()) t.nextDay = true;
                 });
-            }
-        }
-    }
+                $scope.times = stop.times; 
+                
+            } else {
+               
+                 
+            }  
+            */
+    };
+    
     $scope.setStopDataInit = function () {
         $scope.stopData = ttService.getTTStopData();
-    }
-
-    if ($scope.stopData) {
-        console.log($scope.stopData);
-        Config.loading();
-        ttService.getTTStopDataAsync($stateParams.ref, $stateParams.agencyId, $stateParams.stopId).then(function (stop) {
-            $scope.stopData = stop;
-            init($scope.stopData);
-            Config.loaded();
-        }, function (err) {
-            Config.loaded();
-        });
-    } else {
-        init($scope.stopData);
-    }
-
-    $scope.$on('$ionicView.enter', function () {
-
-        for (var key in $scope.stopData.data) {
-
-            var stop = $scope.stopData.data[key];
-            $scope.routeObject = stop.routeObject;
-
-            $scope.route = stop.route;
-            $scope.color = stop.routeElement.color;
-            $scope.label = stop.routeObject.label;
-            $scope.title = stop.routeObject.title;
-            $scope.times = stop.times;
-        }
-
-    });
-
+    };
+    
     $scope.bookmarkStyle = bookmarkService.getBookmarkStyle($location.path());
 
     $scope.isEmpty = function () {
