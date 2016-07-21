@@ -167,7 +167,7 @@ angular.module('viaggia.services.timetable', [])
             };
             coordinates.slice(0, coordinates.length);
         };
-        
+    
 		var getNextTrips = function (agencyId, stopId, numberOfResults) {
 			var deferred = $q.defer();
 			numberOfResults = numberOfResults || 3;

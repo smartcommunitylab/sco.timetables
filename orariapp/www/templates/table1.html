@@ -42,15 +42,15 @@
                     </div>
 
                 </div>
-                <div class="item item-divider full-width-card-icons" ng-controller="TTStopCtrl" ng-init="setStopDataInit()">
+                <div class="item item-divider full-width-card-icons" ng-init="setStopDataInit()">
                     <div class="tabs tabs-icon-only">
                         <a class="tab-item" ng-show="nearestStop.wheelchair >= 1">
                             <i class="icon ion-ios-cart"></i>
                         </a>
                         <a class="tab-item">
-                            <i class="icon ion-clock"></i>
+                            <i class="icon ion-clock" ng-click="showStopData(nearestStop.id)"></i>
                         </a>
-                        <a class="tab-item">
+                        <a class="tab-item" ng-controller="TTStopCtrl">
                             <i class="icon" ng-class="bookmarkStyle" ng-click="bookmark()"></i>
                         </a>
                         <a class="tab-item">
@@ -83,7 +83,7 @@
                             <i class="icon ion-ios-cart"></i>
                         </a>
                         <a class="tab-item">
-                            <i class="icon ion-clock"></i>
+                            <i class="icon ion-clock" ng-click="showStopData(stop.id)"></i>
                         </a>
                         <a class="tab-item">
                             <i class="icon" ng-class="bookmarkStyle" ng-click="bookmark()"></i>

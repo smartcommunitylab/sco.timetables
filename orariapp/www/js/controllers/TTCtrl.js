@@ -249,14 +249,16 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
         return a.distance - b.distance;
     };
     
-    $scope.showStopData = function () {
+    $scope.showStopData = function (currentStopId) {
+        console.log(currentStopId);
+        console.log($stateParams.agencyId);
+        console.log($stateParams.ref);
         $state.go('app.ttstop', {
-            stopId: $scope.$stateParams.id,
-            agencyId: $scope.$stateParams.agencyId,
-            ref: mapData.ref
+            stopId: currentStopId,
+            agencyId: $stateParams.agencyId,
+            ref: $stateParams.ref
         });
     }
-    
     // load timetable data
     $scope.getTT = function (date) {
         ttService.getTT($stateParams.agencyId, $scope.route.routeSymId, date).then(
@@ -718,7 +720,7 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
 
     }
     
-    $scope.$on('$ionicView.beforeEnter', function () {
+    $scope.$on('$ionicView.enter', function () {
         
         for(var key in $scope.stopData.data){
             var stop = $scope.stopData.data[key];
@@ -730,8 +732,8 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
             $scope.title = stop.routeObject.title;
             $scope.times = stop.times;
         }
-            console.log($scope.stopData.data);
-        console.log($scope.route);
+            //console.log($scope.stopData.data);
+        //console.log($scope.route);
  
     });
     
