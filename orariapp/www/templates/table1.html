@@ -48,8 +48,8 @@
                             <a class="tab-item" ng-show="nearestStop.wheelchair > 1" aria-label="Servizio disabili disponibile">
                                 <i class="icon ion-ios-cart disableFocusItem"></i>
                             </a>
-                            <a class="tab-item" aria-label="Visualizza gli orari della fermata" role="button">
-                                <i class="icon ion-clock disableFocusItem" ng-click="showStopData(nearestStop.id)"></i>
+                            <a class="tab-item" aria-label="Visualizza gli orari della fermata" role="button" ng-click="showStopData(nearestStop.id)">
+                                <i class="icon ion-clock disableFocusItem"></i>
                             </a>
                             <a class="tab-item" aria-label="Aggiungi la fermata ai preferiti" role="button" ng-click="bookmark(0)">
                                 <i class="icon disableFocusItem" ng-class="bookmarkStyle"></i>
@@ -83,8 +83,8 @@
                         <a class="tab-item disableFocusItem" ng-show="stop.wheelchair > 1" aria-label="Servizio disabili disponibile">
                             <i class="icon ion-ios-cart disableFocusItem"></i>
                         </a>
-                        <a class="tab-item" aria-label="Visualizza gli orari della fermata" role="button">
-                            <i class="icon ion-clock disableFocusItem" ng-click="showStopData(stop.id)"></i>
+                        <a class="tab-item" aria-label="Visualizza gli orari della fermata" role="button" ng-click="showStopData(stop.id)">
+                            <i class="icon ion-clock disableFocusItem"></i>
                         </a>
                         <a class="tab-item" aria-label="Aggiungi la fermata ai preferiti" role="button" ng-click="bookmark($index+1)">
                             <i class="icon disableFocusItem" ng-class="bookmarkStyle"></i>
