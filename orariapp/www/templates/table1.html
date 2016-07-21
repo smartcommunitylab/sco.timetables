@@ -23,8 +23,13 @@
             <div ng-if="header_row_number == 2">{{tableCornerStr[1]}}</div>
         </div>-->
             <h6 class="bus-ride-text">Fermata più vicina</h6>
-            <div ng-if="nearestStop.wheeelchair > 1" class="card ride" aria-label="Linea {{title}}, Fermata: {{nearestStop.name}}, Ora di arrivo: 00:00, è disponibile il servizio per disabili">
-            <div ng-if="nearestStop.wheeelchair <= 1" class="card ride" aria-label="Linea {{title}}, Fermata: {{nearestStop.name}}, Ora di arrivo: 00:00, Non è disponibile il servizio per disabili">
+            <div class="card ride" aria-label="Linea {{title}}, Fermata: {{nearestStop.name}}, Ora di arrivo: 00:00" role="region">
+                <div ng-if="nearestStop.wheelchair == 2">
+                    <div aria-label="Il servizio per disabili è disponibile"></div>
+                </div>
+                <div ng-if="nearestStop.wheelchair != 2">
+                    <div aria-label="Il servizio per disabili non è disponibile"></div>
+                </div>
                     <div class="item item-text-wrap no-padding-item">
                         <div class="row stop-row">
                             <div class="col col-64">
