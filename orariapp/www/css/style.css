@@ -1287,6 +1287,9 @@
     pointer-events: none;
     font-size: 40px !important;
 }
+.disableFocusItem{
+    pointer-events:none;
+}
 
 .tab-title {
     font-size: 10px;

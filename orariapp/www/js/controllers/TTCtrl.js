@@ -250,26 +250,19 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
     $scope.compareState = function (a, b) {
         return a.distance - b.distance;
     };
-<<<<<<< HEAD
+
     
     $scope.showStopData = function (currentStopId) {
         console.log(currentStopId);
         console.log($stateParams.agencyId);
         console.log($stateParams.ref);
-=======
-
-    $scope.showStopData = function () {
->>>>>>> 5afba2a97188d40e68af31b5f40815529ff4ad12
         $state.go('app.ttstop', {
             stopId: currentStopId,
             agencyId: $stateParams.agencyId,
             ref: $stateParams.ref
         });
     }
-<<<<<<< HEAD
-=======
 
->>>>>>> 5afba2a97188d40e68af31b5f40815529ff4ad12
     // load timetable data
     $scope.getTT = function (date) {
         ttService.getTT($stateParams.agencyId, $scope.route.routeSymId, date).then(
