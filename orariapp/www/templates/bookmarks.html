@@ -7,8 +7,7 @@
 </div>
 <div class="row row-bookmark">
     
-    <ion-list class="bookmark-list" can-swipe="true" show-reorder="showReorder">
-        
+    <ion-list class="bookmark-list" can-swipe="true" show-reorder="showReorder">       
         <div class="full-screen-swapper" ng-if="tab == 0">
             <ion-item class="item-icon-left bookmark-item bookmark-item-stops" ng-class="{'bookmark-margin':!showReorder}" item="item" ng-repeat="m in bookmarks track by $index" ng-last-repeat="bookmarks" ng-click="go(m.state)" ng-if="m.type == 'BUSSTOP'">
                 
@@ -67,8 +66,7 @@
         </div>
     </div>
 
-
-        <!--<ion-list class="bookmark-list" can-swipe="true" show-reorder="showReorder">
+<!--<ion-list class="bookmark-list" can-swipe="true" show-reorder="showReorder">
             <!--            <ion-item id="focusHere" class="item-icon-left" ng-class="{'bookmark-margin':!showReorder}" item="item" ng-repeat="m in bookmarks track by $index" ng-last-repeat="bookmarks" ng-click="go(m.state)">
             <ion-item id="focusHere" class="item-icon-left" ng-class="{'bookmark-margin':!showReorder}" item="item" ng-repeat="m in bookmarks track by $index" ng-click="go(m.state)">
                 <h2>
@@ -83,6 +81,6 @@
 
 
 
-        <div ng-if="(!bookmarks || bookmarks.length == 0)" class="text-center">
-            <h4>{{'no_data' | translate}}</h4>
-        </div>
+<div ng-if="(!bookmarks || bookmarks.length == 0)" class="text-center">
+    <h4>{{'no_data' | translate}}</h4>
+</div>

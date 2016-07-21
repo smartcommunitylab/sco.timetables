@@ -70,7 +70,7 @@
 .col-table {
     text-align: center;
     /*    padding: 3px 5px 3px 5px !important;*/
-    padding: 0px!important;
+    padding: 0px !important;
     background-color: #e0f2be;
 }
 
@@ -82,12 +82,12 @@
 
 .col-stop {
     text-align: center;
-    padding: 0px!important;
+    padding: 0px !important;
     background-color: beige;
 }
 
 .stop-row {
-    padding: 0!important;
+    padding: 0 !important;
 }
 
 .col-sep {
@@ -155,7 +155,7 @@
 }
 
 .no-padding {
-    padding: 0px!important;
+    padding: 0px !important;
 }
 
 .padding-8 {
@@ -184,35 +184,35 @@
     min-width: 130px;
 }
 
-.plan-buttons-right a {
-    min-width: 65px;
-    margin: auto;
-    vertical-align: middle;
-}
+    .plan-buttons-right a {
+        min-width: 65px;
+        margin: auto;
+        vertical-align: middle;
+    }
 
 .button-viaggia-header {
     background-color: #3bbacf;
     color: white;
 }
 
-.button-viaggia-header.activated {
-    background-color: #3bbacf !important;
-}
+    .button-viaggia-header.activated {
+        background-color: #3bbacf !important;
+    }
 
-.button-viaggia-header:hover {
-    background-color: #3bbacf;
-    color: white;
-}
+    .button-viaggia-header:hover {
+        background-color: #3bbacf;
+        color: white;
+    }
 
 .button-viaggia {
     background-color: #3bbacf;
     color: white;
 }
 
-.button-viaggia:hover {
-    background-color: #3bbacf;
-    color: white;
-}
+    .button-viaggia:hover {
+        background-color: #3bbacf;
+        color: white;
+    }
 
 .button-viaggia-selected {
     background-color: #3bbacf;
@@ -220,24 +220,24 @@
     box-shadow: none;
 }
 
-.button-viaggia-selected:hover {
-    background-color: #3bbacf;
-    color: white;
-}
+    .button-viaggia-selected:hover {
+        background-color: #3bbacf;
+        color: white;
+    }
 
 .button-viaggia-notselected {
     background-color: rgba(60, 186, 207, 0.5);
     color: white;
 }
 
-.button-viaggia-notselected:hover {
-    background-color: rgba(60, 186, 207, 0.5);
-    color: white;
-}
+    .button-viaggia-notselected:hover {
+        background-color: rgba(60, 186, 207, 0.5);
+        color: white;
+    }
 
 .button-plan-fromto {
     width: 40px;
-    height: 40px
+    height: 40px;
 }
 
 .button-plan-type {
@@ -247,16 +247,16 @@
     padding: 0px;
 }
 
-.button-plan-type:before {
-    font-size: 50px !important;
-}
+    .button-plan-type:before {
+        font-size: 50px !important;
+    }
 
 .plan-preference-toggler {
     border: 0;
 }
 
 .space-from-top {
-    padding-top: 40px!important;
+    padding-top: 40px !important;
 }
 
 .plan-item-time {
@@ -276,7 +276,7 @@
 }
 
 .line-background {
-    background-image: url("../img/ic_point_line.png")
+    background-image: url("../img/ic_point_line.png");
 }
 
 .tt-day {
@@ -288,43 +288,43 @@
     white-space: nowrap;
 }
 
-.tt-day.btn {
-    font-size: 30px;
-}
+    .tt-day.btn {
+        font-size: 30px;
+    }
 
-.tt-day.btn a:active,
-.tt-day.btn a:hover,
-.tt-day.btn a:focus,
-.tt-day.btn a.activated {
-    opacity: 0.5;
-}
+        .tt-day.btn a:active,
+        .tt-day.btn a:hover,
+        .tt-day.btn a:focus,
+        .tt-day.btn a.activated {
+            opacity: 0.5;
+        }
 
 .leaflet-container {
     height: 100% !important;
 }
 
 #modal-map-container {
-    height: 100%!important;
+    height: 100% !important;
 }
 
 .route-list .list {
     padding-top: 20px;
 }
 
-.route-list .list ion-item {
-    padding-top: 0px;
-    padding-bottom: 0px;
-}
+    .route-list .list ion-item {
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
 
-.route-list .list ion-item .button {
-    text-align: left;
-}
+        .route-list .list ion-item .button {
+            text-align: left;
+        }
 
-.padding-3{
+.padding-3 {
     padding: 3px !important;
 }
 
-.card-list:first-child{
+.card-list:first-child {
     margin-top: 15px !important;
 }
 
@@ -332,7 +332,6 @@
     margin-top: 2px !important;
     margin-bottom: 2px !important;
     padding: 0px 4px !important;
-    
 }
 
 .route-grid-element {
@@ -346,18 +345,18 @@
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
-.route-grid-element span {
-    text-align: center;
-    vertical-align: middle;
-    font-size: 42px !important;
-    line-height: 85px;
-    font-weight: bold;
-}
+    .route-grid-element span {
+        text-align: center;
+        vertical-align: middle;
+        font-size: 42px !important;
+        line-height: 85px;
+        font-weight: bold;
+    }
 
-.box-shadow-card{
+.box-shadow-card {
     -webkit-box-shadow: 0 10px 6px -6px rgba(0,0,0,0.25);
-       -moz-box-shadow: 0 10px 6px -6px rgba(0,0,0,0.25);
-            box-shadow: 0 10px 6px -6px rgba(0,0,0,0.25);
+    -moz-box-shadow: 0 10px 6px -6px rgba(0,0,0,0.25);
+    box-shadow: 0 10px 6px -6px rgba(0,0,0,0.25);
 }
 
 .ic-text {
@@ -375,13 +374,14 @@
 }
 
 .menu-main {
-  padding-top: 16px !important;
-  padding-bottom: 16px !important;
+    padding-top: 16px !important;
+    padding-bottom: 16px !important;
 }
-.menu-main .item-content {
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-}
+
+    .menu-main .item-content {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
 
 .menu-rt {
     background-color: #3bbacf !important;
@@ -395,29 +395,29 @@
     background-color: #1e64ae !important;
 }
 
-.menu-rt.item-icon-left .icon,
-.menu-rt.item-icon-right .icon,
-.menu-main.item-icon-left .icon,
-.menu-last.item-icon-left .icon {
-    font-size: 22px;
-}
+    .menu-rt.item-icon-left .icon,
+    .menu-rt.item-icon-right .icon,
+    .menu-main.item-icon-left .icon,
+    .menu-last.item-icon-left .icon {
+        font-size: 22px;
+    }
 
-.menu-rt .item-content,
-.menu-main .item-content,
-.menu-last .item-content {
-    padding-left: 59px !important;
-    line-height: 22px;
-/*
+    .menu-rt .item-content,
+    .menu-main .item-content,
+    .menu-last .item-content {
+        padding-left: 59px !important;
+        line-height: 22px;
+        /*
     padding-top: 8px;
     padding-bottom: 8px;
 */
-}
+    }
 
 .menu-left {
     background-color: #1e64ae;
 }
 
-.textmenu *{
+.textmenu * {
     font-size: 20px !important;
 }
 
@@ -440,8 +440,8 @@
     /*margin-top: 2% !important;*/
 }
 
-.nav-buttons-lat{
-    margin-top:5px;
+.nav-buttons-lat {
+    margin-top: 5px;
 }
 
 
@@ -452,13 +452,13 @@
     z-index: 99;
 }
 
-.placeautocomplete ul li {
-  padding: 5px;
-}
+    .placeautocomplete ul li {
+        padding: 5px;
+    }
 
-.placeautocomplete ul li .highlight {
-  font-weight: bold;
-}
+        .placeautocomplete ul li .highlight {
+            font-weight: bold;
+        }
 
 .card-tt {
     padding: 12px;
@@ -486,18 +486,18 @@
     padding-top: 10px;
 }
 
-.parking-card-footer .col {
-    position: relative;
-}
+    .parking-card-footer .col {
+        position: relative;
+    }
 
-.parking-card-footer .col span {
-    position: absolute;
-    top: 50%;
-}
+        .parking-card-footer .col span {
+            position: absolute;
+            top: 50%;
+        }
 
-.parking-card-footer .col-right span {
-    right: 0px;
-}
+    .parking-card-footer .col-right span {
+        right: 0px;
+    }
 
 .col-right > div {
     float: right;
@@ -540,7 +540,7 @@
 }
 
 .parking-popup .button-close {
-    background-color: gray!important;
+    background-color: gray !important;
 }
 
 .parking-popup .popup-buttons button:not(.button-close) {
@@ -593,8 +593,8 @@
 }
 
 
-.bar .button.button-icon:before{
-  font-size: 24px !important;
+.bar .button.button-icon:before {
+    font-size: 24px !important;
 }
 
 .close-modal {
@@ -626,15 +626,15 @@
     padding: 0;
 }
 
-.stop-line .row .col {
-    border-bottom: 1px solid #d2d2d2;
-    padding: 16px 0px;
-    border-right: 1px solid #d2d2d2;
-}
+    .stop-line .row .col {
+        border-bottom: 1px solid #d2d2d2;
+        padding: 16px 0px;
+        border-right: 1px solid #d2d2d2;
+    }
 
-.stop-line .row .col:last-child {
-    border-right: 0;
-}
+        .stop-line .row .col:last-child {
+            border-right: 0;
+        }
 
 .many-options {
     margin-top: 0px;
@@ -647,7 +647,7 @@
 }
 
 .mfb-component__wrap {
-    padding-top: 16px!important;
+    padding-top: 16px !important;
 }
 
 .empty-list-card {
@@ -676,18 +676,18 @@
     margin-bottom: 10px;
 }
 
-.credits_row.last {
-    margin-bottom: 20px;
-}
+    .credits_row.last {
+        margin-bottom: 20px;
+    }
 
-.credits_row.version {
-    color: #aaa;
-}
+    .credits_row.version {
+        color: #aaa;
+    }
 
-.credits_row.version .col {
-    font-size: 12px;
-    line-height: 12px;
-}
+        .credits_row.version .col {
+            font-size: 12px;
+            line-height: 12px;
+        }
 
 .credits_mail {
     color: black;
@@ -710,8 +710,8 @@
 }
 
 .popup {
-    max-width: 400px!important;
-    width: 90%!important;
+    max-width: 400px !important;
+    width: 90% !important;
 }
 
 .popup-buttons .button {
@@ -747,13 +747,13 @@
     text-transform: none;
 }
 
-.home-list .button i {
-    margin-right: 16px;
-}
+    .home-list .button i {
+        margin-right: 16px;
+    }
 
-.home-list .button i::before {
-    font-size: 36px;
-}
+        .home-list .button i::before {
+            font-size: 36px;
+        }
 
 .line-background-for-list {
     background-image: url("../img/ic_point_line_list.png");
@@ -773,23 +773,23 @@
     background-color: #4caf4f;
     padding-top: 4px;
     height: 40px;
-    overflow: auto
+    overflow: auto;
 }
 
 .green-thumb {
-    float: right
+    float: right;
 }
 
-.green-thumb img {
-    display: block;
-    height: auto;
-    width: auto;
-    max-width: 30px;
-    max-height: 30px;
-}
+    .green-thumb img {
+        display: block;
+        height: auto;
+        width: auto;
+        max-width: 30px;
+        max-height: 30px;
+    }
 
 .green-content {
-    margin-left: 24px
+    margin-left: 24px;
 }
 
 .green-title {
@@ -811,9 +811,9 @@
     text-overflow: ellipsis;
 }
 
-.placeautocomplete-input:focus {
-    text-overflow: clip;
-}
+    .placeautocomplete-input:focus {
+        text-overflow: clip;
+    }
 
 .placeautocomplete.notempty .placeautocomplete-input {
     padding-left: 24px;
@@ -833,10 +833,10 @@
     padding: 0 12px;
 }
 
-.plan-viaggia-fromto:hover {
-    color: rgba(60, 186, 207, 0.5);
-    box-shadow: none;
-}
+    .plan-viaggia-fromto:hover {
+        color: rgba(60, 186, 207, 0.5);
+        box-shadow: none;
+    }
 
 
 /*redefine style for checkbox*/
@@ -870,22 +870,22 @@
     position: absolute;
     background-color: #fff;
     font-size: 12px;
-/*    left: 100px;*/
+    /*    left: 100px;*/
     z-index: 10;
 }
 
-#table-header div {
-    border-bottom: 1px solid #bbb;
-}
+    #table-header div {
+        border-bottom: 1px solid #bbb;
+    }
 
-#table-header div:first-child {
-    color: #cd251c;
-}
+        #table-header div:first-child {
+            color: #cd251c;
+        }
 
 #table-table {
     white-space: nowrap;
     font-family: RobotoMono;
-/*    left: 100px;*/
+    /*    left: 100px;*/
     font-size: 12px;
     position: absolute;
 }
@@ -896,7 +896,7 @@
     font-size: 12px;
     position: absolute;
     background-color: #fff;
-/*    width: 100px;*/
+    /*    width: 100px;*/
     border-right: 1px solid #bbb;
     z-index: 10;
     overflow: hidden;
@@ -909,24 +909,24 @@
     font-size: 12px;
     border-right: 1px solid #bbb;
     position: absolute;
-/*    width: 100px;*/
+    /*    width: 100px;*/
     background-color: #fff;
     z-index: 100;
     text-align: center;
     top: 50px;
 }
 
-#table-corner div {
-    border-bottom: 1px solid #bbb;
-}
+    #table-corner div {
+        border-bottom: 1px solid #bbb;
+    }
 
 .table-container {
     padding: 0px;
 }
 
-.table-container ion-scroll {
-    margin-top: 0;
-}
+    .table-container ion-scroll {
+        margin-top: 0;
+    }
 
 .markets-home img {
     height: 50px;
@@ -1041,9 +1041,9 @@
     background-color: #d2d2d2;
 }
 
-.bookmark-list ion-item.activated .item-content {
-    background-color: #d2d2d2;
-}
+    .bookmark-list ion-item.activated .item-content {
+        background-color: #d2d2d2;
+    }
 
 .bookmark-list ion-item .item-content {
     background-color: #fff;
@@ -1055,7 +1055,7 @@
 }
 
 .bookmark-popup {
-    color: rgb(41, 117, 167)!important;
+    color: rgb(41, 117, 167) !important;
     font-size: x-large;
 }
 
@@ -1071,9 +1071,9 @@
     line-height: normal;
 }
 
-.parking-item-label.highlight {
-    font-weight: bold;
-}
+    .parking-item-label.highlight {
+        font-weight: bold;
+    }
 
 .parking-info {
     margin-left: 16px;
@@ -1086,9 +1086,9 @@
     text-overflow: ellipsis;
 }
 
-.bm-item-label.highlight {
-    font-weight: bold;
-}
+    .bm-item-label.highlight {
+        font-weight: bold;
+    }
 
 .button-cancel {
     background-color: #a3a2a2 !important;
@@ -1101,21 +1101,21 @@
 .button-home {
     color: white !important;
     box-shadow: none !important;
-    padding-top: 10px!important;
-    padding-left: 10px!important;
+    padding-top: 10px !important;
+    padding-left: 10px !important;
 }
 
 .header-badge {
     top: -30px !important;
     /*    left: 10px !important;*/
     font-size: x-small !important;
-    margin-left: -5px!important;
-    display: table!important;
-    margin-right: 10px!important;
+    margin-left: -5px !important;
+    display: table !important;
+    margin-right: 10px !important;
     margin-top: -10px;
     padding: 3px 3px 3px 3px;
     width: 22px;
-    display: block!inspect;
+    display: block !inspect;
     /*
     top: -32px !important;
     padding: 2px 12px 2px 3px;
@@ -1123,8 +1123,8 @@
 }
 
 .home_notification {
-    margin-right: 20px!important;
-    padding-right: 20px!important;
+    margin-right: 20px !important;
+    padding-right: 20px !important;
 }
 
 .notification-card {
@@ -1180,7 +1180,7 @@
 }
 
 .transparent {
-    background-color: rgba(0, 0, 0, 0.6)!important;
+    background-color: rgba(0, 0, 0, 0.6) !important;
 }
 
 .image-modal {
@@ -1240,33 +1240,37 @@
     padding: 25px;
 }
 
-.tabs-positive .tabs{
-      background-color: #1e64ae !important;
-      border-color: #1e64ae !important;
-      height: 56px;
+.tabs-positive .tabs {
+    background-color: #1e64ae !important;
+    border-color: #1e64ae !important;
+    height: 56px;
 }
 
-.bus-ride{
-      background-color: #1e64ae !important;
-      border-color: #1e64ae !important;
-      color: #fff;
-      height: 56px;
+.bus-ride {
+    background-color: #1e64ae !important;
+    border-color: #1e64ae !important;
+    color: #fff;
+    height: 56px;
 }
-.card h2{
+
+.card h2 {
     font-size: 20px;
     font-weight: bold;
 }
-.card h6{
+
+.card h6 {
     color: dimgray;
     font-size: 15px;
 }
-.bus-ride-text{
+
+.bus-ride-text {
     font-size: 15px;
     color: dimgray;
     margin-left: 8px;
     margin-top: 20px;
 }
-.bus-ride-text-footer{
+
+.bus-ride-text-footer {
     font-size: 12px;
     text-align: center;
 }
@@ -1279,44 +1283,45 @@
     font-size: 24px;
 }
 
-.disableFocus{
-    pointer-events:none;
+.disableFocus {
+    pointer-events: none;
     font-size: 40px !important;
 }
 
-.tab-title{
-  font-size: 10px;
-  pointer-events: none;
+.tab-title {
+    font-size: 10px;
+    pointer-events: none;
 }
 
-.full-width-card-icons{
+.full-width-card-icons {
     padding-left: 0px;
     padding-right: 0px;
 }
 
-.row.date-bar{
-  padding: 10px !important;
+.row.date-bar {
+    padding: 10px !important;
 }
 
-.date-bar{
-  color: #fff !important;
-  margin-top: 12px !important;
-  height: 56px !important;
+.date-bar {
+    color: #fff !important;
+    margin-top: 12px !important;
+    height: 56px !important;
 }
 
-.ride .tabs{
-  padding-top: 7px;
+.ride .tabs {
+    padding-top: 7px;
 }
 
-.ride .tabs i {
-  color: black;
-}
+    .ride .tabs i {
+        color: black;
+    }
 
 /*Style TT line page */
 .no-padding-item {
     padding: 0 !important;
 }
-.card-line{
+
+.card-line {
     white-space: normal;
     text-transform: uppercase;
     text-align: center;
@@ -1330,21 +1335,23 @@
 }
 
 /* Style table 1 page */
-.stop-row{
+.stop-row {
     padding: 10px !important;
 }
-.detail-icon{
+
+.detail-icon {
     margin: 0 auto !important;
     padding: 5px;
     font-size: 25px;
 }
-.col-64{
+
+.col-64 {
     flex: 0 0 64% !important;
     max-width: 64% !important;
 }
 
 /* ttstop file style */
-.fermata-row{
+.fermata-row {
     font-size: 16px !important;
     color: white;
     font-weight: bold;
@@ -1352,25 +1359,28 @@
     margin-top: 12px;
     padding: 20px 0;
 }
-.fermata-row-description{
+
+.fermata-row-description {
     text-align: center;
     width: 100%;
 }
 
-.card-ttstop{
+.card-ttstop {
     margin: 10px 8px !important;
     padding: 10px;
     text-align: center;
 }
-.font-orari{
+
+.font-orari {
     font-size: 36px !important;
 }
 
 /* Bookmarks */
-.bookmark-row{
+.bookmark-row {
     padding-left: 0;
 }
-.bookmark-list{
+
+.bookmark-list {
     width: 100%;
 }
 .bookmark-item h6{
@@ -1410,34 +1420,39 @@
     padding: 14px !important;
 }
 /*TimePicker style*/
-.ionic_timepicker_popup .heading{
+.ionic_timepicker_popup .heading {
     background-color: #1e64ae !important;
 }
-.ionic_timepicker_popup .button_set{
+
+.ionic_timepicker_popup .button_set {
     background-color: #1e64ae !important;
 }
-.ionic_timepicker_popup .button_close{
+
+.ionic_timepicker_popup .button_close {
     background-color: #1e64ae !important;
 }
-.time-picker-button{
+
+.time-picker-button {
     color: white;
     float: right;
     margin-right: 5%;
 }
-.heading{
+
+.heading {
     line-height: 44px !important;
 }
 
 /*Template style for IOS */
 .platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) {
-  height: 76px !important;
+    height: 76px !important;
 }
+
 .platform-ios7.platform-cordova:not(.fullscreen) .has-header {
-  top: 90px !important;
+    top: 90px !important;
 }
 
 .ride h2,
 .ride h3 {
-  font-size: 18px !important;
-  font-weight: 100;
+    font-size: 18px !important;
+    font-weight: 100;
 }

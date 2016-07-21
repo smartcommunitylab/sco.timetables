@@ -6,7 +6,7 @@ angular.module('viaggia.services.bookmarks', [])
         repo = Config.getAppId() + '_bookmarks';
     });
 
-    var getStoredBookmarks =function () {
+    var getStoredBookmarks = function () {
         var value = localStorage.getItem(repo);
         if (!value) {
             value = [];
@@ -34,21 +34,21 @@ angular.module('viaggia.services.bookmarks', [])
      */
     $rootScope.getBookmarkItemTemplate = function (type) {
         switch (type) {
-        case 'TRAINSTOP':
-        case 'BUSSTOP':
-        case 'BUSSUBURBANSTOP':
-            {
-                return 'templates/bm/stop.html';
-                break;
-            }
-        case 'TRAIN':
-        case 'BUS':
-        case 'BUSSUBURBAN':
-            {
-                return 'templates/bm/line.html';
-            }
-        default:
-            return 'templates/bm/default.html';
+            case 'TRAINSTOP':
+            case 'BUSSTOP':
+            case 'BUSSUBURBANSTOP':
+                {
+                    return 'templates/bm/stop.html';
+                    break;
+                }
+            case 'TRAIN':
+            case 'BUS':
+            case 'BUSSUBURBAN':
+                {
+                    return 'templates/bm/line.html';
+                }
+            default:
+                return 'templates/bm/default.html';
         }
     }
 
@@ -70,7 +70,7 @@ angular.module('viaggia.services.bookmarks', [])
             localStorage.setItem(repo, JSON.stringify(list));
             deferred.resolve(list);
 
-            Config.log('AppPersonalize',{action:'add'});
+            Config.log('AppPersonalize', { action: 'add' });
 
             return deferred.promise;
         },
@@ -117,7 +117,7 @@ angular.module('viaggia.services.bookmarks', [])
             }
             deferred.resolve(list);
 
-            Config.log('AppPersonalize',{action:'remove'});
+            Config.log('AppPersonalize', { action: 'remove' });
             return deferred.promise;
         },
         /**
@@ -164,48 +164,48 @@ angular.module('viaggia.services.bookmarks', [])
                     icon = null;
 
                 switch (type) {
-                case 'TRAIN':
-                    {
-                        var ct = Config.getColorsTypes()[type];
-                        color = ct.color;
-                        icon = 'ic_train';
-                        break;
-                    }
-                case 'BUS':
-                    {
-                        var ct = Config.getColorsTypes()[type];
-                        color = ct.color;
-                        icon = 'ic_urban-bus';
-                        break;
-                    }
-                case 'BUSSUBURBAN':
-                    {
-                        var ct = Config.getColorsTypes()[type];
-                        color = ct.color;
-                        icon = 'ic_extraurban-bus';
-                        break;
-                    }
-                case 'TRAINSTOP':
-                    {
-                        var ct = Config.getColorsTypes()['TRAIN'];
-                        color = ct.color;
-                        icon = 'ic_m_train';
-                        break;
-                    }
-                case 'BUSSTOP':
-                    {
-                        var ct = Config.getColorsTypes()['BUS'];
-                        color = ct.color;
-                        icon = 'ic_m_urban_bus';
-                        break;
-                    }
-                case 'BUSSUBURBANSTOP':
-                    {
-                        var ct = Config.getColorsTypes()['BUSSUBURBAN'];
-                        color = ct.color;
-                        icon = 'ic_m_extraurban_bus';
-                        break;
-                    }
+                    case 'TRAIN':
+                        {
+                            var ct = Config.getColorsTypes()[type];
+                            color = ct.color;
+                            icon = 'ic_train';
+                            break;
+                        }
+                    case 'BUS':
+                        {
+                            var ct = Config.getColorsTypes()[type];
+                            color = ct.color;
+                            icon = 'ic_urban-bus';
+                            break;
+                        }
+                    case 'BUSSUBURBAN':
+                        {
+                            var ct = Config.getColorsTypes()[type];
+                            color = ct.color;
+                            icon = 'ic_extraurban-bus';
+                            break;
+                        }
+                    case 'TRAINSTOP':
+                        {
+                            var ct = Config.getColorsTypes()['TRAIN'];
+                            color = ct.color;
+                            icon = 'ic_m_train';
+                            break;
+                        }
+                    case 'BUSSTOP':
+                        {
+                            var ct = Config.getColorsTypes()['BUS'];
+                            color = ct.color;
+                            icon = 'ic_m_urban_bus';
+                            break;
+                        }
+                    case 'BUSSUBURBANSTOP':
+                        {
+                            var ct = Config.getColorsTypes()['BUSSUBURBAN'];
+                            color = ct.color;
+                            icon = 'ic_m_extraurban_bus';
+                            break;
+                        }
                 }
 
                 this.addBookmark({
@@ -223,4 +223,16 @@ angular.module('viaggia.services.bookmarks', [])
             return deferred.promise;
         }
     };
+})
+
+.service('stopNameSrv', function () {
+    var names = [];
+    return {
+        getName: function (index) {
+            return names[index].name;
+        },
+        setName: function (value) {
+            names = value;
+        }
+    }
 })
