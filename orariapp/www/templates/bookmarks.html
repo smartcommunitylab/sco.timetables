@@ -1,3 +1,4 @@
+<ion-view>
 <div class="row bookmark-row">
     <div class="tabs-striped tabs-top tabs-background-positive tabs-color-light">
         <div class="tabs" style="top:12px;">
@@ -5,8 +6,8 @@
         </div>
     </div>
 </div>
+<ion-content id="content" has-header="true" has-bouncing="false">
 <div class="row row-bookmark">
-    
     <ion-list class="bookmark-list" can-swipe="true" show-reorder="showReorder">       
         <div class="full-screen-swapper" ng-if="tab == 0">
             <ion-item class="item-icon-left bookmark-item bookmark-item-stops" ng-class="{'bookmark-margin':!showReorder}" item="item" ng-repeat="m in bookmarks track by $index" ng-last-repeat="bookmarks" ng-click="go(m.state)" ng-if="m.type == 'BUSSTOP'">
@@ -48,6 +49,7 @@
                     <ion-reorder-button class="button button-clear ion-drag" on-reorder="reorder($fromIndex, $toIndex)"></ion-reorder-button>
             </ion-item>
         </div>
+  </ion-list>
             
         <div class="card full-screen-swapper" ng-if="tab == 1">
             <ion-item class="item-icon-left bookmark-item bookmark-item-lines" item="item" ng-repeat="m in bookmarks track by $index" ng-last-repeat="bookmarks" ng-click="go(m.state)" ng-if="m.type == 'BUS'">
@@ -84,3 +86,7 @@
 <div ng-if="(!bookmarks || bookmarks.length == 0)" class="text-center">
     <h4>{{'no_data' | translate}}</h4>
 </div>
+<!--  </div>-->
+
+  </ion-content>
+</ion-view>
