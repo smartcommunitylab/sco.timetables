@@ -6,7 +6,7 @@
             <button class="button button-icon button-clear" ng-class="bookmarkStyle" ng-click="bookmark()"></button>
         </ion-nav-buttons>
         <ion-content>
-        <div ng-repeat="stop in stopList">
+        <div ng-repeat="stop in stopList" class="stop-list">
             <div class="row fermata-row" style="background-color: {{stop.routeElement.color}} !important">
                 <div class="fermata-row-description">
                     <h3>LINEA {{stop.routeObject.label}} - {{title[$index]}}</h3>
@@ -14,18 +14,6 @@
             </div>
             <div class="card card-ttstop" ng-repeat="t in stop.times">
                 <div class="item item-text-wrap font-orari text-center">{{t.time | date:'HH.mm'}}</div>
-            </div>
-            
-            <div class="stop-line">
-                <div ng-if="stop.routeObject" class="stop-line-title">
-
-                </div>
-                <div ng-if="!stop.routeObject" class="stop-line-title"  style="background-color: #eee">
-                    <span ng-if="route.route">{{stop.route}}: </span>{{stop.name}}
-                </div>
-                <div class="col">
-
-                </div>
             </div>
             <div ng-if="isEmpty()" class="text-center">
                 <h4>{{'no_data' | translate}}</h4>
