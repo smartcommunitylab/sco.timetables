@@ -308,7 +308,7 @@
 }
 
 .route-list .list {
-    padding-top: 20px;
+    margin-top: 6px !important;
 }
 
     .route-list .list ion-item {
@@ -325,7 +325,7 @@
 }
 
 .card-list:first-child {
-    margin-top: 13px !important;
+    margin-top: 4px !important;
 }
 
 .route-grid-row {
@@ -1311,6 +1311,7 @@ line-height: 44px;
 
 .row.date-bar {
     padding: 10px !important;
+    margin-top: 0px !important;
 }
 
 .date-bar {
@@ -1422,6 +1423,8 @@ line-height: 44px;
 }
 .bookmarks-label {
     font-size: 16px !important;
+    text-transform: uppercase;
+    font-weight: 200px;
 }
 .item-content{
     padding: 0 !important;
