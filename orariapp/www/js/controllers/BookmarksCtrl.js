@@ -22,7 +22,6 @@ angular.module('viaggia.controllers.bookmarks', [])
 	                $scope.bookmarks = list;
                     console.log($scope.bookmarks);
                     $scope.getBookmarkTitle(list);
-	                //console.log($scope.bookmarks);
 	            });
 	        });
 	        initTutorial();
@@ -30,12 +29,15 @@ angular.module('viaggia.controllers.bookmarks', [])
 	        $scope.showTutorial();
 	    };
     
-    
         $scope.getBookmarkTitle = function(list) {
             for(var key in list) {
                 var stop = list[key];
-                var split = stop.data.split(":");
-                $scope.title.push(split[0].trim() + " - " + Config.getNewDestination(split[1]));
+				if(stop.type.indexOf("TRAIN")) {
+					var split = stop.data.split(":");
+                	$scope.title.push(split[0].trim() + " - " + Config.getNewDestination(split[1]));
+				} else {
+					$scope.title.push(stop.label);
+				}    
             } 
             console.log($scope.title);
         };
