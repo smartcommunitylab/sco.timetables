@@ -5,7 +5,7 @@
 </style>
 <ion-view title="{{title}}">
     <ion-nav-buttons side="right">
-        <button class="button button-icon button-clear" ng-class="bookmarkStyle" role="button" aria-label="Aggiungi la linea nei preferiti" ng-click="bookmark()"></button>
+        <button class="button button-icon button-clear" ng-class="bookmarkStyle" role="button" aria-label="Aggiungi la linea nei preferiti" ng-click="bookmark(color)"></button>
     </ion-nav-buttons>
     <ion-content id="content" has-header="true" has-bouncing="false">
         <div class="row date-bar" style="background-color: {{color}}; color: {{textColor(color)}} !important; margin-top:13px;">
@@ -51,7 +51,7 @@
                             <a class="tab-item" aria-label="Visualizza gli orari della fermata" role="button" ng-click="showStopData(nearestStop.id)">
                                 <i class="icon ion-clock disableFocusItem"></i>
                             </a>
-                            <a class="tab-item" aria-label="Aggiungi la fermata ai preferiti" role="button" ng-click="bookmark(0)">
+                            <a class="tab-item" aria-label="Aggiungi la fermata ai preferiti" role="button" ng-click="bookmark(0,color)">
                                 <i class="icon disableFocusItem" ng-class="bookmarkStyle"></i>
                             </a>
                             <a class="tab-item" aria-label="Ottieni Indicazioni Stradali" role="button">
