@@ -258,6 +258,16 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
         });
     }
 
+    $scope.relocate = function() {
+        GeoLocate.locate().then(function(pos){
+            $rootScope.myPosition = pos;
+        }).finally(function() {
+            $scope.distanceToStop = [];
+            $scope.setLineStops();
+            $scope.$broadcast('scroll.refreshComplete');
+        })       
+    }
+
     // load timetable data
     $scope.getTT = function (date) {
         ttService.getTT($stateParams.agencyId, $scope.route.routeSymId, date).then(
