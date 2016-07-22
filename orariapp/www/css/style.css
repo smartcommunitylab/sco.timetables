@@ -1309,12 +1309,8 @@ line-height: 44px;
 }
 
 .row.date-bar {
-<<<<<<< HEAD
-  padding: 10px !important;
-=======
     padding: 10px !important;
     margin-top: 0px !important;
->>>>>>> f5f1520593e8621c55e55715f2a6e7432a7a36f4
 }
 
 .date-bar {
@@ -1322,9 +1318,11 @@ line-height: 44px;
   height: 56px !important;
 }
 
+/*
 .ride .tabs {
   padding-top: 7px;
 }
+*/
 
 .ride .tabs i {
   color: black;
@@ -1440,13 +1438,9 @@ line-height: 44px;
 }
 
 .bookmarks-label {
-<<<<<<< HEAD
-  font-size: 16px !important;
-=======
     font-size: 16px !important;
     text-transform: uppercase;
     font-weight: 200px;
->>>>>>> f5f1520593e8621c55e55715f2a6e7432a7a36f4
 }
 
 .item-content {
