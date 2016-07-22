@@ -423,22 +423,28 @@
 
 .bar-positive-100 {
     background-color: #1e64ae !important;
-    height: 56px;
+/*    height: 56px;*/
 }
 
+/*
 .bar .button.button-clear {
+
     padding-right: 2px;
     padding-left: 2px;
+
     font-weight: 300;
-    margin-top: 6px;
+ margin-top: 6px;
     font-size: 17px;
 }
+*/
 
+/*
 .bar .title {
     font-size: 19px;
-    line-height: 44px;
-    /*margin-top: 2% !important;*/
+line-height: 44px;
+    margin-top: 2% !important;
 }
+*/
 
 .nav-buttons-lat {
     margin-top: 5px;
@@ -1275,12 +1281,14 @@
     text-align: center;
 }
 
+
+
 .tab-item .icon {
     margin-bottom: -10px;
     margin-top: -5px;
-    width: 24px;
-    /* margin-top: 0px; */
-    font-size: 24px;
+/*    width: 24px;*/
+     margin-top: 0px; 
+/*    font-size: 24px;*/
 }
 
 .disableFocus {
@@ -1307,7 +1315,6 @@
 
 .date-bar {
     color: #fff !important;
-    margin-top: 12px !important;
     height: 56px !important;
 }
 
@@ -1478,4 +1485,14 @@ max-width: 400px !important;
 .card.bookmark .item .tabs {
   background-color: #fefefe !important;
 border-color: #fefefe !important;
+}
+
+.bar {
+box-shadow: none !important;
+}
+
+.tabs-positive .tabs{
+background-color: #1e64ae !important;
+border-color: #1e64ae !important;
+height: 56px !important;
 }

@@ -1,12 +1,13 @@
-<ion-view>
-<div class="row bookmark-row">
-    <div class="tabs-striped tabs-top tabs-background-positive tabs-color-light">
-        <div class="tabs" style="top:12px;">
+
+
+    <div class="tabs-striped tabs-top has-tabs-top tabs-background-positive tabs-color-light">
+        <div class="tabs">
             <a ng-repeat="t in tabs" class="tab-item" ng-class="{'active': $index==tab}" ng-click="select($index)">{{t}}</a>
         </div>
     </div>
-</div>
-<ion-content id="content" has-header="true" has-bouncing="false">
+
+    <ion-content>
+
     <div class="row row-bookmark">
         <ion-list class="bookmark-list" can-swipe="true" show-reorder="showReorder">       
             <div class="full-screen-swapper" ng-if="tab == 0">
@@ -87,5 +88,4 @@
     </div>
     <!--  </div>-->
 
-  </ion-content>
-</ion-view>
+</ion-content>
