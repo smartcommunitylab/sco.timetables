@@ -2,55 +2,60 @@
 <div class="row bookmark-row">
     <div class="tabs-striped tabs-top tabs-background-positive tabs-color-light">
         <div class="tabs" style="top:12px;">
-            <a ng-repeat="t in tabs" class="tab-item" ng-class="{'active': $index==tab}" ng-click="select($index)">{{t}}</a>
+            <a ng-repeat="t in tabs track by $index" class="tab-item" ng-class="{'active': $index==tab}" ng-click="select($index)">{{t}}</a>
         </div>
     </div>
 </div>
+    
 <ion-content id="content" has-header="true" has-bouncing="false">
     <div class="row row-bookmark">
-        <ion-list class="bookmark-list" can-swipe="true" show-reorder="showReorder">       
+        
+        <ion-list class="bookmark-list" can-swipe="true" show-reorder="showReorder">  
+            
             <div class="full-screen-swapper" ng-if="tab == 0">
-                <ion-item class="item-icon-left bookmark-item bookmark-item-stops" ng-class="{'bookmark-margin':!showReorder}" item="item" ng-repeat="m in bookmarks track by $index" ng-last-repeat="bookmarks" ng-click="go(m.state)" ng-if="m.type == 'BUSSTOP'" aria-label="Linea {{m.data}}. Fermata: {{m.label}}">
-                    <div class="row bookmark-stop-row" ng-style="{'background-color':m.color}">
-                        <h3 class="bookmark-stop-title disableFocusItem">LINEA {{title[$index]}}</h3>
-                    </div>
-                    <div class="row stop-row">
-                        <div class="col">
-                            <h6 class="disableFocusItem">Fermata:</h6>
-                            <h3 class="disableFocusItem">{{m.label | translate}}</h3>
+                
+                    <ion-item class="item-icon-left bookmark-item bookmark-item-stops" ng-class="{'bookmark-margin':!showReorder}" item="item" ng-repeat="m in bookmarks track by $index" ng-last-repeat="bookmarks" ng-click="go(m.state)" ng-if="m.type == 'BUSSTOP'" aria-label="Linea {{m.data}}. Fermata: {{m.label}}">
+                        <div class="row bookmark-stop-row" ng-style="{'background-color':m.color}">
+                            <h3 class="bookmark-stop-title disableFocusItem">LINEA {{title[$index]}}</h3>
                         </div>
-                    </div>
-                    <div class="row stop-row">
-                        <div class="col col-80">
-                            <h6>La fermata si trova ad ore X rispetto alla tua posizione attuale</h6>
-                        </div>
-                    </div>
-
-                    <div style="margin: 0px !important" class="card bookmark">
-                        <div class="item item-divider full-width-card-icons">
-                            <div class="tabs tabs-icon-only">
-                                <a class="tab-item">
-                                    <i class="icon ion-ios-cart disableFocusItem"></i>
-                                </a>
-                                <a class="tab-item" aria-label="Visualizza gli orari della fermata" role="button">
-                                    <i class="icon ion-clock disableFocusItem"></i>
-                                </a>
-                                <a class="tab-item" aria-label="Elimina fermata dai preferiti" role="button">
-                                    <i class="icon ion-ios-star-outline disableFocusItem"></i>
-                                </a>
-                                <a class="tab-item" aria-label="Ottieni indicazioni stradali" role="button">
-                                    <i class="icon ion-ios-location disableFocusItem"></i>
-                                </a>
+                        <div class="row stop-row">
+                            <div class="col">
+                                <h6 class="disableFocusItem">Fermata:</h6>
+                                <h3 class="disableFocusItem">{{m.label | translate}}</h3>
                             </div>
                         </div>
-                    </div>
+                        <div class="row stop-row">
+                            <div class="col col-80">
+                                <h6>La fermata si trova ad ore X rispetto alla tua posizione attuale</h6>
+                            </div>
+                        </div>
+
+                        <div style="margin: 0px !important" class="card bookmark">
+                            <div class="item item-divider full-width-card-icons">
+                                <div class="tabs tabs-icon-only">
+                                    <a class="tab-item">
+                                        <i class="icon ion-ios-cart disableFocusItem"></i>
+                                    </a>
+                                    <a class="tab-item" aria-label="Visualizza gli orari della fermata" role="button">
+                                        <i class="icon ion-clock disableFocusItem"></i>
+                                    </a>
+                                    <a class="tab-item" aria-label="Elimina fermata dai preferiti" role="button">
+                                        <i class="icon ion-ios-star-outline disableFocusItem"></i>
+                                    </a>
+                                    <a class="tab-item" aria-label="Ottieni indicazioni stradali" role="button">
+                                        <i class="icon ion-ios-location disableFocusItem"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                         <ion-option-button ng-if="m.removable" class="button button-clear" ng-click="delete($index, $event)" aria-label="Elimina dai preferiti" role="button"><i class="icon ion-android-delete disableFocusItem"></i></ion-option-button>
                         <ion-reorder-button class="button button-clear ion-drag" on-reorder="reorder($fromIndex, $toIndex)"></ion-reorder-button>
                 </ion-item>
+                
             </div>
-      </ion-list>
 
             <div class="card full-screen-swapper" ng-if="tab == 1">
+
                 <ion-item class="item-icon-left bookmark-item bookmark-item-lines" item="item" ng-repeat="m in bookmarks track by $index" ng-last-repeat="bookmarks" ng-click="go(m.state)" ng-if="m.type == 'BUS'" aria-label="Linea {{m.label}}">
                     <div class="row">
                         <div class="col icon-col"> 
@@ -64,8 +69,12 @@
                     <ion-option-button ng-if="m.removable" class="button button-clear" ng-click="delete($index, $event)" aria-label="Elimina dai preferiti" role="button"><i class="icon ion-android-delete disableFocusItem"></i></ion-option-button>
                     <ion-reorder-button class="button button-clear ion-drag" on-reorder="reorder($fromIndex, $toIndex)"></ion-reorder-button>
                 </ion-item>
+                
             </div>
-        </div>
+            
+      </ion-list>
+        
+    </div>
 
     <!--<ion-list class="bookmark-list" can-swipe="true" show-reorder="showReorder">
                 <!--            <ion-item id="focusHere" class="item-icon-left" ng-class="{'bookmark-margin':!showReorder}" item="item" ng-repeat="m in bookmarks track by $index" ng-last-repeat="bookmarks" ng-click="go(m.state)">
