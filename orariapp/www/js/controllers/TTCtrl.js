@@ -492,9 +492,10 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
         Toast.show(stop, "short", "bottom");
     }
 
-    $scope.bookmark = function () {
+    $scope.bookmark = function (color) {
+		console.log("ColorFunction: ",color);
         var ref = Config.getTTData($stateParams.ref);
-        bookmarkService.toggleBookmark($location.path(), $scope.title, ref.transportType, $scope.title).then(function (style) {
+        bookmarkService.toggleBookmark($location.path(), $scope.title, ref.transportType, $scope.title, $scope.title, color).then(function (style) {
             $scope.bookmarkStyle = style;
         });
     };
@@ -682,6 +683,10 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
 
 .controller('TTStopCtrl', function ($scope, $state, $stateParams, $timeout, $location, $ionicPopup, $filter, ionicMaterialMotion, ionicMaterialInk, Config, ttService, bookmarkService, stopNameSrv) {
     
+	var group = Config.getTTData($stateParams.ref, $stateParams.agencyId, $stateParams.groupId);
+    if (group && group.color) $scope.color = group.color;
+
+
     $scope.$on('$ionicView.beforeEnter', function() {
         $scope.loadStopData();
     }); 
@@ -744,10 +749,10 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
         return angular.equals($scope.stopData.data, {});
     };
 
-    $scope.bookmark = function (index) {
+    $scope.bookmark = function (index, color) {
         var ref = Config.getTTData($stateParams.ref);
         console.log($scope.stopData);
-        bookmarkService.toggleBookmark($location.path(), stopNameSrv.getName(index), ref.transportType + 'STOP', $scope.title).then(function (style) {
+        bookmarkService.toggleBookmark($location.path(), stopNameSrv.getName(index), ref.transportType + 'STOP', $scope.title, $scope.title, color).then(function (style) {
             $scope.bookmarkStyle = style;
         });
     };

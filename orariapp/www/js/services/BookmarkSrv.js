@@ -152,7 +152,8 @@ angular.module('viaggia.services.bookmarks', [])
         /**
          * Add/remove a bookmark for the element of the specified type, path, and title. Returns promise for the update style.
          */
-        toggleBookmark: function (path, title, type, data, line) {
+        toggleBookmark: function (path, title, type, data, line, colorIn) {
+            console.log("ColorIn: ",colorIn);
             var deferred = $q.defer();
             var pos = this.indexOfBookmark(path);
             if (pos >= 0) {
@@ -167,42 +168,42 @@ angular.module('viaggia.services.bookmarks', [])
                     case 'TRAIN':
                         {
                             var ct = Config.getColorsTypes()[type];
-                            color = ct.color;
+                            color = colorIn;
                             icon = 'ic_train';
                             break;
                         }
                     case 'BUS':
                         {
                             var ct = Config.getColorsTypes()[type];
-                            color = ct.color;
+                            color = colorIn;
                             icon = 'ic_urban-bus';
                             break;
                         }
                     case 'BUSSUBURBAN':
                         {
                             var ct = Config.getColorsTypes()[type];
-                            color = ct.color;
+                            color = colorIn;
                             icon = 'ic_extraurban-bus';
                             break;
                         }
                     case 'TRAINSTOP':
                         {
                             var ct = Config.getColorsTypes()['TRAIN'];
-                            color = ct.color;
+                            color = colorIn;
                             icon = 'ic_m_train';
                             break;
                         }
                     case 'BUSSTOP':
                         {
                             var ct = Config.getColorsTypes()['BUS'];
-                            color = ct.color;
+                            color = colorIn;
                             icon = 'ic_m_urban_bus';
                             break;
                         }
                     case 'BUSSUBURBANSTOP':
                         {
                             var ct = Config.getColorsTypes()['BUSSUBURBAN'];
-                            color = ct.color;
+                            color = colorIn;
                             icon = 'ic_m_extraurban_bus';
                             break;
                         }
@@ -218,6 +219,7 @@ angular.module('viaggia.services.bookmarks', [])
                     data: data
                 }).then(function () {
                     deferred.resolve('ion-ios-star');
+                    console.log("color: ",color);
                 });
             }
             return deferred.promise;
