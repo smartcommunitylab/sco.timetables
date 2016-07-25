@@ -235,10 +235,11 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
     }
 
     $scope.getKilometersFromStop = function (listOfStops) {
+        console.log(listOfStops);
         for (var i = 0; i < listOfStops.length; i++) {
             $scope.distanceToStop.push(ttService.getStopByDistance(listOfStops[i]));
-            $scope.distanceToStop.sort($scope.compareState);
         }
+        $scope.distanceToStop.sort($scope.compareState);
         Config.loaded();
         $scope.nearestStop = $scope.distanceToStop[0];
         stopNameSrv.setName($scope.distanceToStop);
@@ -771,6 +772,7 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
         });
     };
     $scope.openDirectionPopup = function(index){
+
         $scope.selectedStop = stopNameSrv.getStop(index); 
         stopNameSrv.setIndex(index);
         $ionicPopup.show({
@@ -783,5 +785,6 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
                     }
                 ]
             });
+
     }
 });

@@ -139,7 +139,7 @@ angular.module('viaggia.services.timetable', [])
 
         var getStops = function(agencyId, routeId) {
             var defer = $q.defer();
-            $http.get("http://os.smartcommunitylab.it/core.mobility/getstops/" + agencyId + "/" + routeId)
+            $http.get(Config.getServerURL() + "/getstops/" + agencyId + "/" + routeId)
                 .success(function(data){
                      defer.resolve(data);
             })
@@ -162,6 +162,8 @@ angular.module('viaggia.services.timetable', [])
 
             var distance = GeoLocate.distance($rootScope.myPosition, coordinates);
 
+            coordinates.slice(0, coordinates.length);
+
             return {
                 name: stop.name,
                 distance: distance,
@@ -171,7 +173,7 @@ angular.module('viaggia.services.timetable', [])
                 lng: stop.longitude,
                 id: stop.id
             };
-            coordinates.slice(0, coordinates.length);
+
         };
     
 		var getNextTrips = function (agencyId, stopId, numberOfResults) {
