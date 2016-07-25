@@ -1,40 +1,30 @@
 angular.module('viaggia.controllers.map', [])
 
-.controller('MapController', function($scope, $cordovaGeolocation, $ionicLoading) {
-     
-    ionic.Platform.ready(function(){
-        
-       $ionicLoading.show({
-            template: '<ion-spinner icon="bubbles"></ion-spinner><br/>Acquiring location!'
+.controller('MapController', function($scope, $cordovaGeolocation, $ionicLoading, stopNameSrv, GeoLocate) {
+
+    $scope.initMap = function(){
+        var directionDisplay = new google.maps.DirectionsRenderer;
+        var directionService = new google.maps.DirectionsService;
+        directionDisplay.setPanel(document.getElementById("directionPanel"));
+        calculateTravel(stopNameSrv.getStop(stopNameSrv.getIndex()),directionDisplay, directionService);
+    }
+     function calculateTravel(destination, directionDisplay, directionService){
+             GeoLocate.locate().then(function(pos){
+                var start = new google.maps.LatLng(pos[0],pos[1]);
+                var end = new google.maps.LatLng(destination.lat, destination.lng);
+               
+                var request = {
+                    origin: start,
+                    destination: end,
+                    travelMode: google.maps.TravelMode.WALKING
+                };
+
+                directionService.route(request, function(res,status){
+                    console.log(status);
+                    if(status == google.maps.DirectionsStatus.OK){
+                        directionDisplay.setDirections(res);
+                    }
+                })
         });
-         
-        var posOptions = {
-            enableHighAccuracy: true,
-            timeout: 20000,
-            maximumAge: 0
-        };
- 
-        $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
-            var lat  = position.coords.latitude;
-            var long = position.coords.longitude;
-             
-            var myLatlng = new google.maps.LatLng(lat, long);
-             
-            var mapOptions = {
-                center: myLatlng,
-                zoom: 16,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            };          
-            console.log("ciao ciao!") 
-            var map = new google.maps.Map(document.getElementById("map"), mapOptions);          
-             
-            $scope.map = map;   
-            $ionicLoading.hide();           
-             
-        }, function(err) {
-            $ionicLoading.hide();
-            console.log(err);
-        });
-      
-    })
+     }
 });

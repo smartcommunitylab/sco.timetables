@@ -243,6 +243,7 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
         Config.loaded();
         $scope.nearestStop = $scope.distanceToStop[0];
         stopNameSrv.setName($scope.distanceToStop);
+        console.log("SetName!");
     };
 
     $scope.compareState = function (a, b) {
@@ -766,4 +767,18 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
             $scope.bookmarkStyle = style;
         });
     };
+    $scope.openDirectionPopup = function(index){
+        $scope.selectedStop = stopNameSrv.getStop(index); 
+        stopNameSrv.setIndex(index);
+        $ionicPopup.show({
+                templateUrl: 'templates/directions.html',
+                scope: $scope,
+                buttons: [
+                    {
+                        text: $filter('translate')('btn_close'),
+                        type: 'button-close'
+                    }
+                ]
+            });
+    }
 });

@@ -39,7 +39,6 @@ angular.module('viaggia.services.bookmarks', [])
             case 'BUSSUBURBANSTOP':
                 {
                     return 'templates/bm/stop.html';
-                    break;
                 }
             case 'TRAIN':
             case 'BUS':
@@ -229,12 +228,23 @@ angular.module('viaggia.services.bookmarks', [])
 
 .service('stopNameSrv', function () {
     var names = [];
+    var idx;
     return {
         getName: function (index) {
             return names[index].name;
         },
+        getStop: function(index){
+            return names[index];
+        },
         setName: function (value) {
             names = value;
+            console.log(names);
+        },
+        setIndex: function(i){
+            idx = i;
+        },
+        getIndex: function(){
+            return idx;
         }
     }
 })
