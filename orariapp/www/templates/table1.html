@@ -5,7 +5,7 @@
 </style>
 <ion-view title="{{title}}">
     <ion-nav-buttons side="right">
-        <button class="button button-icon button-clear" ng-class="bookmarkStyle" role="button" aria-label="Aggiungi la linea nei preferiti" ng-click="bookmark(color)"></button>
+        <button class="button button-icon button-clear" ng-class="getBookmarkStyle()" role="button" aria-label="Aggiungi la linea nei preferiti" ng-click="bookmark(color)"></button>
     </ion-nav-buttons>
     <ion-content id="content" has-header="true" has-bouncing="false">
         <ion-refresher pulling-text="Trascina per aggiornare la posizione..." on-refresh="relocate()"></ion-refresher>    
@@ -53,7 +53,7 @@
                                 <i class="icon ion-clock disableFocusItem"></i>
                             </a>
                             <a class="tab-item" aria-label="Aggiungi la fermata ai preferiti" role="button" ng-click="bookmark(0,color)">
-                                <i class="icon disableFocusItem" ng-class="bookmarkStyle"></i>
+                                <i class="icon disableFocusItem" ng-class="getBookmarkStyle(nearestStop.name)"></i>
                             </a>
                             <a class="tab-item" aria-label="Ottieni Indicazioni Stradali" role="button">
                                 <i class="icon ion-ios-location disableFocusItem"></i>
@@ -88,7 +88,7 @@
                             <i class="icon ion-clock disableFocusItem"></i>
                         </a>
                         <a class="tab-item" aria-label="Aggiungi la fermata ai preferiti" role="button" ng-click="bookmark($index+1, color)">
-                            <i class="icon disableFocusItem" ng-class="bookmarkStyle"></i>
+                            <i class="icon disableFocusItem" ng-class="getBookmarkStyle(stop.name)"></i>
                         </a>
                         <a class="tab-item" aria-label="Ottieni Indicazioni Stradali" role="button">
                             <i class="icon ion-ios-location disableFocusItem"></i>

@@ -39,30 +39,31 @@ angular.module('viaggia.controllers.bookmarks', [])
 					$scope.title.push(stop.label);
 				}    
             } 
-            console.log($scope.title);
         };
-    /*
+
         $scope.removeBookmarkTitle = function(idx) {
             $scope.title.splice(idx, 1);
         };
-    */
+    
 	    $scope.$on('ngLastRepeat.bookmarks', function (e) {
 	        $timeout(function () {
 	            ionicMaterialMotion.ripple();
 	            ionicMaterialInk.displayEffect()
 	        }); // No timeout delay necessary.
 	    });
+
 	    $scope.delete = function (idx, $event) {
 	        $scope.deleting = true;
 	        Config.loading();
 	        $event.preventDefault();
 	        bookmarkService.removeBookmark(idx).then(function (list) {
 	            $scope.bookmarks = list;
-                //$scope.removeBookmarkTitle(idx);
+                $scope.removeBookmarkTitle(idx);
 	            $ionicListDelegate.closeOptionButtons();
 	            Config.loaded();
 	        });
 	    };
+
 	    $scope.reorder = function (from, to) {
 	        Config.loading();
 	        bookmarkService.reorderBookmark(from, to).then(function (list) {

@@ -202,7 +202,6 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
     $scope.load = function () {
         $scope.route = Config.getTTData($stateParams.ref, $stateParams.agencyId, $stateParams.groupId, $stateParams.routeId);
         $scope.title = ($scope.route.label ? ($scope.route.label + ': ') : '') + $scope.route.title;
-        $scope.bookmarkStyle = bookmarkService.getBookmarkStyle($location.path());
         $scope.setLineStops();
 
         if (!$scope.route.color) {
@@ -509,6 +508,10 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
             $scope.bookmarkStyle = style;
         });
     };
+
+    $scope.getBookmarkStyle = function() {
+        return bookmarkService.getBookmarkStyle($scope.title);
+    }
 })
 
 .controller('TTMapCtrl', function ($scope, $rootScope, $state, $stateParams, $timeout, $ionicModal, $ionicPopup, $filter, ionicMaterialMotion, ionicMaterialInk, mapService, Config, ttService, GeoLocate, Toast) {
@@ -753,7 +756,9 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
         $scope.stopData = ttService.getTTStopData();
     };
     
-    $scope.bookmarkStyle = bookmarkService.getBookmarkStyle($location.path());
+    $scope.getBookmarkStyle = function(stopName) {
+        return bookmarkService.getBookmarkStyle(stopName);
+    };
 
     $scope.isEmpty = function () {
         return angular.equals($scope.stopData.data, {});
@@ -761,9 +766,7 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
 
     $scope.bookmark = function (index, color) {
         var ref = Config.getTTData($stateParams.ref);
-        console.log($scope.stopData);
         bookmarkService.toggleBookmark($location.path(), stopNameSrv.getName(index), ref.transportType + 'STOP', $scope.title, $scope.title, color).then(function (style) {
-            $scope.bookmarkStyle = style;
         });
     };
 });

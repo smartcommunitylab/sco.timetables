@@ -98,10 +98,10 @@ angular.module('viaggia.services.bookmarks', [])
         /**
          * Return position of the bookmark with the specified path in the list.
          */
-        indexOfBookmark: function (bm) {
+        indexOfBookmark: function (title) {
             var list = getBookmarks();
             for (var i = 0; i < list.length; i++) {
-                if (bm == list[i].state) return i;
+                if (title == list[i].label) return i;
             }
             return -1;
         },
@@ -116,7 +116,7 @@ angular.module('viaggia.services.bookmarks', [])
                 localStorage.setItem(repo, JSON.stringify(list));
             }
             deferred.resolve(list);
-
+            
             Config.log('AppPersonalize', { action: 'remove' });
             return deferred.promise;
         },
@@ -153,17 +153,17 @@ angular.module('viaggia.services.bookmarks', [])
          * Add/remove a bookmark for the element of the specified type, path, and title. Returns promise for the update style.
          */
         toggleBookmark: function (path, title, type, data, line, colorIn) {
-            console.log("ColorIn: ",colorIn);
+
             var deferred = $q.defer();
-            var pos = this.indexOfBookmark(path);
-            if (pos >= 0) {
+            var color = null,
+                icon = null;
+            var pos = this.indexOfBookmark(title);
+
+            if(pos >= 0) {
                 this.removeBookmark(pos).then(function () {
                     deferred.resolve('ion-ios-star-outline');
                 });
             } else {
-                var color = null,
-                    icon = null;
-
                 switch (type) {
                     case 'TRAIN':
                         {
@@ -222,6 +222,7 @@ angular.module('viaggia.services.bookmarks', [])
                     console.log("color: ",color);
                 });
             }
+
             return deferred.promise;
         }
     };

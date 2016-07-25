@@ -2,9 +2,6 @@
         <ion-nav-title>
             FERMATA : {{stopData.name}}
         </ion-nav-title>
-        <ion-nav-buttons side="right">
-            <button class="button button-icon button-clear" ng-class="bookmarkStyle" ng-click="bookmark()"></button>
-        </ion-nav-buttons>
         <ion-content>
         <div ng-repeat="stop in stopList" class="stop-list">
             <div class="row fermata-row" style="background-color: {{stop.routeElement.color}} !important">
