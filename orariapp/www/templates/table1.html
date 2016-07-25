@@ -55,7 +55,7 @@
                             <a class="tab-item" aria-label="Aggiungi la fermata ai preferiti" role="button" ng-click="bookmark(0,color)">
                                 <i class="icon disableFocusItem" ng-class="getBookmarkStyle(nearestStop.name)"></i>
                             </a>
-                            <a class="tab-item" aria-label="Ottieni Indicazioni Stradali" role="button">
+                            <a class="tab-item" aria-label="Ottieni Indicazioni Stradali" ng-click="openDirectionPopup(0)" role="button">
                                 <i class="icon ion-ios-location disableFocusItem"></i>
                             </a>
                         </div>
@@ -90,7 +90,7 @@
                         <a class="tab-item" aria-label="Aggiungi la fermata ai preferiti" role="button" ng-click="bookmark($index+1, color)">
                             <i class="icon disableFocusItem" ng-class="getBookmarkStyle(stop.name)"></i>
                         </a>
-                        <a class="tab-item" aria-label="Ottieni Indicazioni Stradali" role="button">
+                        <a class="tab-item" aria-label="Ottieni Indicazioni Stradali" ng-click="openDirectionPopup($index+1)" role="button">
                             <i class="icon ion-ios-location disableFocusItem"></i>
                         </a>
                     </div>
