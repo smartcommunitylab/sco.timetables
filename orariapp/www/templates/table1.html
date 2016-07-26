@@ -24,16 +24,16 @@
             <div ng-if="header_row_number == 2">{{tableCornerStr[1]}}</div>
         </div>-->
             <h6 class="bus-ride-text">Fermata più vicina</h6>
-            <div class="card ride" aria-label="Linea {{title}}. Fermata più vicina: {{nearestStop.name}}. Ora di arrivo: 00:00. Servizio disabili {{nearestStop.wcAvailable}}">
+            <div class="card ride" aria-label="Linea {{title}}. Fermata più vicina: {{nearestStop.name}}. Distanza: {{nearestStop.distance | number: 2}} chilometri. Servizio disabili {{nearestStop.wcAvailable}}">
                     <div class="item item-text-wrap no-padding-item">
                         <div class="row stop-row">
                             <div class="col col-64">
-                                <h6 class="disableFocusItem">Fermata:</h6>
+                                <h6 class="disableFocusItem">Fermata</h6>
                                 <h3 class="disableFocusItem">{{nearestStop.name}}</h3>
                             </div>
-                            <div class="col">
-                                <h6 class="disableFocusItem">Ora di arrivo:</h6>
-                                <h2 class="disableFocusItem">00:00</h2>
+                            <div class="col distance-col">
+                                <h6 class="disableFocusItem">Distanza (km)</h6>
+                                <h2 class="disableFocusItem">{{nearestStop.distance | number: 2}}</h2>
                             </div>
                         </div>
                         <div class="row stop-row">
@@ -63,16 +63,16 @@
                 </div>
             <h6 class="bus-ride-text">Elenco fermate</h6>
 
-            <div class="card ride" ng-repeat="stop in distanceToStop | startFrom : 1" aria-label="Linea {{title}}. Fermata: {{stop.name}}. Ora di arrivo: 00:00. Servizio disabili {{stop.wcAvailable}}">
+            <div class="card ride" ng-repeat="stop in distanceToStop | startFrom : 1" aria-label="Linea {{title}}. Fermata: {{stop.name}}. Distanza: {{stop.distance | number: 2}} chilometri. Servizio disabili {{stop.wcAvailable}}">
                 <div class="item item-text-wrap no-padding-item">
                     <div class="row stop-row">
                         <div class="col col-64">
-                            <h6 class="disableFocusItem">Fermata:</h6>
+                            <h6 class="disableFocusItem">Fermata</h6>
                             <h2 class="disableFocusItem">{{stop.name}}</h2>
                         </div>
                         <div class="col">
-                            <h6 class="disableFocusItem">Ora di arrivo:</h6>
-                            <h2 class="disableFocusItem">00:00</h2>
+                            <h6 class="disableFocusItem">Distanza (km)</h6>
+                            <h2 class="disableFocusItem">{{stop.distance | number: 2}}</h2>
                         </div>
                     </div>
                     <div class="row" style="color: {{color}};" ng-click="show = !show" aria-label="Visualizza Dettagli fermata" role="button">

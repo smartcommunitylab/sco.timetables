@@ -1362,10 +1362,13 @@ line-height: 44px;
 }
 
 .col-64 {
-  flex: 0 0 64% !important;
-  max-width: 64% !important;
+  flex: 0 0 63% !important;
+  max-width: 63% !important;
 }
 
+.distance-col{
+  padding-right: 0;
+}
 
 /* ttstop file style */
 
@@ -1429,7 +1432,7 @@ line-height: 44px;
   margin-bottom: 0 !important;
   margin-left: 4px !important;
   margin-right: 4px !important;
-  margin-top: 75px !important;
+  margin-top: 65px !important;
 }
 
 .bookmark-item-lines {
