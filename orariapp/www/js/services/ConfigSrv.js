@@ -32,7 +32,7 @@ angular.module('viaggia.services.conf', [])
     };
 
     var rebuildDestination = function(lineTitle) {
-        
+        console.log(lineTitle);
         var newTitle = lineTitle.split("-");
         for(var i = 0; i < newTitle.length; i++){
            newTitle[i] = newTitle[i].trim();
