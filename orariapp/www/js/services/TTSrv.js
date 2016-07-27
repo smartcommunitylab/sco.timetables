@@ -151,31 +151,39 @@ angular.module('viaggia.services.timetable', [])
             return defer.promise;
         };
         
-        var getStopByDistance = function(stop) {
+        var getNearestStopByDistance = function(listOfStops) {
             var coordinates = [];
-            coordinates.push(stop.latitude);
-            coordinates.push(stop.longitude);
-            var wheelchairAvailable;
-            if (stop.wheelChairBoarding > 1)
-                wheelchairAvailable = "DISPONIBILE";
-            else
-                wheelchairAvailable = "NON DISPONIBILE";
+			var listOfStopsByDistance = [];
 
-            var distance = GeoLocate.distance($rootScope.myPosition, coordinates);
+			for(var key in listOfStops) {
+				var stop = listOfStops[key];
+				coordinates.push(stop.latitude);
+            	coordinates.push(stop.longitude);
 
-            coordinates.slice(0, coordinates.length);
+				var wheelchairAvailable;
+				if (stop.wheelChairBoarding > 1)
+					wheelchairAvailable = "DISPONIBILE";
+				else
+					wheelchairAvailable = "NON DISPONIBILE";
 
-            return {
-                name: stop.name,
-                distance: distance,
-                wheelchair: stop.wheelChairBoarding,
-                wcAvailable:wheelchairAvailable,
-                lat: stop.latitude,
-                lng: stop.longitude,
-                id: stop.id
-            };
-
+				listOfStopsByDistance.push({
+					name: stop.name,
+					distance: GeoLocate.distance($rootScope.myPosition, coordinates),
+					wheelchair: stop.wheelChairBoarding,
+                	wcAvailable: wheelchairAvailable,
+                	lat: stop.latitude,
+                	lng: stop.longitude,
+                	id: stop.id
+				});
+				coordinates = [];
+			}
+			listOfStopsByDistance.sort(compareState);
+			return listOfStopsByDistance[0];
         };
+
+		var compareState = function (a,b) {
+			return a.distance - b.distance;
+		};
     
 		var getNextTrips = function (agencyId, stopId, numberOfResults) {
 			var deferred = $q.defer();
@@ -288,6 +296,7 @@ angular.module('viaggia.services.timetable', [])
 				}
 				return deferred.promise;
 			},
+
 			getTT2: function (agency, route, date) {
 				var deferred = $q.defer();
 				var d = new Date(date);
@@ -336,7 +345,7 @@ angular.module('viaggia.services.timetable', [])
             ,/**
             * Read stop by distances
             */
-            getStopByDistance : getStopByDistance
+            getNearestStopByDistance : getNearestStopByDistance
             ,/**
 			 * Read stops for agencies
 			 */

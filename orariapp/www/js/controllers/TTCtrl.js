@@ -204,6 +204,7 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
             $scope.route = Config.getTTData($stateParams.ref, $stateParams.agencyId, $stateParams.groupId, $stateParams.routeId);
             $scope.title = ($scope.route.label ? ($scope.route.label + ': ') : '') + $scope.route.title;
             $scope.setLineStops();
+            $scope.getTT($scope.runningDate.getTime());
 
             if (!$scope.route.color) {
                 var group = Config.getTTData($stateParams.ref, $stateParams.agencyId, $stateParams.groupId);
@@ -211,45 +212,31 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
             } else {
                 $scope.color = $scope.route.color;
             }
-            console.log($scope.getTT($scope.runningDate.getTime()));
+
+
         }
 
         // go to next date
         $scope.nextDate = function () {
             $scope.runningDate.setDate($scope.runningDate.getDate() + 1);
-            console.log("DATA #1");
             console.log($scope.getTT($scope.runningDate.getTime()));
         }
         // go to prev date
         $scope.prevDate = function () {
             $scope.runningDate.setDate($scope.runningDate.getDate() - 1);
-            console.log("DATA #1");
             console.log($scope.getTT($scope.runningDate.getTime()));
         }
 
         //Set line Stops
         $scope.setLineStops = function () {
-            /*Retrieve stops for line selected*/
-            Config.loading();
             ttService.getStops($stateParams.agencyId, $stateParams.routeId).then(function (data) {
-                $scope.getKilometersFromStop(data);
+                $scope.getKilometersFromNearestStop(data);
             });
         }
 
-        $scope.getKilometersFromStop = function (listOfStops) {
-            console.log(listOfStops);
-            for (var i = 0; i < listOfStops.length; i++) {
-                $scope.distanceToStop.push(ttService.getStopByDistance(listOfStops[i]));
-            }
-            $scope.distanceToStop.sort($scope.compareState);
-            Config.loaded();
-            $scope.nearestStop = $scope.distanceToStop[0];
-            stopNameSrv.setName($scope.distanceToStop);
-            console.log("SetName!");
-        };
-
-        $scope.compareState = function (a, b) {
-            return a.distance - b.distance;
+        $scope.getKilometersFromNearestStop = function (listOfStops) {
+            $scope.nearestStop = ttService.getNearestStopByDistance(listOfStops);
+            console.log($scope.nearestStop);
         };
 
         $scope.showStopData = function (currentStopId) {
@@ -265,7 +252,6 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
             GeoLocate.locate().then(function (pos) {
                 $rootScope.myPosition = pos;
             }).finally(function () {
-                $scope.distanceToStop = [];
                 $scope.setLineStops();
                 $scope.$broadcast('scroll.refreshComplete');
             })
@@ -288,7 +274,6 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
                 },
                 function (data) {
                     console.log(data);
-
                     getStopsList(data, new Date().getTime());
                     Config.loaded();
                 });
@@ -298,7 +283,7 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
         var getStopsList = function (data, time) {
             ttService.getStops($stateParams.agencyId, $stateParams.routeId).then(function (stops) {
                 var indexes = [];
-                
+
                 if (stops) {
                     console.log("STOPS OK");
                     if (data) {
