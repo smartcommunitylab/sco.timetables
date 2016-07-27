@@ -210,19 +210,20 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
         } else {
             $scope.color = $scope.route.color;
         }
-        $scope.getTT($scope.runningDate.getTime());
         console.log($scope.getTT($scope.runningDate.getTime()));
     }
 
     // go to next date
     $scope.nextDate = function () {
         $scope.runningDate.setDate($scope.runningDate.getDate() + 1);
-        $scope.getTT($scope.runningDate.getTime());
+        console.log("DATA #1");
+        console.log($scope.getTT($scope.runningDate.getTime()));
     }
     // go to prev date
     $scope.prevDate = function () {
         $scope.runningDate.setDate($scope.runningDate.getDate() - 1);
-        $scope.getTT($scope.runningDate.getTime());
+                    console.log("DATA #1");
+        console.log($scope.getTT($scope.runningDate.getTime()));
     }
 
     //Set line Stops
@@ -271,11 +272,11 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
 
     // load timetable data
     $scope.getTT = function (date) {
-        ttService.getTT($stateParams.agencyId, $scope.route.routeSymId, date).then(
+        ttService.getTT2($stateParams.agencyId, $scope.route.routeSymId, date).then(
         function (data) {
             if (data.delays && data.delays.length > 0) {
-                $scope.tt.delays = data.delays;
-                updateDelays(data);
+                //$scope.tt.delays = data.delays;
+                //updateDelays(data);
             }
         },
         function (err) {
@@ -284,11 +285,48 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
             };
         },
         function (data) {
-            constructTable(data);
+            console.log(data);
+            
+            getStopsList(data, new Date().getTime());
         });
 
     };
 
+    var getStopsList = function(data) {
+        ttService.getStops($stateParams.agencyId, $stateParams.routeId).then(function(stops){
+            console.log("SONO DENTRO");
+            
+            if(stops) {
+                console.log("STOPS OK");
+                if(data) {
+                    console.log("DATA OK");
+                    var index = 0;
+                    var array = [];
+
+                    for(var i = 0; i < stops.length; i++) {
+                        var id1 = stops[i].id;
+                        for(var k = 0; k < data.stopsId.length; k++) {
+                            var id2 = data.stopsId[k];
+                            if(id1 === id2) {
+                                index = k;
+                            }
+                        }
+
+                        for(var j = 0; j < data.times[index].length; j++) {
+                            array.push(data.times[index][j]);
+                        }
+                        console.log(array);
+                    }
+
+                } else {
+                    console.log("DATA ERROR");
+                }
+            } else {
+                console.log("STOPS ERROR");
+            }
+
+        });
+    }
     // convert delay object to string
     var getDelayValue = function (delay) {
         var res = '';
@@ -417,6 +455,11 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
             str += expandStr(getDelayValue(data.delays[i]));
         }
         $scope.headStr[0] = str;
+    }
+
+    var getStopsList = function(data) {
+        var currentDate = new Date().getTime();
+        return ttService.locateTablePosition(data, currentDate);
     }
 
     // construct the table

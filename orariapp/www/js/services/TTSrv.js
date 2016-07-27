@@ -147,6 +147,7 @@ angular.module('viaggia.services.timetable', [])
                      defer.reject(err);
                      console.log(err);
             });
+			console.log("getStops -> Richiamato");
             return defer.promise;
         };
         
@@ -286,8 +287,31 @@ angular.module('viaggia.services.timetable', [])
 					});
 				}
 				return deferred.promise;
-			}
-			, /**
+			},
+			getTT2: function (agency, route, date) {
+				var deferred = $q.defer();
+				var d = new Date(date);
+					d.setHours(0);
+					d.setMinutes(0);
+					d.setSeconds(0);
+					d.setMilliseconds(0);
+					var from = d.getTime();
+					d.setHours(23);
+					d.setMinutes(59);
+					var to = d.getTime();
+					route = encodeURIComponent(route);
+					$http.get(Config.getServerURL() + '/gettransittimes/' + agency + '/' + route + '/' + from + '/' + to, Config.getHTTPConfig()).success(function (data) {
+						if (data.times) data.times = data.times[0];
+						if (data.tripIds) data.tripIds = data.tripIds[0];
+						if (data.delays) data.delays = data.delays[0];
+						deferred.notify(data);
+						deferred.resolve(data);
+					}).error(function (err) {
+						deferred.reject(err);
+					});
+				return deferred.promise;
+			},
+			/**
 			 * Find a column that corresponds to the current time
 			 */
 			locateTablePosition: function (data, time) {
