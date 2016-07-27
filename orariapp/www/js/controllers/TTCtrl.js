@@ -287,8 +287,6 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
                     };
                 },
                 function (data) {
-                    console.log(data);
-
                     getStopsList(data, new Date().getTime());
                     Config.loaded();
                 });
@@ -297,7 +295,6 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
 
         var getStopsList = function (data, time) {
             ttService.getStops($stateParams.agencyId, $stateParams.routeId).then(function (stops) {
-                var indexes = [];
                 
                 if (stops) {
                     console.log("STOPS OK");
@@ -324,9 +321,7 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
                                     break;
                                 }
                             }
-                            indexes.push(index);
-                            console.log(stopTimes);
-
+                           // console.log(stopTimes);
                             $scope.arrayOfStops.push({
                                 name: stop.name,
                                 wheelchair: stop.wheelChairBoarding,
@@ -339,7 +334,6 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
                             
                             stopTimes = [];
                         }
-                    console.log($scope.arrayOfStops); 
                     } else {
                         console.log("DATA ERROR");
                     }

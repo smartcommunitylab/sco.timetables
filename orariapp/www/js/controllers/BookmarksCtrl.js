@@ -32,11 +32,11 @@ angular.module('viaggia.controllers.bookmarks', [])
         $scope.getBookmarkTitle = function (list) {
             for (var key in list) {
                 var stop = list[key];
-				if (stop.type.indexOf("TRAIN")) {
+				if (stop.type.indexOf("TRAIN") < 0) {
 					var split = stop.data.split(":");
 					$scope.title.push(split[0].trim() + " - " + Config.getNewDestination(split[1]));
 				} else {
-					$scope.title.push(stop.label);
+					$scope.title.push(Config.getNewDestination(stop.data));
 				}    
             } 
         };

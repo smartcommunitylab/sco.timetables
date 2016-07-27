@@ -184,7 +184,7 @@ angular.module('viaggia.services.bookmarks', [])
                     case 'TRAINSTOP':
                         {
                             var ct = Config.getColorsTypes()['TRAIN'];
-                            color = colorIn;
+                            color = colorIn;s
                             icon = 'ic_m_train';
                             break;
                         }
