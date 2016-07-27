@@ -1258,7 +1258,13 @@ line-height: 44px;
   color: #fff;
   height: 56px;
 }
-
+.wheelchairIcon{
+  margin-top: 7% !important;
+  box-shadow: none !important;
+}
+.bookmarkTab .tab-item i{
+  color:#000 !important;
+}
 .card h2 {
   font-size: 20px;
   font-weight: bold;
