@@ -32,7 +32,7 @@
                                 <h3 class="disableFocusItem">{{nearestStop.name}}</h3>
                             </div>
                             <div class="col distance-col">
-                                <h6 class="disableFocusItem">Distanza (km)</h6>
+                                <h6 class="disableFocusItem">Ora di Arrivo</h6>
                                 <h2 class="disableFocusItem">{{nearestStop.distance | number: 2}}</h2>
                             </div>
                         </div>
@@ -60,7 +60,7 @@
                 </div>
             <h6 class="bus-ride-text">Elenco fermate</h6>
 
-            <div class="card ride ride-card" ng-repeat="stop in distanceToStop | startFrom : 1" aria-label="Linea {{title}}. Fermata: {{stop.name}}. Distanza: {{stop.distance | number: 2}} chilometri. Servizio disabili {{stop.wcAvailable}}">
+            <div class="card ride ride-card" ng-repeat="stop in arrayOfStops" aria-label="Linea {{title}}. Fermata: {{stop.name}}. Ora di Arrivo: {{stop.times[0] | date:'HH.mm'}} chilometri. Servizio disabili {{stop.wcAvailable}}">
                 <div class="item item-text-wrap no-padding-item">
                     <div class="row stop-row">
                         <div class="col col-64">
@@ -68,8 +68,13 @@
                             <h2 class="disableFocusItem">{{stop.name}}</h2>
                         </div>
                         <div class="col">
-                            <h6 class="disableFocusItem">Distanza (km)</h6>
-                            <h2 class="disableFocusItem">{{stop.distance | number: 2}}</h2>
+                            <h6 class="disableFocusItem">Ora di Arrivo</h6>
+                            <div ng-if="stop.times[0] != ''">
+                                <h2 class="disableFocusItem">{{stop.times[0] | date:'HH.mm'}}</h2>
+                            </div>
+                             <div ng-if="stop.times[0] == ''">
+                                <h2 class="disableFocusItem">//</h2>
+                            </div>
                         </div>
                     </div>
                     <div class="row" style="color: {{color}};" ng-click="show = !show" aria-label="Visualizza Dettagli fermata" role="button">
