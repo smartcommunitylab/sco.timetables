@@ -811,9 +811,9 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
             return angular.equals($scope.stopData.data, {});
         };
 
-        $scope.bookmark = function (index, color) {
+        $scope.bookmark = function (index, color, id) {
             var ref = Config.getTTData($stateParams.ref);
-            bookmarkService.toggleBookmark($location.path(), stopNameSrv.getName(index), ref.transportType + 'STOP', $scope.title, $scope.title, color).then(function (style) {
+            bookmarkService.toggleBookmark($location.path(), stopNameSrv.getName(index), ref.transportType + 'STOP', $scope.title, $scope.title, color, id).then(function (style) {
             });
         };
         $scope.openDirectionPopup = function (index) {
