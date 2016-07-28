@@ -202,6 +202,13 @@ angular.module('viaggia.services.bookmarks', [])
                                 icon = 'ic_m_extraurban_bus';
                                 break;
                             }
+                        case 'TRANSIT':
+                        {
+                            var ct = Config.getColorsTypes()['TRANSIT'];
+                            color = colorIn;
+                            icon = 'ic_funivia';
+                            break;
+                        }
                     }
                     this.addBookmark({
                         "state": path,
