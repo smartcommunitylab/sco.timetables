@@ -236,6 +236,7 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
 
         $scope.getKilometersFromNearestStop = function (listOfStops) {
             $scope.nearestStop = ttService.getNearestStopByDistance(listOfStops);
+            stopNameSrv.setNameNearest($scope.nearestStop.name);
             console.log($scope.nearestStop);
         };
 
@@ -802,7 +803,7 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
         };
 
         $scope.getBookmarkStyle = function (stopName) {
-            console.log(stopName);
+          //  console.log(stopName);
             return bookmarkService.getBookmarkStyle(stopName);
         };
 
@@ -830,5 +831,15 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
                 ]
             });
 
+        }
+
+        $scope.getIndexOfNearest = function(){
+            console.log("NearestName:" ,stopNameSrv.getNearestName());
+            console.log("IndexOf: ",stopNameSrv.getStops().map(function(x){return x.name;}).indexOf(stopNameSrv.getNearestName()));
+            return stopNameSrv.getStops()
+                    .map(function(x){
+                        return x.name;
+                    })
+                    .indexOf(stopNameSrv.getNearestName());
         }
     });
