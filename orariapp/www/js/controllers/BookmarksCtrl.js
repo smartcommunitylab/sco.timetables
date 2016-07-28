@@ -1,6 +1,6 @@
 angular.module('viaggia.controllers.bookmarks', [])
 
-	.controller('BookmarksCtrl', function ($scope, $rootScope, $location, $filter, $ionicHistory, $timeout, $ionicPopup, $ionicListDelegate, $state, Config, bookmarkService, stopNameSrv) {
+	.controller('BookmarksCtrl', function ($scope, $rootScope, $location, $filter, $ionicHistory, $timeout, $ionicPopup, $ionicListDelegate, $state, $ionicModal, Config, bookmarkService, stopNameSrv) {
 		$scope.languageTutorial = "en";
         $scope.title = [];
 
@@ -32,13 +32,16 @@ angular.module('viaggia.controllers.bookmarks', [])
         $scope.getBookmarkTitle = function (list) {
             for (var key in list) {
                 var stop = list[key];
-				if (stop.type.indexOf("TRAIN") < 0) {
+				if (stop.type.indexOf("TRAIN") < 0 && stop.type.indexOf("TRANSIT") < 0) {
 					var split = stop.data.split(":");
 					$scope.title.push(split[0].trim() + " - " + Config.getNewDestination(split[1]));
-				} else {
+				} 
+				else {
 					$scope.title.push(Config.getNewDestination(stop.data));
+					console.log("PUSHED: ", Config.getNewDestination(stop.data));
 				}
             }
+			console.log("titles",$scope.title);
         };
 
         $scope.removeBookmarkTitle = function (idx) {
