@@ -1,6 +1,6 @@
 angular.module('viaggia.controllers.bookmarks', [])
 
-	.controller('BookmarksCtrl', function ($scope, $rootScope, $location, $filter, $ionicHistory, $timeout, $ionicModal, $ionicListDelegate, Config, bookmarkService) {
+	.controller('BookmarksCtrl', function ($scope, $rootScope, $location, $filter, $ionicHistory, $timeout, $ionicPopup, $ionicListDelegate, $state, Config, bookmarkService, stopNameSrv) {
 		$scope.languageTutorial = "en";
         $scope.title = [];
 
@@ -37,58 +37,58 @@ angular.module('viaggia.controllers.bookmarks', [])
 					$scope.title.push(split[0].trim() + " - " + Config.getNewDestination(split[1]));
 				} else {
 					$scope.title.push(Config.getNewDestination(stop.data));
-				}    
-            } 
+				}
+            }
         };
 
-        $scope.removeBookmarkTitle = function(idx) {
+        $scope.removeBookmarkTitle = function (idx) {
             $scope.title.splice(idx, 1);
         };
-    
-	    $scope.$on('ngLastRepeat.bookmarks', function (e) {
-	        $timeout(function () {
-	            ionicMaterialMotion.ripple();
-	            ionicMaterialInk.displayEffect()
-	        }); // No timeout delay necessary.
-	    });
 
-	    $scope.delete = function (idx, $event) {
-	        $scope.deleting = true;
-	        Config.loading();
-	        $event.preventDefault();
-	        bookmarkService.removeBookmark(idx).then(function (list) {
-	            $scope.bookmarks = list;
+		$scope.$on('ngLastRepeat.bookmarks', function (e) {
+			$timeout(function () {
+				ionicMaterialMotion.ripple();
+				ionicMaterialInk.displayEffect()
+			}); // No timeout delay necessary.
+		});
+
+		$scope.delete = function (idx, $event) {
+			$scope.deleting = true;
+			Config.loading();
+			$event.preventDefault();
+			bookmarkService.removeBookmark(idx).then(function (list) {
+				$scope.bookmarks = list;
                 $scope.removeBookmarkTitle(idx);
-	            $ionicListDelegate.closeOptionButtons();
-	            Config.loaded();
-	        });
-	    };
+				$ionicListDelegate.closeOptionButtons();
+				Config.loaded();
+			});
+		};
 
-	    $scope.reorder = function (from, to) {
-	        Config.loading();
-	        bookmarkService.reorderBookmark(from, to).then(function (list) {
-	            $scope.bookmarks = list;
-	            $ionicHistory.clearCache();
-	            Config.loaded();
-	        });
-	    };
-	    $scope.toggleReorder = function () {
-	        $scope.showReorder = !$scope.showReorder;
-	    }
-	    $scope.go = function (state) {
-	        if ($scope.deleting) {
-	            $scope.deleting = false;
-	        }
-	        else {
-	            $location.path(state);
-	        }
-	    }
-	    $scope.openModal = function () {
-	        $scope.modal.show();
-	    };
-	    $scope.closeModal = function () {
-	        $scope.modal.hide();
-	    };
+		$scope.reorder = function (from, to) {
+			Config.loading();
+			bookmarkService.reorderBookmark(from, to).then(function (list) {
+				$scope.bookmarks = list;
+				$ionicHistory.clearCache();
+				Config.loaded();
+			});
+		};
+		$scope.toggleReorder = function () {
+			$scope.showReorder = !$scope.showReorder;
+		}
+		$scope.go = function (state) {
+			if ($scope.deleting) {
+				$scope.deleting = false;
+			}
+			else {
+				$location.path(state);
+			}
+		}
+		$scope.openModal = function () {
+			$scope.modal.show();
+		};
+		$scope.closeModal = function () {
+			$scope.modal.hide();
+		};
 
 		function initTutorial() {
 			$scope.imageSrc = '';
@@ -156,5 +156,17 @@ angular.module('viaggia.controllers.bookmarks', [])
 		}
 		$scope.showImage = function (index) {
 			$scope.imageSrc = 'img/bookmarks/step_' + index + '_' + $scope.languageTutorial + '.png';
+		}
+
+		$scope.showStopData = function (idx) {
+			var currentStop = $scope.bookmarks[idx];
+			var stateParms = currentStop.state.split('/');
+			console.log(stateParms);
+			$state.go('app.ttstop', {
+				stopId: currentStop.id,
+				agencyId: stateParms[4],
+				ref: stateParms[3],
+				routeId: stateParms[6],
+			});
 		}
 	})

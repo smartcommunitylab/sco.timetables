@@ -49,10 +49,10 @@
                             <a class="tab-item" aria-label="Visualizza gli orari della fermata" role="button" ng-click="showStopData(nearestStop.id)">
                                 <i class="icon ion-clock disableFocusItem"></i>
                             </a>
-                            <a class="tab-item" aria-label="Aggiungi la fermata ai preferiti" role="button" ng-click="bookmark(0,color)">
+                            <a class="tab-item" aria-label="Aggiungi la fermata ai preferiti" role="button" ng-click="bookmark(getIndexOfNearest(),color,nearestStop.id)">
                                 <i class="icon disableFocusItem" ng-class="getBookmarkStyle(nearestStop.name)"></i>
                             </a>
-                            <a class="tab-item" aria-label="Ottieni Indicazioni Stradali" ng-click="openDirectionPopup(0)" role="button">
+                            <a class="tab-item" aria-label="Ottieni Indicazioni Stradali" ng-click="openDirectionPopup(getIndexOfNearest())" role="button">
                                 <i class="icon ion-ios-location disableFocusItem"></i>
                             </a>
                         </div>
@@ -81,7 +81,7 @@
                         <i class="detail-icon"  ng-class="{'icon ion-ios-arrow-down': !show, 'icon ion-ios-arrow-up': show}"></i>
                     </div>
                 </div>
-                <div ng-show="show" class="item item-divider full-width-card-icons" ng-controller="TTStopCtrl" ng-init="setStopDataInit($index+1)">
+                <div ng-show="show" class="item item-divider full-width-card-icons" ng-controller="TTStopCtrl" ng-init="setStopDataInit($index)">
                     <div class="tabs tabs-icon-only">
                         <a class="tab-item disableFocusItem" ng-show="stop.wheelchair > 1" aria-label="Servizio disabili disponibile">
                             <img src="img/wheelchair.svg" class="icon wheelchairIcon disableFocusItem"></i>
@@ -89,10 +89,10 @@
                         <a class="tab-item" aria-label="Visualizza gli orari della fermata" role="button" ng-click="showStopData(stop.id)">
                             <i class="icon ion-clock disableFocusItem"></i>
                         </a>
-                        <a class="tab-item" aria-label="Aggiungi la fermata ai preferiti" role="button" ng-click="bookmark($index+1, color)">
+                        <a class="tab-item" aria-label="Aggiungi la fermata ai preferiti" role="button" ng-click="bookmark($index, color, stop.id)">
                             <i class="icon disableFocusItem" ng-class="getBookmarkStyle(stop.name)"></i>
                         </a>
-                        <a class="tab-item" aria-label="Ottieni Indicazioni Stradali" ng-click="openDirectionPopup($index+1)" role="button">
+                        <a class="tab-item" aria-label="Ottieni Indicazioni Stradali" ng-click="openDirectionPopup($index)" role="button">
                             <i class="icon ion-ios-location disableFocusItem"></i>
                         </a>
                     </div>
