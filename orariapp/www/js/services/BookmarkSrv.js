@@ -95,6 +95,7 @@ angular.module('viaggia.services.bookmarks', [])
          */
         indexOfBookmark: function (title) {
             var list = getBookmarks();
+            console.log(list);
             for (var i = 0; i < list.length; i++) {
                 if (title == list[i].label) return i;
             }
@@ -225,6 +226,7 @@ angular.module('viaggia.services.bookmarks', [])
     var idx;
     return {
         getName: function (index) {
+            console.log(names[index].name);
             return names[index].name;
         },
         getStop: function (index) {
@@ -232,7 +234,6 @@ angular.module('viaggia.services.bookmarks', [])
         },
         setName: function (value) {
             names = value;
-            console.log(names);
         },
         setIndex: function (i) {
             idx = i;

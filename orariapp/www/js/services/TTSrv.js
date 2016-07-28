@@ -147,7 +147,6 @@ angular.module('viaggia.services.timetable', [])
                      defer.reject(err);
                      console.log(err);
             });
-			console.log("getStops -> Richiamato");
             return defer.promise;
         };
         

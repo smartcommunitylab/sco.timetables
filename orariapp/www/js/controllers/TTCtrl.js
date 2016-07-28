@@ -274,7 +274,6 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
                 },
                 function (data) {
                     getStopsList(data, new Date().getTime());
-                    Config.loaded();
                 });
         };
 
@@ -282,13 +281,13 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
             ttService.getStops($stateParams.agencyId, $stateParams.routeId).then(function (stops) {
 
                 if (stops) {
-                    console.log("STOPS OK");
                     if (data) {
-                        console.log("DATA OK");
+                        
+                        $scope.arrayOfStops = [];
                         var index = 0;
                         var stopTimes = [];
                         time = $filter('date')(time, 'HH:mm');
-                        console.log("Time: ", time);
+
                         for (var i = 0; i < stops.length; i++) {
                             var stop = stops[i];
                             var id1 = stops[i].id;
@@ -296,6 +295,7 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
                                 var id2 = data.stopsId[k];
                                 if (id1 === id2) {
                                     index = k;
+                                    break;
                                 }
                             }
                             // console.log(data.times.length);
@@ -325,7 +325,8 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
                 } else {
                     console.log("STOPS ERROR");
                 }
-                
+                stopNameSrv.setName($scope.arrayOfStops);
+                Config.loaded();
             });
         }
         // convert delay object to string
@@ -784,12 +785,10 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
                 if ($scope.stopData.data[$stateParams.routeId]) {
                     $scope.stopList.push(stopData.data[$stateParams.routeId]);
                     $scope.title.push(Config.getNewDestination($scope.stopList[0].routeObject.title));
-                    console.log("sono nelle fermate");
                 } else {
                     for (var stop in stopData.data) {
                         $scope.stopList.push(stopData.data[stop]);
                         $scope.title.push(Config.getNewDestination(stopData.data[stop].routeObject.title));
-                        console.log("sono nella mappa")
                     }
                 }
                 console.log($scope.stopList);
@@ -803,6 +802,7 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
         };
 
         $scope.getBookmarkStyle = function (stopName) {
+            console.log(stopName);
             return bookmarkService.getBookmarkStyle(stopName);
         };
 
