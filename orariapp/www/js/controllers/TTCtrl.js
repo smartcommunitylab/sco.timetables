@@ -148,7 +148,6 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
         $scope.data = [];
         $scope.arrayOfStops = [];
         $scope.nearestStop = {};
-        $scope.distanceToStop = [];
         $scope.wheelchairAvailable = "NON DISPONIBILE";
         var rowHeight = 20;
         $scope.rowHeight = rowHeight;
@@ -219,12 +218,12 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
         // go to next date
         $scope.nextDate = function () {
             $scope.runningDate.setDate($scope.runningDate.getDate() + 1);
-            console.log($scope.getTT($scope.runningDate.getTime()));
+            $scope.getTT($scope.runningDate.getTime());
         }
         // go to prev date
         $scope.prevDate = function () {
             $scope.runningDate.setDate($scope.runningDate.getDate() - 1);
-            console.log($scope.getTT($scope.runningDate.getTime()));
+            $scope.getTT($scope.runningDate.getTime());
         }
 
         //Set line Stops
@@ -236,7 +235,7 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
 
         $scope.getKilometersFromNearestStop = function (listOfStops) {
             $scope.nearestStop = ttService.getNearestStopByDistance(listOfStops);
-            console.log($scope.nearestStop);
+
         };
 
         $scope.showStopData = function (currentStopId) {
@@ -260,7 +259,7 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
         // load timetable data
         $scope.getTT = function (date) {
             Config.loading();
-            ttService.getTT2($stateParams.agencyId, $scope.route.routeSymId, date).then(
+            ttService.getTT($stateParams.agencyId, $scope.route.routeSymId, date).then(
                 function (data) {
                     if (data.delays && data.delays.length > 0) {
                         //$scope.tt.delays = data.delays;
@@ -273,40 +272,39 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
                     };
                 },
                 function (data) {
-                    getStopsList(data, new Date().getTime());
+                    getStopsList(data, 4);
                 });
         };
 
-        var getStopsList = function (data, time) {
+        var getStopsList = function (data, timeToStop) {
             ttService.getStops($stateParams.agencyId, $stateParams.routeId).then(function (stops) {
 
                 if (stops) {
                     if (data) {
-                        
+
                         $scope.arrayOfStops = [];
                         var index = 0;
                         var stopTimes = [];
+                        var time = new Date().getTime();        
                         time = $filter('date')(time, 'HH:mm');
 
                         for (var i = 0; i < stops.length; i++) {
                             var stop = stops[i];
-                            var id1 = stops[i].id;
-                            for (var k = 0; k < data.stopsId.length; k++) {
-                                var id2 = data.stopsId[k];
-                                if (id1 === id2) {
+                            var name1 = stops[i].name;
+                            for (var k = 0; k < data.stops.length; k++) {
+                                var name2 = data.stops[k];
+                                if (name1 === name2) {
                                     index = k;
                                     break;
                                 }
                             }
-                            // console.log(data.times.length);
-                            for (var j = 0; j < data.times.length; j++) {
 
+                            for (var j = 0; j < data.times.length; j++) {
                                 if (data.times[j][index].localeCompare(time) >= 0){
                                     stopTimes.push(data.times[j][index]);
-                                    break;
                                 }
                             }
-                           // console.log(stopTimes);
+
                             $scope.arrayOfStops.push({
                                 name: stop.name,
                                 wheelchair: stop.wheelChairBoarding,
@@ -316,7 +314,7 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
                                 lng: stop.longitude,
                                 times: stopTimes
                             });
-                            
+                            console.log(stopTimes);
                             stopTimes = [];
                         }
                     } else {
@@ -549,7 +547,6 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
         }
 
         $scope.bookmark = function (color) {
-            console.log("ColorFunction: ", color);
             var ref = Config.getTTData($stateParams.ref);
             bookmarkService.toggleBookmark($location.path(), $scope.title, ref.transportType, $scope.title, $scope.title, color).then(function (style) {
                 $scope.bookmarkStyle = style;
@@ -802,7 +799,6 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
         };
 
         $scope.getBookmarkStyle = function (stopName) {
-            console.log(stopName);
             return bookmarkService.getBookmarkStyle(stopName);
         };
 
