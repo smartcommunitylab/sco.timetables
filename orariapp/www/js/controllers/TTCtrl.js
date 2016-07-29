@@ -156,24 +156,26 @@ angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
     })
 
     .controller('TTCtrl', function ($scope, $rootScope, $state, $location, $stateParams, $ionicPosition, $ionicScrollDelegate, $timeout, $filter, ttService, GeoLocate, ionicTimePicker, Config, Toast, bookmarkService, stopNameSrv) {
-        $scope.data = [];
+        
         $scope.arrayOfStops = [];
         $scope.nearestStop = {};
         $scope.wheelchairAvailable = "NON DISPONIBILE";
-
+        //$scope.indexRide = 0;
+        //$scope.disableRideBottomButton = false;
+        //$scope.disableRideUpperButton = false;
         $scope.runningDate = new Date();
         $scope.color = '#dddddd';
 
+        /* Function called on load and reload of the page */
         $scope.$on('$ionicView.enter', function () {
             $scope.colwidth = getTextWidth("000000000", "12px RobotoMono");
             $scope.load();
         });
 
-        // initialize
         $scope.load = function () {
             $scope.route = Config.getTTData($stateParams.ref, $stateParams.agencyId, $stateParams.groupId, $stateParams.routeId);
             $scope.title = ($scope.route.label ? ($scope.route.label + ': ') : '') + $scope.route.title;
-            $scope.setLineStops();
+            $scope.setNearestLineStop();
             $scope.getTT($scope.runningDate.getTime());
 
             if (!$scope.route.color) {
@@ -184,19 +186,30 @@ angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
             }
         }
 
-        // go to next date
-        $scope.nextDate = function () {
-            $scope.runningDate.setDate($scope.runningDate.getDate() + 1);
-            $scope.getTT($scope.runningDate.getTime());
+        $scope.reloadLine = function () {
+            GeoLocate.locate().then(function (pos) {
+                $rootScope.myPosition = pos;
+            }).finally(function () {
+                $scope.setNearestLineStop();
+                $scope.getTT(new Date().getTime());
+                $scope.$broadcast('scroll.refreshComplete');
+            })
         }
-        // go to prev date
+
+        /* Move to the next or previous day */
         $scope.prevDate = function () {
             $scope.runningDate.setDate($scope.runningDate.getDate() - 1);
             $scope.getTT($scope.runningDate.getTime());
         }
 
-        //Set line Stops
-        $scope.setLineStops = function () {
+        $scope.nextDate = function () {
+            $scope.runningDate.setDate($scope.runningDate.getDate() + 1);
+            $scope.getTT($scope.runningDate.getTime());
+        }
+
+
+        /* Set the nearest line's stop */
+        $scope.setNearestLineStop = function () {
             ttService.getStops($stateParams.agencyId, $stateParams.routeId).then(function (data) {
                 $scope.getKilometersFromNearestStop(data);
             });
@@ -207,26 +220,7 @@ angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
             stopNameSrv.setNameNearest($scope.nearestStop.name);
         };
 
-        $scope.showStopData = function (currentStopId) {
-            $state.go('app.ttstop', {
-                stopId: currentStopId,
-                agencyId: $stateParams.agencyId,
-                ref: $stateParams.ref,
-                routeId: $stateParams.routeId,
-            });
-        }
-
-        $scope.relocate = function () {
-            GeoLocate.locate().then(function (pos) {
-                $rootScope.myPosition = pos;
-            }).finally(function () {
-                $scope.setLineStops();
-                $scope.getTT(new Date().getTime());
-                $scope.$broadcast('scroll.refreshComplete');
-            })
-        }
-
-        // load timetable data
+         /* Load list of stops of the current line */
         $scope.getTT = function (date) {
             Config.loading();
             ttService.getTT($stateParams.agencyId, $scope.route.routeSymId, date).then(
@@ -236,6 +230,28 @@ angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
                 });
         };
 
+        /* Shows the timetable of the current selected stop */
+        $scope.showStopData = function (currentStopId) {
+            $state.go('app.ttstop', {
+                stopId: currentStopId,
+                agencyId: $stateParams.agencyId,
+                ref: $stateParams.ref,
+                routeId: $stateParams.routeId,
+            });
+        }
+
+        /* Set the stop in bookmark page*/
+        $scope.bookmark = function (color) {
+            var ref = Config.getTTData($stateParams.ref);
+            if ($stateParams.groupId == "Funivia") ref.transportType = "TRANSIT";
+            bookmarkService.toggleBookmark($location.path(), $scope.title, ref.transportType, $scope.title, $scope.title, color).then(function (style) {
+            });
+        };
+
+        $scope.getBookmarkStyle = function () {
+            return bookmarkService.getBookmarkStyle($scope.title);
+        };
+
         var getStopsList = function (data, currentTime, threeShold) {
             ttService.getStops($stateParams.agencyId, $stateParams.routeId).then(function (stops) {
 
@@ -243,6 +259,7 @@ angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
                     if (data) {
 
                         $scope.arrayOfStops = [];
+                        //$scope.dataTimesLength = data.times.length;
                         var i = 0;
                         var indexOfStop = 0;
                         var indexOfTime = 0;
@@ -253,11 +270,7 @@ angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
                         threeSholdTime = $filter('date')(threeSholdTime, "HH:mm");
                         currentTime = $filter('date')(currentTime, 'HH:mm');
 
-                        console.log("Current time-> ", currentTime);
-                        console.log("Threeshold time -> ", threeSholdTime);
-
                         //Get the index of the stop that has the closest time from the current time    
-                        
                         do {
                             for (var j = 0; j < data.times.length; j++) {
                                 var time = data.times[j][i];
@@ -315,17 +328,6 @@ angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
             return (measurer.getBoundingClientRect().width);
         };
 
-        $scope.bookmark = function (color) {
-            var ref = Config.getTTData($stateParams.ref);
-            if ($stateParams.groupId == "Funivia") ref.transportType = "TRANSIT";
-            bookmarkService.toggleBookmark($location.path(), $scope.title, ref.transportType, $scope.title, $scope.title, color).then(function (style) {
-            });
-        };
-
-        $scope.getBookmarkStyle = function () {
-            return bookmarkService.getBookmarkStyle($scope.title);
-        }
-
         /* Timepicker object*/
 
         var ipObj1 = {
@@ -363,6 +365,19 @@ angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
         $scope.openTimePicker = function () {
             ionicTimePicker.openTimePicker(ipObj1);
         };
+
+        /*
+        $scope.nextRide = function() {
+            ($scope.indexRide < $scope.dataTimesLength) ? $scope.indexRide++ : $scope.disableRideUpperButton = true;
+            getStopsList($scope.stopData, $scope.runningDate.getTime(), 1);
+        }
+
+        $scope.prevRide = function() {
+            ($scope.indexRide < $scope.dataTimesLength) ? $scope.indexRide-- : $scope.disableRideBottomButton = true;
+            getStopsList($scope.stopData, $scope.runningDate.getTime(), 1);
+        }
+        */
+
     })
 
 

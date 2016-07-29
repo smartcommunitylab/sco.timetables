@@ -8,7 +8,7 @@
         <button class="button button-icon button-clear" ng-class="getBookmarkStyle()" role="button" aria-label="Aggiungi la linea nei preferiti" ng-click="bookmark(color)"></button>
     </ion-nav-buttons>
     <ion-content id="content" has-header="true" has-bouncing="false">
-        <ion-refresher pulling-text="Trascina per aggiornare la posizione..." on-refresh="relocate()"></ion-refresher>
+        <ion-refresher pulling-text="Trascina per aggiornare la posizione..." on-refresh="reloadLine()"></ion-refresher>
         <div class="row date-bar" style="background-color: {{color}}; color: {{textColor(color)}} !important; margin-top:13px;">
             <div class="col col-25 tt-day btn" ng-click="prevDate()" role="button" aria-label="Giorno precedente">
                 <a><i class="icon ion-arrow-left-b disableFocusItem"></i></a>
