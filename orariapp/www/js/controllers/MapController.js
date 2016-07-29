@@ -14,6 +14,7 @@ angular.module('viaggia.controllers.map', [])
         function Directions() {
             var directionDisplay = new google.maps.DirectionsRenderer;
             var directionService = new google.maps.DirectionsService;
+            document.getElementById("directionPanel").innerHTML = "";
             directionDisplay.setPanel(document.getElementById("directionPanel"));
             calculateTravel(stopNameSrv.getStop(stopNameSrv.getIndex()), directionDisplay, directionService);
         }

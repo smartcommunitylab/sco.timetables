@@ -554,6 +554,7 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
 
         $scope.bookmark = function (color) {
             var ref = Config.getTTData($stateParams.ref);
+            if($stateParams.groupId == "Funivia") ref.transportType = "TRANSIT";
             bookmarkService.toggleBookmark($location.path(), $scope.title, ref.transportType, $scope.title, $scope.title, color).then(function (style) {
                 console.log(ref.transportType);
                 $scope.bookmarkStyle = style;
