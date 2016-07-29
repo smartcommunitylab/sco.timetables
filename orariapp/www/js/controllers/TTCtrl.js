@@ -220,6 +220,17 @@ angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
             stopNameSrv.setNameNearest($scope.nearestStop.name);
         };
 
+        $scope.retrieveNearestStopTime = function(listOfStops) {
+            for(var key in listOfStops) {
+                var stop = listOfStops[key];
+                if(stop.name === $scope.nearestStop.name) {
+                    $scope.nearestStopTime = stop.times[0];
+                    break;
+                }
+            }
+            console.log($scope.nearestStopTime);
+        }
+
          /* Load list of stops of the current line */
         $scope.getTT = function (date) {
             Config.loading();
@@ -312,6 +323,7 @@ angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
                                 stopTimes = [];
                             }
                         }
+                        $scope.retrieveNearestStopTime($scope.arrayOfStops);
                         stopNameSrv.setName($scope.arrayOfStops);
                     } else {
                         console.log("DATA ERROR");

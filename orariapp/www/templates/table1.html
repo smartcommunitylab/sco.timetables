@@ -32,8 +32,8 @@
                         <h3 class="disableFocusItem">{{nearestStop.name}}</h3>
                     </div>
                     <div class="col distance-col">
-                        <h6 class="disableFocusItem">Distanza (km)</h6>
-                        <h2 class="disableFocusItem">{{nearestStop.distance | number: 2}}</h2>
+                        <h6 class="disableFocusItem">Ora di arrivo</h6>
+                        <h2 class="disableFocusItem">{{nearestStopTime | date: 'HH.mm'}}</h2>
                     </div>
                 </div>
                 <div class="row stop-row">
