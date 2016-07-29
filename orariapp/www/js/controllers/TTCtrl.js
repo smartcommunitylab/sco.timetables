@@ -1,4 +1,15 @@
-angular.module('viaggia.controllers.timetable', ['ionic'])
+angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
+
+    .config(function (ionicTimePickerProvider) {
+        var timePickerObj = {
+            inputTime: ((new Date().getHours() * 60 * 60) + ((new Date()).getMinutes() * 60))
+            , format: 24
+            , step: 5
+            , setLabel: 'Fatto'
+            , closeLabel: 'Chiudi'
+        };
+        ionicTimePickerProvider.configTimePicker(timePickerObj);
+    })
 
     .controller('TTRouteListCtrl', function ($scope, $rootScope, $state, $stateParams, $timeout, $ionicPopup, $filter, $ionicScrollDelegate, ionicMaterialMotion, ionicMaterialInk, Config, ttService) {
         var min_grid_cell_width = 90;
@@ -144,7 +155,7 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
 
     })
 
-    .controller('TTCtrl', function ($scope, $rootScope, $state, $location, $stateParams, $ionicPosition, $ionicScrollDelegate, $timeout, $filter, ttService, GeoLocate, Config, Toast, bookmarkService, stopNameSrv) {
+    .controller('TTCtrl', function ($scope, $rootScope, $state, $location, $stateParams, $ionicPosition, $ionicScrollDelegate, $timeout, $filter, ttService, GeoLocate, ionicTimePicker, Config, Toast, bookmarkService, stopNameSrv) {
         $scope.data = [];
         $scope.arrayOfStops = [];
         $scope.nearestStop = {};
@@ -264,9 +275,9 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
                     console.log(data);
                     getStopsList(data, date, 1);
                 });
-        };                   
+        };
 
-         var getStopsList = function (data, currentTime, threeShold) {
+        var getStopsList = function (data, currentTime, threeShold) {
             ttService.getStops($stateParams.agencyId, $stateParams.routeId).then(function (stops) {
 
                 if (stops) {
@@ -287,46 +298,46 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
                         do {
                             for (var j = 0; j < data.times.length; j++) {
                                 var time = data.times[j][i];
-                                if(time) {
-                                    if(time.localeCompare(currentTime) >= 0 && time.localeCompare(threeSholdTime) < 0) {
+                                if (time) {
+                                    if (time.localeCompare(currentTime) >= 0 && time.localeCompare(threeSholdTime) < 0) {
                                         indexOfTime = j;
                                         break;
                                     }
                                 }
                             }
                             i++;
-                        } while(indexOfTime == 0);
+                        } while (indexOfTime == 0);
 
-                        if(indexOfTime > 0) {
+                        if (indexOfTime > 0) {
 
-                                for (var i = 0; i < data.stops.length; i++) {
-                                    var name1 = data.stops[i];
-                                    for (var k = 0; k < stops.length; k++) {
-                                        var name2 = stops[k].name;
-                                        if (name1 === name2) {
-                                            indexOfStop = k;
-                                            break;
-                                        }
+                            for (var i = 0; i < data.stops.length; i++) {
+                                var name1 = data.stops[i];
+                                for (var k = 0; k < stops.length; k++) {
+                                    var name2 = stops[k].name;
+                                    if (name1 === name2) {
+                                        indexOfStop = k;
+                                        break;
                                     }
-
-                                    for (var j = indexOfTime; j < data.times.length; j++) {
-                                        stopTimes.push(data.times[j][i]);
-                                    }
-
-                                    $scope.arrayOfStops.push({
-                                        name: stops[indexOfStop].name,
-                                        wheelchair: stops[indexOfStop].wheelChairBoarding,
-                                        wcAvailable: ((stops[indexOfStop].wheelChairBoarding > 1) ? "DISPONIBILE" : "NON DISPONIBILE"),
-                                        id: stops[indexOfStop].id,
-                                        lat: stops[indexOfStop].latitude,
-                                        lng: stops[indexOfStop].longitude,
-                                        times: stopTimes
-                                    });
-                                    console.log(stopTimes);
-                                    stopTimes = [];
                                 }
+
+                                for (var j = indexOfTime; j < data.times.length; j++) {
+                                    stopTimes.push(data.times[j][i]);
+                                }
+
+                                $scope.arrayOfStops.push({
+                                    name: stops[indexOfStop].name,
+                                    wheelchair: stops[indexOfStop].wheelChairBoarding,
+                                    wcAvailable: ((stops[indexOfStop].wheelChairBoarding > 1) ? "DISPONIBILE" : "NON DISPONIBILE"),
+                                    id: stops[indexOfStop].id,
+                                    lat: stops[indexOfStop].latitude,
+                                    lng: stops[indexOfStop].longitude,
+                                    times: stopTimes
+                                });
+                                console.log(stopTimes);
+                                stopTimes = [];
+                            }
                         }
-                        stopNameSrv.setName($scope.arrayOfStops);   
+                        stopNameSrv.setName($scope.arrayOfStops);
                     } else {
                         console.log("DATA ERROR");
                     }
@@ -336,7 +347,7 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
                 Config.loaded();
             });
         };
-        
+
 
         // convert delay object to string
         var getDelayValue = function (delay) {
@@ -554,7 +565,7 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
 
         $scope.bookmark = function (color) {
             var ref = Config.getTTData($stateParams.ref);
-            if($stateParams.groupId == "Funivia") ref.transportType = "TRANSIT";
+            if ($stateParams.groupId == "Funivia") ref.transportType = "TRANSIT";
             bookmarkService.toggleBookmark($location.path(), $scope.title, ref.transportType, $scope.title, $scope.title, color).then(function (style) {
                 console.log(ref.transportType);
                 $scope.bookmarkStyle = style;
@@ -564,7 +575,47 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
         $scope.getBookmarkStyle = function () {
             return bookmarkService.getBookmarkStyle($scope.title);
         }
+
+        // TIMEPICKER //
+
+        var ipObj1 = {
+            callback: function (val) {
+                if (typeof (val) === 'undefined') {
+                    console.log("Time not selected");
+                }
+                else {
+                    var selectedTime = new Date(val * 1000);
+                    console.log("SelectedTime", selectedTime.getTime());
+                    $scope.getTT(selectedTime.getTime());
+                    //console.log("H: ", selectedTime.getUTCHours(), " M: ", selectedTime.getUTCMinutes());
+                }
+            }
+        };
+
+        $scope.currentTime = function () {
+            var currentTime = new Date();
+            $scope.time.hours = currentTime.getHours();
+            var mins = currentTime.getMinutes();
+            var hours = currentTime.getHours();
+            if (mins < 10) {
+                $scope.time.minutes = "0" + mins;
+            }
+            else {
+                $scope.time.minutes = mins;
+            }
+            if (hours < 10) {
+                $scope.time.hours = "0" + hours;
+            }
+            else {
+                $scope.time.hours = hours;
+            }
+        };
+
+        $scope.openTimePicker = function () {
+            ionicTimePicker.openTimePicker(ipObj1);
+        };
     })
+
 
     .controller('TTMapCtrl', function ($scope, $rootScope, $state, $stateParams, $timeout, $ionicModal, $ionicPopup, $filter, ionicMaterialMotion, ionicMaterialInk, mapService, Config, ttService, GeoLocate, Toast) {
         $scope.allMarkers = null;
@@ -836,13 +887,13 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
 
         }
 
-        $scope.getIndexOfNearest = function(){
-            console.log("NearestName:" ,stopNameSrv.getNearestName());
-            console.log("IndexOf: ",stopNameSrv.getStops().map(function(x){return x.name;}).indexOf(stopNameSrv.getNearestName()));
+        $scope.getIndexOfNearest = function () {
+            console.log("NearestName:", stopNameSrv.getNearestName());
+            console.log("IndexOf: ", stopNameSrv.getStops().map(function (x) { return x.name; }).indexOf(stopNameSrv.getNearestName()));
             return stopNameSrv.getStops()
-                    .map(function(x){
-                        return x.name;
-                    })
-                    .indexOf(stopNameSrv.getNearestName());
+                .map(function (x) {
+                    return x.name;
+                })
+                .indexOf(stopNameSrv.getNearestName());
         }
     });

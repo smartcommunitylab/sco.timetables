@@ -19,7 +19,8 @@ angular.module('viaggia.controllers.busRide', ['ionic', 'ionic-timepicker'])
             }
             else {
                 var selectedTime = new Date(val * 1000);
-                console.log("H: ", selectedTime.getUTCHours(), " M: ", selectedTime.getUTCMinutes());
+                console.log("SelectedTime",selectedTime.getTime());
+                //console.log("H: ", selectedTime.getUTCHours(), " M: ", selectedTime.getUTCMinutes());
             }
         }
     };
