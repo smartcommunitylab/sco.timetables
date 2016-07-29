@@ -211,8 +211,6 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
             } else {
                 $scope.color = $scope.route.color;
             }
-
-
         }
 
         // go to next date
@@ -252,6 +250,7 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
                 $rootScope.myPosition = pos;
             }).finally(function () {
                 $scope.setLineStops();
+                $scope.getTT(new Date().getTime());
                 $scope.$broadcast('scroll.refreshComplete');
             })
         }
@@ -261,7 +260,6 @@ angular.module('viaggia.controllers.timetable', ['ionic'])
             Config.loading();
             ttService.getTT($stateParams.agencyId, $scope.route.routeSymId, date).then(
                 function (data) {
-                    console.log(data);
                     getStopsList(data, date, 1);
                 });
         };                   
