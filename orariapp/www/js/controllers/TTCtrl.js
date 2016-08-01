@@ -266,7 +266,7 @@ angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
 
         var getStopsList = function (data, currentTime, threeShold) {
             ttService.getStops($stateParams.agencyId, $stateParams.routeId).then(function (stops) {
-
+                console.log(stops);
                 if (stops) {
                     if (data) {
 
@@ -294,7 +294,8 @@ angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
                                 }
                             }
                             i++;
-                        } while (indexOfTime == 0);
+                            console.log(i);
+                        } while (indexOfTime == 0 && i <= data.times[0].length);
 
                         if (indexOfTime > 0) {
 
