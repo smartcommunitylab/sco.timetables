@@ -209,6 +209,13 @@ angular.module('viaggia.services.bookmarks', [])
                             icon = 'ic_funivia';
                             break;
                         }
+                        case 'TRANSITSTOP':
+                        {
+                             var ct = Config.getColorsTypes()['TRANSIT'];
+                            color = colorIn;
+                            icon = 'ic_funivia';
+                            break;
+                        }
                     }
                     this.addBookmark({
                         "state": path,

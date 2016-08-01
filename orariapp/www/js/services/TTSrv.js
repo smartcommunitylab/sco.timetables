@@ -139,19 +139,15 @@ angular.module('viaggia.services.timetable', [])
 
         var getStops = function (agencyId, routeId) {
             var defer = $q.defer();
+
 			if (routeId == "FUTSR") {
-				var serverUrlFuniv = "https://dev.smartcommunitylab.it/core.mobility";
-				$http.get(serverUrlFuniv + "/getstops/" + agencyId + "/" + routeId)
-					.success(function (data) {
-						defer.resolve(data);
-					})
-					.error(function (err) {
-						defer.reject(err);
-						console.log(err);
-					});
+				var serverUrl = "https://dev.smartcommunitylab.it/core.mobility";
 			}
 			else {
-				$http.get(Config.getServerURL() + "/getstops/" + agencyId + "/" + routeId)
+				var serverUrl = Config.getServerURL();
+			}
+
+			$http.get(serverUrl + "/getstops/" + agencyId + "/" + routeId)
 					.success(function (data) {
 						defer.resolve(data);
 					})
@@ -159,8 +155,6 @@ angular.module('viaggia.services.timetable', [])
 						defer.reject(err);
 						console.log(err);
 					});
-				
-			}
 			return defer.promise;
         };
 

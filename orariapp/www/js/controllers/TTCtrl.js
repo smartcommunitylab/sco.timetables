@@ -156,7 +156,7 @@ angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
     })
 
     .controller('TTCtrl', function ($scope, $rootScope, $state, $location, $stateParams, $ionicPosition, $ionicScrollDelegate, $timeout, $filter, ttService, GeoLocate, ionicTimePicker, Config, Toast, bookmarkService, stopNameSrv) {
-        
+
         $scope.arrayOfStops = [];
         $scope.nearestStop = {};
         $scope.wheelchairAvailable = "NON DISPONIBILE";
@@ -217,13 +217,13 @@ angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
 
         $scope.getKilometersFromNearestStop = function (listOfStops) {
             $scope.nearestStop = ttService.getNearestStopByDistance(listOfStops);
-            if($scope.nearestStop) stopNameSrv.setNameNearest($scope.nearestStop.name);
+            if ($scope.nearestStop) stopNameSrv.setNameNearest($scope.nearestStop.name);
         };
 
-        $scope.retrieveNearestStopTime = function(listOfStops) {
-            for(var key in listOfStops) {
+        $scope.retrieveNearestStopTime = function (listOfStops) {
+            for (var key in listOfStops) {
                 var stop = listOfStops[key];
-                if(stop.name === $scope.nearestStop.name) {
+                if (stop.name === $scope.nearestStop.name) {
                     $scope.nearestStopTime = stop.times[0];
                     break;
                 }
@@ -231,7 +231,7 @@ angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
             console.log($scope.nearestStopTime);
         }
 
-         /* Load list of stops of the current line */
+        /* Load list of stops of the current line */
         $scope.getTT = function (date) {
             Config.loading();
             ttService.getTT($stateParams.agencyId, $scope.route.routeSymId, date).then(
@@ -645,6 +645,7 @@ angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
 
         $scope.bookmark = function (index, color, id) {
             var ref = Config.getTTData($stateParams.ref);
+            if ($stateParams.groupId == 'Funivia') ref.transportType = 'TRANSIT';
             bookmarkService.toggleBookmark($location.path(), stopNameSrv.getName(index), ref.transportType + 'STOP', $scope.title, $scope.title, color, id).then(function (style) {
             });
         };
