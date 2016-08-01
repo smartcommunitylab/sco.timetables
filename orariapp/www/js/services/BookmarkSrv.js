@@ -100,6 +100,16 @@ angular.module('viaggia.services.bookmarks', [])
             }
             return -1;
         },
+        /** 
+         * Return position of the bookmark stop with the specified path in the list.
+        */
+        indexOfBookmarkStop: function (title, routeId) {
+            var list = getBookmarks();
+            for(var i = 0; i < list.length; i++) {
+                if(title == list[i].label && routeId == list[i].routeId) return i;
+            }
+            return -1;
+        },
         /**
          * Remove the bookmark at the specified index from the list (if possible). Return promise of the update bookmark list
          */
@@ -145,14 +155,28 @@ angular.module('viaggia.services.bookmarks', [])
                 return this.indexOfBookmark(bm) >= 0 ? 'ion-ios-star' : 'ion-ios-star-outline';
             },
             /**
+             * Return the style of the bookmark button for the element
+             */
+            getBookmarkStyleStop: function (title, routeId) {
+                return this.indexOfBookmarkStop(title,routeId) >= 0 ? 'ion-ios-star' : 'ion-ios-star-outline';
+            },
+            /**
              * Add/remove a bookmark for the element of the specified type, path, and title. Returns promise for the update style.
              */
-            toggleBookmark: function (path, title, type, data, line, colorIn, id) {
+            toggleBookmark: function (path, title, type, data, line, colorIn, id, routeId) {
 
                 var deferred = $q.defer();
                 var color = null,
                     icon = null;
-                var pos = this.indexOfBookmark(title);
+                
+                if(routeId) {
+                    console.log("Bookmark stop");
+                    var pos = this.indexOfBookmarkStop(title, routeId);
+                }
+                else {
+                    var pos = this.indexOfBookmark(title);
+                    console.log("Bookmark line");
+                }
 
                 if (pos >= 0) {
                     this.removeBookmark(pos).then(function () {
@@ -223,6 +247,7 @@ angular.module('viaggia.services.bookmarks', [])
                         "line": line,
                         "icon": icon,
                         "color": color,
+                        "routeId": routeId,
                         type: type,
                         data: data,
                         "id": id

@@ -211,6 +211,7 @@ angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
         /* Set the nearest line's stop */
         $scope.setNearestLineStop = function () {
             ttService.getStops($stateParams.agencyId, $stateParams.routeId).then(function (data) {
+                console.log($stateParams.routeId);
                 $scope.getKilometersFromNearestStop(data);
             });
         }
@@ -238,7 +239,7 @@ angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
                 function (data) {
                     $scope.stopData = data;
                     console.log(data);
-                    getStopsList(data, date, 4);
+                    getStopsList(data, date, 1);
                 });
         };
 
@@ -256,7 +257,7 @@ angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
         $scope.bookmark = function (color) {
             var ref = Config.getTTData($stateParams.ref);
             if ($stateParams.groupId == "Funivia") ref.transportType = "TRANSIT";
-            bookmarkService.toggleBookmark($location.path(), $scope.title, ref.transportType, $scope.title, $scope.title, color).then(function (style) {
+            bookmarkService.toggleBookmark($location.path(), $scope.title, ref.transportType, $scope.title, $scope.title, color, "").then(function (style) {
             });
         };
 
@@ -352,7 +353,7 @@ angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
                 else {
                     var selectedTime = new Date(val * 1000);
                     Config.loading();
-                    getStopsList($scope.stopData, selectedTime.setHours(selectedTime.getUTCHours(), selectedTime.getUTCMinutes()), 2);
+                    getStopsList($scope.stopData, selectedTime.setHours(selectedTime.getUTCHours(), selectedTime.getUTCMinutes()), 1);
                 }
             }
         };
@@ -636,7 +637,7 @@ angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
         };
 
         $scope.getBookmarkStyle = function (stopName) {
-            return bookmarkService.getBookmarkStyle(stopName);
+            return bookmarkService.getBookmarkStyleStop(stopName, $stateParams.routeId);
         };
 
         $scope.isEmpty = function () {
@@ -646,9 +647,10 @@ angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
         $scope.bookmark = function (index, color, id) {
             var ref = Config.getTTData($stateParams.ref);
             if ($stateParams.groupId == 'Funivia') ref.transportType = 'TRANSIT';
-            bookmarkService.toggleBookmark($location.path(), stopNameSrv.getName(index), ref.transportType + 'STOP', $scope.title, $scope.title, color, id).then(function (style) {
+            bookmarkService.toggleBookmark($location.path(), stopNameSrv.getName(index), ref.transportType + 'STOP', $scope.title, $scope.title, color, id, $stateParams.routeId).then(function (style) {
             });
         };
+
         $scope.openDirectionPopup = function (index) {
 
             $scope.selectedStop = stopNameSrv.getStop(index);
