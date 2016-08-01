@@ -626,8 +626,8 @@ angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
                         $scope.title.push(Config.getNewDestination(stopData.data[stop].routeObject.title));
                     }
                 }
-                console.log($scope.stopList);
-                console.log($scope.title);
+                console.log("StopList ->", $scope.stopList);
+                console.log("TITLE ->", $scope.title);
             }
 
         };

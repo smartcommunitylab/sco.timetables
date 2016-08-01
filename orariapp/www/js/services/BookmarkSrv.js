@@ -69,82 +69,82 @@ angular.module('viaggia.services.bookmarks', [])
 
                 return deferred.promise;
             },
-        /**
-         * Return promise of current list of bookmarks with real time data.
-         */
-        getBookmarksRT: function () {
-            var deferred = $q.defer();
-            var list = getBookmarks();
-            var filtered = [];
-            list.forEach(function (b) {
-                updateRT(b);
-            });
-            deferred.resolve(list);
-            return deferred.promise;
-        },
-        /**
-         * Return promise of current list of bookmarks. Initially, set to the list of predefined bookmarks from the configuration (cannot be removed permanently).
-         */
-        getBookmarks: function () {
-            var deferred = $q.defer();
-            deferred.resolve(getBookmarks());
-            return deferred.promise;
-        },
-        /**
-         * Return position of the bookmark with the specified path in the list.
-         */
-        indexOfBookmark: function (title) {
-            var list = getBookmarks();
-            for (var i = 0; i < list.length; i++) {
-                if (title == list[i].label) return i;
-            }
-            return -1;
-        },
-        /** 
-         * Return position of the bookmark stop with the specified path in the list.
-        */
-        indexOfBookmarkStop: function (title, routeId) {
-            var list = getBookmarks();
-            for(var i = 0; i < list.length; i++) {
-                if(title == list[i].label && routeId == list[i].routeId) return i;
-            }
-            return -1;
-        },
-        /**
-         * Remove the bookmark at the specified index from the list (if possible). Return promise of the update bookmark list
-         */
-        removeBookmark: function (idx) {
-            var deferred = $q.defer();
-            var list = getBookmarks();
-            if (list.length > idx && list[idx].removable) {
-                list.splice(idx, 1);
-                localStorage.setItem(repo, JSON.stringify(list));
-            }
-            deferred.resolve(list);
-            
-            Config.log('AppPersonalize', { action: 'remove' });
-            return deferred.promise;
-        },
-        /**
-         * Change order of two bookmarks. Return promise of the update bookmark list
-         */
-        reorderBookmark: function (idxFrom, idxTo) {
-            var deferred = $q.defer();
-
+            /**
+             * Return promise of current list of bookmarks with real time data.
+             */
+            getBookmarksRT: function () {
+                var deferred = $q.defer();
                 var list = getBookmarks();
-                var from = list[idxFrom];
-                if (idxTo + 1 == list.length) {
-                    list.push(from); //add to from
-                } else {
-                    list.splice(idxTo, 0, from); //add to from
-                }
-                if (idxFrom > idxTo) { //remove from
-                    list.splice(idxFrom + 1, 1);
-                } else {
-                    list.splice(idxFrom, 1);
-                }
-                localStorage.setItem(repo, JSON.stringify(list));
+                var filtered = [];
+                list.forEach(function (b) {
+                    updateRT(b);
+                });
                 deferred.resolve(list);
+                return deferred.promise;
+            },
+            /**
+             * Return promise of current list of bookmarks. Initially, set to the list of predefined bookmarks from the configuration (cannot be removed permanently).
+             */
+            getBookmarks: function () {
+                var deferred = $q.defer();
+                deferred.resolve(getBookmarks());
+                return deferred.promise;
+            },
+            /**
+             * Return position of the bookmark with the specified path in the list.
+             */
+            indexOfBookmark: function (title) {
+                var list = getBookmarks();
+                for (var i = 0; i < list.length; i++) {
+                    if (title == list[i].label) return i;
+                }
+                return -1;
+            },
+            /** 
+             * Return position of the bookmark stop with the specified path in the list.
+            */
+            indexOfBookmarkStop: function (title, routeId) {
+                var list = getBookmarks();
+                for(var i = 0; i < list.length; i++) {
+                    if(title == list[i].label && routeId == list[i].routeId) return i;
+                }
+                return -1;
+            },
+            /**
+             * Remove the bookmark at the specified index from the list (if possible). Return promise of the update bookmark list
+             */
+            removeBookmark: function (idx) {
+                var deferred = $q.defer();
+                var list = getBookmarks();
+                if (list.length > idx && list[idx].removable) {
+                    list.splice(idx, 1);
+                    localStorage.setItem(repo, JSON.stringify(list));
+                }
+                deferred.resolve(list);
+                
+                Config.log('AppPersonalize', { action: 'remove' });
+                return deferred.promise;
+            },
+            /**
+             * Change order of two bookmarks. Return promise of the update bookmark list
+             */
+            reorderBookmark: function (idxFrom, idxTo) {
+                var deferred = $q.defer();
+
+                    var list = getBookmarks();
+                    var from = list[idxFrom];
+                    if (idxTo + 1 == list.length) {
+                        list.push(from); //add to from
+                    } else {
+                        list.splice(idxTo, 0, from); //add to from
+                    }
+                    if (idxFrom > idxTo) { //remove from
+                        list.splice(idxFrom + 1, 1);
+                    } else {
+                        list.splice(idxFrom, 1);
+                    }
+                    localStorage.setItem(repo, JSON.stringify(list));
+                    deferred.resolve(list);
 
                 return deferred.promise;
             },
@@ -227,19 +227,19 @@ angular.module('viaggia.services.bookmarks', [])
                                 break;
                             }
                         case 'TRANSIT':
-                        {
-                            var ct = Config.getColorsTypes()['TRANSIT'];
-                            color = colorIn;
-                            icon = 'ic_funivia';
-                            break;
-                        }
+                            {
+                                var ct = Config.getColorsTypes()['TRANSIT'];
+                                color = colorIn;
+                                icon = 'ic_funivia';
+                                break;
+                            }
                         case 'TRANSITSTOP':
-                        {
-                             var ct = Config.getColorsTypes()['TRANSIT'];
-                            color = colorIn;
-                            icon = 'ic_funivia';
-                            break;
-                        }
+                            {
+                                var ct = Config.getColorsTypes()['TRANSIT'];
+                                color = colorIn;
+                                icon = 'ic_funivia';
+                                break;
+                            }
                     }
                     this.addBookmark({
                         "state": path,
@@ -260,35 +260,35 @@ angular.module('viaggia.services.bookmarks', [])
         };
     })
 
-.service('stopNameSrv', function () {
-    var names = [];
-    var nearest;
-    var idx;
-    return {
-        getName: function (index) {
-            //console.log(names[index].name);
-            return names[index].name;
-        },
-        getStop: function (index) {
-            return names[index];
-        },
-        setName: function (value) {
-            names = value;
-        },
-        setNameNearest: function (name) {
-            nearest = name;
-        },
-        getNearestName: function () {
-            return nearest;
-        },
-        getStops: function () {
-            return names;
-        },
-        setIndex: function (i) {
-            idx = i;
-        },
-        getIndex: function () {
-            return idx;
+    .service('stopNameSrv', function () {
+        var names = [];
+        var nearest;
+        var idx;
+        return {
+            getName: function (index) {
+                //console.log(names[index].name);
+                return names[index].name;
+            },
+            getStop: function (index) {
+                return names[index];
+            },
+            setName: function (value) {
+                names = value;
+            },
+            setNameNearest: function (name) {
+                nearest = name;
+            },
+            getNearestName: function () {
+                return nearest;
+            },
+            getStops: function () {
+                return names;
+            },
+            setIndex: function (i) {
+                idx = i;
+            },
+            getIndex: function () {
+                return idx;
+            }
         }
-    }
-});
+    });

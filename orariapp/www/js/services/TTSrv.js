@@ -148,13 +148,13 @@ angular.module('viaggia.services.timetable', [])
 			}
 
 			$http.get(serverUrl + "/getstops/" + agencyId + "/" + routeId)
-					.success(function (data) {
-						defer.resolve(data);
-					})
-					.error(function (err) {
-						defer.reject(err);
-						console.log(err);
-					});
+				.success(function (data) {
+					defer.resolve(data);
+				})
+				.error(function (err) {
+					defer.reject(err);
+					console.log(err);
+				});
 			return defer.promise;
         };
 
