@@ -217,7 +217,7 @@ angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
 
         $scope.getKilometersFromNearestStop = function (listOfStops) {
             $scope.nearestStop = ttService.getNearestStopByDistance(listOfStops);
-            stopNameSrv.setNameNearest($scope.nearestStop.name);
+            if($scope.nearestStop) stopNameSrv.setNameNearest($scope.nearestStop.name);
         };
 
         $scope.retrieveNearestStopTime = function(listOfStops) {
@@ -237,6 +237,7 @@ angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
             ttService.getTT($stateParams.agencyId, $scope.route.routeSymId, date).then(
                 function (data) {
                     $scope.stopData = data;
+                    console.log(data);
                     getStopsList(data, date, 1);
                 });
         };
@@ -350,7 +351,7 @@ angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
                 else {
                     var selectedTime = new Date(val * 1000);
                     Config.loading();
-                    getStopsList($scope.stopData, selectedTime.setHours(selectedTime.getUTCHours(), selectedTime.getUTCMinutes()), 1);
+                    getStopsList($scope.stopData, selectedTime.setHours(selectedTime.getUTCHours(), selectedTime.getUTCMinutes()), 2);
                 }
             }
         };

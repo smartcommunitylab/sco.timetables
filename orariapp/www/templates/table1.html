@@ -33,7 +33,12 @@
                     </div>
                     <div class="col distance-col">
                         <h6 class="disableFocusItem">Ora di arrivo</h6>
-                        <h2 class="disableFocusItem">{{nearestStopTime | date: 'HH.mm'}}</h2>
+                        <div ng-if="nearestStopTime != ''">
+                            <h2 class="disableFocusItem">{{nearestStopTime | date:'HH.mm'}}</h2>
+                        </div>
+                        <div ng-if="nearestStopTime == ''">
+                            <h2 class="disableFocusItem">&#150;&#150; &#58; &#150;&#150;</h2>
+                        </div>
                     </div>
                 </div>
                 <div class="row stop-row">
