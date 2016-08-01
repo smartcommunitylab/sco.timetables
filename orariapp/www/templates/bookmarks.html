@@ -12,19 +12,21 @@
 
             <div class="full-screen-swapper" ng-if="tab == 0">
 
-                <ion-item class="item-icon-left bookmark-item bookmark-item-stops" ng-class="{'bookmark-margin':!showReorder}" item="item" ng-repeat="m in bookmarks track by $index" ng-last-repeat="bookmarks" ng-click="showStopData($index)" ng-if="m.type.indexOf('STOP') > -1"
+                <ion-item class="item-icon-left bookmark-item bookmark-item-stops" ng-class="{'bookmark-margin':!showReorder}" item="item" ng-repeat="m in bookmarks track by $index" ng-last-repeat="bookmarks" ng-if="m.type.indexOf('STOP') > -1"
                     aria-label="Linea {{title[$index]}}. Fermata: {{m.label}}. Clicca per visualizzare gli orari.">
                     <div class="row bookmark-stop-row" ng-style="{'background-color':m.color}">
                         <h3 class="bookmark-stop-title disableFocusItem">LINEA {{title[$index]}}</h3>
                     </div>
-                    <div class="row stop-row disableFocusItem">
-                        <div class="col">
+                    <div class="row stop-row" aria-label="Clicca per visualizzare gli orari" ng-click="showStopData($index)">
+                        <div class="col col-75 disableFocusItem">
                             <h6 class="disableFocusItem">Fermata</h6>
                             <h3 class="disableFocusItem">{{m.label | translate}}</h3>
                         </div>
-                    </div>
-                    <div class="row stop-row disableFocusItem">
-                        <h6 class="disableFocusItem">Clicca per visualizzare gli orari</h6>
+                        <div class="col disableFocusItem">
+                            <div class="item item-icon-right">
+                                <i class="icon ion-clock" ng-style="{'color': m.color}"></i>
+                            </div>
+                        </div>
                     </div>
 
                     <!--<div style="margin: 0px !important" class="card bookmark">
