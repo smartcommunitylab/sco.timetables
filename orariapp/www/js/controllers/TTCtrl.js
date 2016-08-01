@@ -238,7 +238,7 @@ angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
                 function (data) {
                     $scope.stopData = data;
                     console.log(data);
-                    getStopsList(data, date, 1);
+                    getStopsList(data, date, 4);
                 });
         };
 

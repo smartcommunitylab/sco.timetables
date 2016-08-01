@@ -38,54 +38,54 @@ angular.module('viaggia.services.timetable', [])
 			}
 		}
 		var getDelays = function (agency, route, date) {
-				var deferred = $q.defer();
-				var d = new Date(date);
-				d.setHours(0);
-				d.setMinutes(0);
-				d.setSeconds(0);
-				d.setMilliseconds(0);
-				var from = d.getTime();
-				d.setHours(23);
-				d.setMinutes(59);
-				var to = d.getTime();
-				route = encodeURIComponent(route);
-				$http.get(Config.getServerURL() + '/gettransitdelays/' + agency + '/' + route + '/' + from + '/' + to, Config.getHTTPConfig()).success(function (data) {
-					if (data && data.delays) deferred.resolve(data.delays[0]);
-				}).error(function (err) {
-					deferred.reject(err);
-				});
-				return deferred.promise;
-			}
-			/**
-			 * transform compressed string to matrix of times. string is a sequence of all trip times separated with '|'. Each time (if presented) has 4 chars.
-			 */
+			var deferred = $q.defer();
+			var d = new Date(date);
+			d.setHours(0);
+			d.setMinutes(0);
+			d.setSeconds(0);
+			d.setMilliseconds(0);
+			var from = d.getTime();
+			d.setHours(23);
+			d.setMinutes(59);
+			var to = d.getTime();
+			route = encodeURIComponent(route);
+			$http.get(Config.getServerURL() + '/gettransitdelays/' + agency + '/' + route + '/' + from + '/' + to, Config.getHTTPConfig()).success(function (data) {
+				if (data && data.delays) deferred.resolve(data.delays[0]);
+			}).error(function (err) {
+				deferred.reject(err);
+			});
+			return deferred.promise;
+		}
+		/**
+		 * transform compressed string to matrix of times. string is a sequence of all trip times separated with '|'. Each time (if presented) has 4 chars.
+		 */
 		var uncompressTime = function (str, rowsCount) {
-				if (!str) return [];
-				var res = [];
-				var column = [];
-				var counter = 0;
-				for (var i = 0; i < str.length; i++) {
-					var c = str.charAt(i);
-					if (c == ' ') continue;
-					if (c == '|') column.push("");
-					else {
-						column.push(str.substr(i, 2) + ":" + str.substr(i + 2, 2));
-						i += 3;
-					}
-					counter++;
-					if (counter == rowsCount) {
-						res.push(column);
-						column = [];
-						counter = 0;
-					}
+			if (!str) return [];
+			var res = [];
+			var column = [];
+			var counter = 0;
+			for (var i = 0; i < str.length; i++) {
+				var c = str.charAt(i);
+				if (c == ' ') continue;
+				if (c == '|') column.push("");
+				else {
+					column.push(str.substr(i, 2) + ":" + str.substr(i + 2, 2));
+					i += 3;
 				}
-				return res;
+				counter++;
+				if (counter == rowsCount) {
+					res.push(column);
+					column = [];
+					counter = 0;
+				}
 			}
-			/**
-			 * Read TT from DB: given a agency/route/date, get a hash and then read stopIds, name,s tripIds, and times from DB.
-			 * Due to the problem with the plugin (does not escape JSON strings), it is necessary to do 5 DB calls in a row.
-			 * Parallel calls seems to end up in DB lock sometimes.
-			 */
+			return res;
+		}
+		/**
+		 * Read TT from DB: given a agency/route/date, get a hash and then read stopIds, name,s tripIds, and times from DB.
+		 * Due to the problem with the plugin (does not escape JSON strings), it is necessary to do 5 DB calls in a row.
+		 * Parallel calls seems to end up in DB lock sometimes.
+		 */
 		var dataFromHash = function (agency, route, date, deferred, readRoutes) {
 			var cal = calendarCache[agency][route];
 			dateStr = $filter('date')(date, 'yyyyMMdd');
@@ -137,27 +137,41 @@ angular.module('viaggia.services.timetable', [])
 			}, errCB);
 		};
 
-        var getStops = function(agencyId, routeId) {
+        var getStops = function (agencyId, routeId) {
             var defer = $q.defer();
-            $http.get(Config.getServerURL() + "/getstops/" + agencyId + "/" + routeId)
-                .success(function(data){
-                     defer.resolve(data);
-            })
-                .error(function(err){
-                     defer.reject(err);
-                     console.log(err);
-            });
-            return defer.promise;
+			if (routeId == "FUTSR") {
+				var serverUrlFuniv = "https://dev.smartcommunitylab.it/core.mobility";
+				$http.get(serverUrlFuniv + "/getstops/" + agencyId + "/" + routeId)
+					.success(function (data) {
+						defer.resolve(data);
+					})
+					.error(function (err) {
+						defer.reject(err);
+						console.log(err);
+					});
+			}
+			else {
+				$http.get(Config.getServerURL() + "/getstops/" + agencyId + "/" + routeId)
+					.success(function (data) {
+						defer.resolve(data);
+					})
+					.error(function (err) {
+						defer.reject(err);
+						console.log(err);
+					});
+				
+			}
+			return defer.promise;
         };
-        
-        var getNearestStopByDistance = function(listOfStops) {
+
+        var getNearestStopByDistance = function (listOfStops) {
             var coordinates = [];
 			var listOfStopsByDistance = [];
 
-			for(var key in listOfStops) {
+			for (var key in listOfStops) {
 				var stop = listOfStops[key];
 				coordinates.push(stop.latitude);
-            	coordinates.push(stop.longitude);
+				coordinates.push(stop.longitude);
 
 				var wheelchairAvailable;
 				if (stop.wheelChairBoarding > 1)
@@ -169,10 +183,10 @@ angular.module('viaggia.services.timetable', [])
 					name: stop.name,
 					distance: GeoLocate.distance($rootScope.myPosition, coordinates),
 					wheelchair: stop.wheelChairBoarding,
-                	wcAvailable: wheelchairAvailable,
-                	lat: stop.latitude,
-                	lng: stop.longitude,
-                	id: stop.id
+					wcAvailable: wheelchairAvailable,
+					lat: stop.latitude,
+					lng: stop.longitude,
+					id: stop.id
 				});
 				coordinates = [];
 			}
@@ -180,10 +194,10 @@ angular.module('viaggia.services.timetable', [])
 			return listOfStopsByDistance[0];
         };
 
-		var compareState = function (a,b) {
+		var compareState = function (a, b) {
 			return a.distance - b.distance;
 		};
-    
+
 		var getNextTrips = function (agencyId, stopId, numberOfResults) {
 			var deferred = $q.defer();
 			numberOfResults = numberOfResults || 3;
@@ -194,7 +208,7 @@ angular.module('viaggia.services.timetable', [])
 			});
 			return deferred.promise;
 		};
-    
+
 		var getStopData = function (ref, agencyId, stopId) {
 			var deferred = $q.defer();
 			var stop = null;
@@ -320,7 +334,7 @@ angular.module('viaggia.services.timetable', [])
             ,/**
             * Read stop by distances
             */
-            getNearestStopByDistance : getNearestStopByDistance
+            getNearestStopByDistance: getNearestStopByDistance
             ,/**
 			 * Read stops for agencies
 			 */
@@ -348,22 +362,22 @@ angular.module('viaggia.services.timetable', [])
 				return getStopData(ref, agencyId, stopId);
 			}
 			, setTTStopData: function (stopData) {
-					ttStopData = stopData;
-				}
-				//    ,
-				//    getDelays: function(data, agency, route, date) {
-				//      var deferred = $q.defer();
-				//      if (ionic.Platform.isWebView()) {
-				//        getDelays(agency, route, date).then(function(delays) {
-				//          result.delays = delays;
-				//          deferred.resolve(result);
-				//        }, function() {
-				//          deferred.resolve(result);
-				//        });
-				//      } else {
-				//        deferred.resolve(data.delays);
-				//      }
-				//      return deferred.promise;
-				//    }
+				ttStopData = stopData;
+			}
+			//    ,
+			//    getDelays: function(data, agency, route, date) {
+			//      var deferred = $q.defer();
+			//      if (ionic.Platform.isWebView()) {
+			//        getDelays(agency, route, date).then(function(delays) {
+			//          result.delays = delays;
+			//          deferred.resolve(result);
+			//        }, function() {
+			//          deferred.resolve(result);
+			//        });
+			//      } else {
+			//        deferred.resolve(data.delays);
+			//      }
+			//      return deferred.promise;
+			//    }
 		}
 	})
