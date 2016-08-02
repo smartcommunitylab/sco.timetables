@@ -170,12 +170,10 @@ angular.module('viaggia.services.bookmarks', [])
                     icon = null;
                 
                 if(routeId) {
-                    console.log("Bookmark stop");
                     var pos = this.indexOfBookmarkStop(title, routeId);
                 }
                 else {
                     var pos = this.indexOfBookmark(title);
-                    console.log("Bookmark line");
                 }
 
                 if (pos >= 0) {
