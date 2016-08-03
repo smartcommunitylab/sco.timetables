@@ -52,7 +52,7 @@
 
             <div class="card full-screen-swapper" ng-if="tab == 1">
 
-                <ion-item class="item-icon-left bookmark-item bookmark-item-lines" item="item" ng-repeat="m in bookmarks track by $index" ng-last-repeat="bookmarks" ng-click="go(m.state)" ng-if="m.type.indexOf('STOP') < 0" aria-label="Linea {{title[$index]}}">
+                <ion-item class="item-icon-left bookmark-item bookmark-item-lines" item="item" ng-repeat="m in bookmarks track by $index" ng-last-repeat="bookmarks" ng-click="go(m.state)" ng-if="m.type.indexOf('STOP') < 0" aria-label="Linea {{title[$index]}}. Clicca per visualizzare la linea completa">
                     <div class="row">
                         <div class="col icon-col">
                             <i class="icon img disableFocusItem" ng-class="m.icon" style="{{'color: '+m.color}}"></i>
