@@ -373,11 +373,11 @@ angular.module('viaggia.services.timetable', [])
 			//      }
 			//      return deferred.promise;
 			//    }
-			checkTimes: function(time){
-				if(time == ''){
+			checkTimes: function (time) {
+				if (time == '') {
 					return "Fermata non prevista";
 				}
-				else{
+				else {
 					return time;
 				}
 			}

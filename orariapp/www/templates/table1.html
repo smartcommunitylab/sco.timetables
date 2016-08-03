@@ -28,10 +28,7 @@
                     </div>
                     <div class="col distance-col">
                         <h6 class="disableFocusItem">Ora di arrivo</h6>
-                       
-                            <h2 class="disableFocusItem">{{nearestStopTime | date:'HH.mm'}}</h2>
-                        
-                        
+                        <h2 class="disableFocusItem">{{nearestStopTime | date:'HH.mm'}}</h2>
                     </div>
                 </div>
                 <div class="row stop-row">
@@ -42,7 +39,7 @@
             <div class="item item-divider full-width-card-icons" ng-controller="TTStopCtrl" ng-init="setStopDataInit()">
                 <div class="tabs tabs-icon-only">
                     <a class="tab-item" ng-show="nearestStop.wheelchair > 1" aria-label="Servizio disabili disponibile">
-                        <img src="img/wheelchair.svg" class="icon wheelchairIcon disableFocusItem"/>
+                        <img src="img/wheelchair.svg" class="icon wheelchairIcon disableFocusItem" />
                     </a>
                     <a class="tab-item" aria-label="Visualizza gli orari della fermata" role="button" ng-click="showStopData(nearestStop.id)">
                         <i class="icon ion-clock disableFocusItem"></i>
@@ -67,12 +64,7 @@
                     </div>
                     <div class="col">
                         <h6 class="disableFocusItem">Ora di Arrivo</h6>
-                        
-                            <h2 class="disableFocusItem">{{stop.times[0] | date:'HH.mm'}}</h2>
-                        
-                       
-                            <!--<h2 class="disableFocusItem">Fermata non prevista</h2>-->
-                       
+                        <h2 class="disableFocusItem">{{stop.times[0] | date:'HH.mm'}}</h2>
                     </div>
                 </div>
                 <div class="row" style="color: {{color}};" ng-click="show = !show" aria-label="Visualizza Dettagli fermata" role="button">
