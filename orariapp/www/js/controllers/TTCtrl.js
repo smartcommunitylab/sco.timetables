@@ -224,7 +224,7 @@ angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
             for (var key in listOfStops) {
                 var stop = listOfStops[key];
                 if (stop.name === $scope.nearestStop.name) {
-                    $scope.nearestStopTime = stop.times[0];
+                    $scope.nearestStopTime = ttService.checkTimes(stop.times[0]);
                     break;
                 }
             }
@@ -318,6 +318,7 @@ angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
                                     lng: stops[indexOfStop].longitude,
                                     times: stopTimes
                                 });
+                                $scope.arrayOfStops[i].times[0] = ttService.checkTimes($scope.arrayOfStops[i].times[0]);
                                 stopTimes = [];
                             }
                         }

@@ -357,7 +357,7 @@ angular.module('viaggia.services.timetable', [])
 			}
 			, setTTStopData: function (stopData) {
 				ttStopData = stopData;
-			}
+			},
 			//    ,
 			//    getDelays: function(data, agency, route, date) {
 			//      var deferred = $q.defer();
@@ -373,5 +373,13 @@ angular.module('viaggia.services.timetable', [])
 			//      }
 			//      return deferred.promise;
 			//    }
+			checkTimes: function(time){
+				if(time == ''){
+					return "Fermata non prevista";
+				}
+				else{
+					return time;
+				}
+			}
 		}
 	})
