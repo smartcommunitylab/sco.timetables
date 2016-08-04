@@ -633,8 +633,8 @@ angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
 
         $scope.bookmark = function (index, color, id) {
             var ref = Config.getTTData($stateParams.ref);
-            if ($stateParams.groupId == 'Funivia') ref.transportType = 'TRANSIT';
-            bookmarkService.toggleBookmark($location.path(), stopNameSrv.getName(index), ref.transportType + 'STOP', $scope.title, $scope.title, color, id, $stateParams.routeId).then(function (style) {
+            var transportType = ($stateParams.groupId == 'Funivia') ? 'TRANSIT' : ref.transportType;
+            bookmarkService.toggleBookmark($location.path(), stopNameSrv.getName(index), transportType + 'STOP', $scope.title, $scope.title, color, id, $stateParams.routeId).then(function (style) {
             });
         };
 
