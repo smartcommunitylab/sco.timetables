@@ -106,8 +106,8 @@
     </ion-content>
 
     <ion-tabs class="tabs-icon-only tabs-positive" role="tablist">
-        <!--<ion-tab icon="ion-arrow-left-b" aria-label="Corsa precedente" title="Corsa precedente" role="tab"></ion-tab>-->
+        <ion-tab ng-click="prevRide()" icon="ion-arrow-left-b" aria-label="Corsa precedente" title="Corsa precedente" role="tab"></ion-tab>
         <ion-tab icon="ion-ios-clock-outline" ng-click="openTimePicker()" aria-label="Inserisci ora" title="Inserisci ora" role="tab"></ion-tab>
-        <!--<ion-tab icon="ion-arrow-right-b" aria-label="Corsa successiva" title="Corsa successiva" role="tab"></ion-tab>-->
+        <ion-tab ng-click="nextRide()" icon="ion-arrow-right-b" aria-label="Corsa successiva" title="Corsa successiva" role="tab"></ion-tab>
     </ion-tabs>
 </ion-view>
