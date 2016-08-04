@@ -142,17 +142,6 @@ angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
             ttService.setTTMapData(vis);
             $state.go('app.ttmap');
         };
-
-        // SCRIPT ACCESSIBILITA'
-        $timeout(function () {
-            //        document.getElementsByClassName("back-text").setAttribute("aria-label", "torna indietro");
-            //        document.getElementsByClassName("back-text").setAttribute("role", "button");
-
-            //      var myEl = angular.element( document.querySelector( '.tab-item' )[0] );
-            //      myEl.attr('aria-label',"trasporti urbani");
-            //      
-        })
-
     })
 
     .controller('TTCtrl', function ($scope, $rootScope, $state, $location, $stateParams, $ionicPosition, $ionicScrollDelegate, $timeout, $filter, ttService, GeoLocate, ionicTimePicker, Config, Toast, bookmarkService, stopNameSrv) {
@@ -254,11 +243,46 @@ angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
             bookmarkService.toggleBookmark($location.path(), $scope.title, transportType, $scope.title, $scope.title, color, "").then(function (style) {
             });
         };
-
         $scope.getBookmarkStyle = function () {
             return bookmarkService.getBookmarkStyle($scope.title);
         };
 
+        /* Handle the currentTime and the Timepicker function */
+        $scope.currentTime = function () {
+            var currentTime = new Date();
+            $scope.time.hours = currentTime.getHours();
+            var mins = currentTime.getMinutes();
+            var hours = currentTime.getHours();
+            if (mins < 10) {
+                $scope.time.minutes = "0" + mins;
+            }
+            else {
+                $scope.time.minutes = mins;
+            }
+            if (hours < 10) {
+                $scope.time.hours = "0" + hours;
+            }
+            else {
+                $scope.time.hours = hours;
+            }
+        };
+        $scope.openTimePicker = function () {
+            ionicTimePicker.openTimePicker(ipObj1);
+        };
+
+        /* Move to the next and the previous ride*/
+        $scope.nextRide = function () {
+            Config.loading();
+            ($scope.indexOfTime < $scope.dataTimesLength - 1) ? $scope.indexRide++ : $scope.disableRideUpperButton = true;
+            getStopsList($scope.stopData, $scope.runningLineDate.getTime(), 1);
+        };
+        $scope.prevRide = function () {
+            Config.loading();
+            ($scope.indexOfTime > 0) ? $scope.indexRide-- : $scope.disableRideBottomButton = true;
+            getStopsList($scope.stopData, $scope.runningLineDate.getTime(), 1);
+        };
+
+        /* Set the array of lines to be displayed on the timetable page */
         var getStopsList = function (data, currentTime, threeShold) {
             ttService.getStops($stateParams.agencyId, $stateParams.routeId).then(function (stops) {
                 if (stops) {
@@ -334,13 +358,13 @@ angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
             });
         };
 
+        /* Text Styler on page load */
         var getTextWidth = function (text, font) {
             var measurer = document.getElementById('measurer');
             return (measurer.getBoundingClientRect().width);
         };
 
         /* Timepicker object*/
-
         var ipObj1 = {
             callback: function (val) {
                 if (typeof (val) === 'undefined') {
@@ -356,41 +380,7 @@ angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
             }
         };
 
-        $scope.currentTime = function () {
-            var currentTime = new Date();
-            $scope.time.hours = currentTime.getHours();
-            var mins = currentTime.getMinutes();
-            var hours = currentTime.getHours();
-            if (mins < 10) {
-                $scope.time.minutes = "0" + mins;
-            }
-            else {
-                $scope.time.minutes = mins;
-            }
-            if (hours < 10) {
-                $scope.time.hours = "0" + hours;
-            }
-            else {
-                $scope.time.hours = hours;
-            }
-        };
 
-        $scope.openTimePicker = function () {
-            ionicTimePicker.openTimePicker(ipObj1);
-        };
-
-        
-        $scope.nextRide = function() {
-            Config.loading();
-            ($scope.indexOfTime < $scope.dataTimesLength -1) ? $scope.indexRide++ : $scope.disableRideUpperButton = true;
-            getStopsList($scope.stopData, $scope.runningLineDate.getTime(), 1);
-        };
-
-        $scope.prevRide = function() {
-            Config.loading();
-            ($scope.indexOfTime > 0) ? $scope.indexRide-- : $scope.disableRideBottomButton = true;
-            getStopsList($scope.stopData, $scope.runningLineDate.getTime(), 1);
-        };
 
     })
 
