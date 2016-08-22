@@ -28,8 +28,9 @@ angular.module('viaggia.controllers.common', [])
         $scope.creditsModal.hide();
     };
     $scope.openCredits = function () {
-            $scope.creditsModal.show();
-        }
+      $rootScope.credits_info_p1 = $filter('translate')('credits_info');
+      $scope.creditsModal.show();
+    }
         /*pop up managers*/
         //    $scope.newPlan = function () {
         //        planService.setTripId(null); //reset data for pianification
@@ -140,8 +141,6 @@ angular.module('viaggia.controllers.common', [])
             });
         }
     }
-
-    $rootScope.credits_info_p1 = $filter('translate')('credits_info');
 
 })
 
