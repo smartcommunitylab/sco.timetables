@@ -29,10 +29,15 @@
     "cordova-sqlite-storage@0.7.14",
     "https://github.com/samikrc/CordovaSQLite.git",
     "cordova-plugin-whitelist",
-    "cordova-plugin-screen-orientation"
+    "cordova-plugin-screen-orientation",
+    "cordova-custom-config"
   ],
   "cordovaPlatforms": [
     "ios",
-    "android"
+    {
+      "platform": "android",
+      "version": "5.1.1",
+      "locator": "android@5.1.1"
+    }
   ]
 }
