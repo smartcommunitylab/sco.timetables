@@ -384,7 +384,9 @@ angular.module('viaggia', [
             lbl_accept: "Accetto",
             lbl_reject: "Rifiuto",
             "credits_info": "Il progetto WeLive è stato finanziato dal programma H2020  della Commissione Europea per la ricerca, lo sviluppo tecnologico e l'innovazione secondo l'accordo N° 645845",
-            app_name: "Trento Orari Trasporti"
+            app_name: "Trento Orari Trasporti",
+            label_button_side_menu: "Menu laterale",
+            label_button_go_back: "Torna indietro"
 
         });
 
@@ -409,7 +411,7 @@ angular.module('viaggia', [
             menu_terms_of_service: "Terms of use",
             menu_login: "Login",
             menu_logout: "Logout",
-            menu_settings: "Impostazioni",
+            menu_settings: "Settings",
             plan_from: 'From',
             plan_to: 'To',
             plan_day: 'Day',
@@ -562,7 +564,9 @@ angular.module('viaggia', [
             lbl_accept: "Accept",
             lbl_reject: "Reject",
             "credits_info": "The WeLive project has been financed under European Commission's H2020 programme for research, development and innovation under agreement #64584",
-            app_name: " Trento Transport Timetable"
+            app_name: " Trento Transport Timetable",
+            label_button_side_menu: "Side Navigation Menu",
+            label_button_go_back: "Back"
 
         });
 
