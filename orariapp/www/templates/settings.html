@@ -1,0 +1,23 @@
+<ion-view title="{{title}}" id="settings">
+    <ion-nav-buttons side="right">
+        <button class="button-clear button-save" ng-click="selectAcc()">SALVA</button>
+
+    </ion-nav-buttons>
+    <ion-content scroll="false">
+        <div data-tap-disabled="true">
+            <div class="settings-choose-mode">
+                {{'startup_select_label'|translate}}
+            </div>
+            <ion-list>
+                <ion-radio ng-repeat="item in accessibilityChooses" ng-value="item.value" ng-model="data.typeOfAccessibility">
+                    {{ item.text }}</ion-radio>
+            </ion-list>
+            <!--
+<div class="startup-choose-mode text-center">
+    <button class="button" ng-click="selectAcc()">{{'startup_button'|translate}}</button>
+</div>
+-->
+        </div>
+    </ion-content>
+
+</ion-view>

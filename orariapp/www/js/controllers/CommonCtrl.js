@@ -15,7 +15,9 @@ angular.module('viaggia.controllers.common', [])
     $scope.isGroupRealTimeShown = function () {
         return $scope.shownGroup === true;
     };
-
+    $scope.isAccessibilitySet = function () {
+        return Config.getAccessibility();
+    }
     $ionicModal.fromTemplateUrl('templates/credits.html', {
         id: '3',
         scope: $scope,
@@ -180,39 +182,41 @@ angular.module('viaggia.controllers.common', [])
 
 .controller('TermsCtrl', function ($scope, $ionicHistory, $state, $filter, $ionicPopup, $ionicSideMenuDelegate, $timeout, $translate, Config) {
 
-        // before routine.
-        $scope.$on('$ionicView.enter', function () {
-            Config.loading();
-            Config.getLanguage().then(function(data) {
-              Config.loaded();
-              $scope.termsfile = 'templates/terms/terms-' + data + '.html';
-            });
-            var acceptStr = localStorage["orariapp_isPrivacyAccepted"];
-            $scope.accepting = acceptStr != 'true';
+    // before routine.
+    $scope.$on('$ionicView.enter', function () {
+        Config.loading();
+        Config.getLanguage().then(function (data) {
+            Config.loaded();
+            $scope.termsfile = 'templates/terms/terms-' + data + '.html';
         });
+        var acceptStr = localStorage["orariapp_isPrivacyAccepted"];
+        $scope.accepting = acceptStr != 'true';
+    });
 
-        $scope.acceptPrivacy = function () {
-            localStorage["orariapp_isPrivacyAccepted"] = true;
-            $ionicHistory.nextViewOptions({
-                disableBack: true
+    $scope.acceptPrivacy = function () {
+        localStorage["orariapp_isPrivacyAccepted"] = true;
+        $ionicHistory.nextViewOptions({
+            disableBack: true
+        });
+        $state.go('app.home');
+    };
+
+    $scope.refusePrivacy = function () {
+        var myPopup = $ionicPopup.show({
+            template: "<center>" + $filter('translate')('terms_refused_alert_text') + "</center>",
+            cssClass: 'custom-class custom-class-popup'
+        });
+        $timeout(function () {
+                myPopup.close();
+            }, 1800) //close the popup after 1.8 seconds for some reason
+            .then(function () {
+                navigator.app.exitApp(); // sometimes doesn't work with Ionic View
+                ionic.Platform.exitApp();
+                console.log('App closed');
             });
-            $state.go('app.home');
-        };
+    };
 
-        $scope.refusePrivacy = function () {
-            var myPopup = $ionicPopup.show({
-                template: "<center>" + $filter('translate')('terms_refused_alert_text') + "</center>",
-                cssClass: 'custom-class custom-class-popup'
-            });
-            $timeout(function () { myPopup.close(); }, 1800) //close the popup after 1.8 seconds for some reason
-                .then(function () {
-                    navigator.app.exitApp(); // sometimes doesn't work with Ionic View
-                    ionic.Platform.exitApp();
-                    console.log('App closed');
-                });
-        };
-
-    })
+})
 
 
 ;

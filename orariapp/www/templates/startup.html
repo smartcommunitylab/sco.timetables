@@ -1,0 +1,19 @@
+<ion-modal-view>
+    <ion-header-bar align-title="center" class="bar-positive-100">
+        <h1 class="title">{{title}}</h1>
+    </ion-header-bar>
+    <ion-content>
+        <div id="settings" data-tap-disabled="true">
+            <div class="startup-choose-mode row row-top">
+                {{'startup_select_label'|translate}}
+            </div>
+            <ion-list>
+                <ion-radio ng-repeat="item in accessibilityChooses" ng-value="item.value" ng-model="data.typeOfAccessibility">
+                    {{ item.text }}</ion-radio>
+            </ion-list>
+            <div class="startup-choose-mode text-center">
+                <button class="button" ng-click="selectAcc()">{{'startup_button'|translate}}</button>
+            </div>
+        </div>
+    </ion-content>
+</ion-modal-view>

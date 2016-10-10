@@ -61,8 +61,11 @@ angular.module('viaggia', [
     'viaggia.services.timetable',
     'viaggia.services.geo',
     'viaggia.services.bookmarks',
+    'viaggia.services.settings',
+    'viaggia.services.profile',
     'viaggia.controllers.busRide',
-    'viaggia.controllers.map'
+    'viaggia.controllers.map',
+    'viaggia.controllers.settings'
 ])
 
 .run(function ($ionicPlatform, $cordovaFile, $rootScope, $translate, DataManager, Config, GeoLocate) {
@@ -179,13 +182,33 @@ angular.module('viaggia', [
                     }
                 }
             })
+            .state('app.ttacc', {
+                cache: false,
+                url: "/ttcc/:ref/:agencyId/:groupId/:routeId",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/tableAcc.html",
+                        controller: 'TTAccCtrl'
+                    }
+                }
+            })
             .state('app.tt', {
                 cache: false,
                 url: "/tt/:ref/:agencyId/:groupId/:routeId",
                 views: {
                     'menuContent': {
-                        templateUrl: "templates/table1.html",
+                        templateUrl: "templates/tableNoAcc.html",
                         controller: 'TTCtrl'
+                    }
+                }
+            })
+            .state('app.settings', {
+                cache: false,
+                url: "/settings",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/settings.html",
+                        controller: 'SettingsCtrl'
                     }
                 }
             })
@@ -386,7 +409,12 @@ angular.module('viaggia', [
             "credits_info": "Il progetto WeLive è stato finanziato dal programma H2020  della Commissione Europea per la ricerca, lo sviluppo tecnologico e l'innovazione secondo l'accordo N° 645845",
             app_name: "Trento Orari Trasporti",
             label_button_side_menu: "Menu laterale",
-            label_button_go_back: "Torna indietro"
+            label_button_go_back: "Torna indietro",
+            settings_title: "Impostazioni",
+            settings_choose_acc: "Per non vedenti",
+            settings_choose_standard: "Per vedenti e ipovedenti",
+            startup_select_label: "Seleziona la modalita' di visualizzazione dell'app che desideri:",
+            startup_button: "Inizia"
 
         });
 
@@ -566,8 +594,12 @@ angular.module('viaggia', [
             "credits_info": "The WeLive project has been financed under European Commission's H2020 programme for research, development and innovation under agreement #64584",
             app_name: " Trento Transport Timetable",
             label_button_side_menu: "Side Navigation Menu",
-            label_button_go_back: "Back"
-
+            label_button_go_back: "Back",
+            settings_title: "Settings",
+            settings_choose_acc: "For blind people",
+            settings_choose_standard: "For people with a visual impairment",
+            startup_select_label: "Select your type of visualization:",
+            startup_button: "Begin"
         });
 
 
