@@ -1,18 +1,27 @@
-<ion-modal-view>
+<ion-modal-view id="startup">
+    <!--
     <ion-header-bar align-title="center" class="bar-positive-100">
-        <h1 class="title">{{title}}</h1>
+        <div class="title">{{title}}</div>
     </ion-header-bar>
+-->
     <ion-content>
-        <div id="settings" data-tap-disabled="true">
-            <div class="startup-choose-mode row row-top">
-                {{'startup_select_label'|translate}}
+        <div data-tap-disabled="true">
+            <div class="startup-choose-mode" aria-label="{{title}} {{'startup_select_intro'|translate}} {{'startup_select_label'|translate}}">
+                <div aria-label="{{title}} {{'startup_select_intro'|translate}} {{'startup_select_label'|translate}}"> <span class="startup-label-title" aria-label="{{title}}">{{title}}</span>
+                    <br><span class="startup-label-intro" aria-label="{{'startup_select_intro'|translate}}">{{'startup_select_intro'|translate}}</span>
+                    <br> <span class="startup-label-string" aria-label="{{'startup_select_label'|translate}}">{{'startup_select_label'|translate}}</span>
+                </div>
             </div>
+
             <ion-list>
-                <ion-radio ng-repeat="item in accessibilityChooses" ng-value="item.value" ng-model="data.typeOfAccessibility">
-                    {{ item.text }}</ion-radio>
+                <ion-radio class="radio-startup" ng-repeat="item in accessibilityChooses" ng-value="item.value" ng-model="data.typeOfAccessibility" aria-label="{{item.text}} {{item.subtext}}">
+                    <span class="startup-radio-text" aria-label="{{item.text}}">{{ item.text }}</span>
+                    <br> <span class="startup-radio-sub" aria-label="{{item.subtext}}">{{ item.subtext }}</span>
+                    <!--                    {{ item.text }}-->
+                </ion-radio>
             </ion-list>
-            <div class="startup-choose-mode text-center">
-                <button class="button" ng-click="selectAcc()">{{'startup_button'|translate}}</button>
+            <div class="startup-choose-button text-center">
+                <button class="button button-begin" ng-click="selectAcc()" aria-label="{{'startup_button'|translate}}">{{'startup_button'|translate}}</button>
             </div>
         </div>
     </ion-content>

@@ -412,9 +412,15 @@ angular.module('viaggia', [
             label_button_go_back: "Torna indietro",
             settings_title: "Impostazioni",
             settings_choose_acc: "Per non vedenti",
+            settings_choose_acc_subtext: "Versione compatibile con supporti audiodescrittivi (Talkback/VoiceOver).",
             settings_choose_standard: "Per vedenti e ipovedenti",
-            startup_select_label: "Seleziona la modalita' di visualizzazione dell'app che desideri:",
-            startup_button: "Inizia"
+            settings_choose_standard_subtext: "Versione ottimizzata per utenti con differenti capacità visive.",
+            startup_select_intro: "Configura la tua app!",
+            startup_select_label: "Seleziona la modalità di visualizzazione che desideri:",
+            startup_button: "Inizia",
+            error_select_type_accessibility_feedback: 'Per visualizzare un percorso accessibile è necessario selezionare i mezzi pubblici o a piedi',
+            not_acc_label: 'Questa linea non è accessibile',
+            startup_save: 'SALVA'
 
         });
 
@@ -597,9 +603,14 @@ angular.module('viaggia', [
             label_button_go_back: "Back",
             settings_title: "Settings",
             settings_choose_acc: "For blind people",
+            settings_choose_acc_subtext: "Compatible version for a accessibility services (Talkback/VoiceOver).",
             settings_choose_standard: "For people with a visual impairment",
+            settings_choose_standard_subtext: "Version for people with different visual skills.",
             startup_select_label: "Select your type of visualization:",
-            startup_button: "Begin"
+            startup_button: "Begin",
+            error_select_type_accessibility_feedback: 'In order to get an accessible route, you must select public transport or foot',
+            not_acc_label: 'This line is not accessible',
+            startup_save: 'SAVE'
         });
 
 

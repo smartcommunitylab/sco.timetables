@@ -3,9 +3,11 @@ angular.module('viaggia.services.settings', [])
         var settingsSrv = {};
         var allAccessibilityMode = [{
             text: $filter('translate')('settings_choose_acc'),
+            subtext: $filter('translate')('settings_choose_acc_subtext'),
             value: "acc"
                     }, {
             text: $filter('translate')('settings_choose_standard'),
+            subtext: $filter('translate')('settings_choose_standard_subtext'),
             value: "standard"
                     }]
 

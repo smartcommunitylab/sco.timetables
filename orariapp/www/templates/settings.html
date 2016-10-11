@@ -1,15 +1,15 @@
 <ion-view title="{{title}}" id="settings">
     <ion-nav-buttons side="right">
-        <button class="button-clear button-save" ng-click="selectAcc()">SALVA</button>
+        <button class="button-clear button-save" ng-click="selectAcc()" aria-label="{{'startup_save'|translate}}">{{'startup_save'|translate}}</button>
 
     </ion-nav-buttons>
     <ion-content scroll="false">
         <div data-tap-disabled="true">
-            <div class="settings-choose-mode">
-                {{'startup_select_label'|translate}}
+            <div class="settings-choose-mode" aria-label="{{'startup_select_label'|translate}}">
+                <span>{{'startup_select_label'|translate}}</span>
             </div>
             <ion-list>
-                <ion-radio ng-repeat="item in accessibilityChooses" ng-value="item.value" ng-model="data.typeOfAccessibility">
+                <ion-radio class="settings-choose-choices" ng-repeat="item in accessibilityChooses" ng-value="item.value" ng-model="data.typeOfAccessibility" aria-label="{{ item.text }}">
                     {{ item.text }}</ion-radio>
             </ion-list>
             <!--

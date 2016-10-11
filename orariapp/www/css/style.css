@@ -316,14 +316,47 @@
     left: 0px !important;
 }
 
-
+.tt-table #table-col div {
+    /*    width: 20px;*/
+    display: inline-block;
+    margin-right: 5px;
+    text-align: center;
 }
+
+#table-corner {
+    font-size: 12px;
+    height: 25px;
+    /*    border-right: 1px solid #bbb;*/
+    position: absolute;
+    /*    width: 100px;*/
+    background-color: #fff;
+    z-index: 100;
+    text-align: left;
+    /*    top: 50px;*/
+}
+
+#table-corner div {
+    height: 25px;
+    border-bottom: 1px solid #bbb;
+    border-right: 1px solid #bbb;
+    background-color: white;
+}
+
+#table-corner > div .corner-delay {
+    margin-left: 10px;
+    vertical-align: top;
+}
+
+
+/*
 .tt-table #table-col div {
     width: 20px;
     display: inline-block;
     margin-right: 5px;
     text-align: center;
 }
+*/
+
 .accessibility {
     font-size: 22px;
     border-radius: 6px;
@@ -331,44 +364,54 @@
     background-color: #007cc2;
     color: #fff;
 }
+
 .accessibility-ttstop {
     font-size: 24px;
 }
+
 .table-accessibility {
     color: #2975a7;
     margin-right: 4px;
     /*    margin-left: 4px;
     */
-
     font-size: 25px;
 }
+
 .leaflet-container {
     height: 100% !important;
 }
+
 #modal-map-container {
     height: 100% !important;
 }
+
 .route-list .list {
     margin-top: 6px !important;
 }
+
 .route-list .list ion-item {
     padding-top: 0px;
     padding-bottom: 0px;
 }
+
 .route-list .list ion-item .button {
     text-align: left;
 }
+
 .padding-3 {
     padding: 3px !important;
 }
+
 .card-list:first-child {
     margin-top: 4px !important;
 }
+
 .route-grid-row {
     margin-top: 2px !important;
     margin-bottom: 2px !important;
     padding: 0px 4px !important;
 }
+
 .route-grid-element {
     width: 100%;
     height: 100%;
@@ -379,6 +422,7 @@
     color: #fff;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
+
 .route-grid-element span {
     text-align: center;
     vertical-align: middle;
@@ -386,45 +430,56 @@
     line-height: 85px;
     font-weight: bold;
 }
+
 .box-shadow-card {
     -webkit-box-shadow: 0 10px 6px -6px rgba(0, 0, 0, 0.25);
     -moz-box-shadow: 0 10px 6px -6px rgba(0, 0, 0, 0.25);
     box-shadow: 0 10px 6px -6px rgba(0, 0, 0, 0.25);
 }
+
 .ic-text {
     font-family: 'viaggia';
 }
+
 .menu-rt:not(.item-accordion) {
     text-transform: uppercase;
 }
+
 .menu-rt,
 .menu-main,
 .menu-last {
     color: #fff !important;
 }
+
 .menu-main {
     padding-top: 16px !important;
     padding-bottom: 16px !important;
 }
+
 .menu-main .item-content {
     padding-top: 0 !important;
     padding-bottom: 0 !important;
 }
+
 .menu-rt {
     background-color: #3bbacf !important;
 }
+
 .menu-main {
     background-color: #1e64ae !important;
 }
+
 .menu-last {
     background-color: #1e64ae !important;
 }
+
 .menu-rt.item-icon-left .icon,
 .menu-rt.item-icon-right .icon,
 .menu-main.item-icon-left .icon,
 .menu-last.item-icon-left .icon {
     font-size: 22px;
 }
+
 .menu-rt .item-content,
 .menu-main .item-content,
 .menu-last .item-content {
@@ -435,16 +490,20 @@
     padding-bottom: 8px;
 */
 }
+
 .menu-left {
     background-color: #1e64ae;
 }
+
 .textmenu * {
     font-size: 20px !important;
 }
+
 .bar-positive-100 {
     background-color: #1e64ae !important;
     /*    height: 56px;*/
 }
+
 
 /*
 .bar .button.button-clear {
@@ -458,6 +517,7 @@
 }
 */
 
+
 /*
 .bar .title {
     font-size: 19px;
@@ -465,177 +525,220 @@ line-height: 44px;
     margin-top: 2% !important;
 }
 */
+
 .nav-buttons-lat {
     margin-top: 5px;
 }
+
 .placeautocomplete ul {
     position: absolute;
     background-color: rgba(255, 255, 255, .95);
     border: 1px solid #ddd;
     z-index: 99;
 }
+
 .placeautocomplete ul li {
     padding: 5px;
 }
+
 .placeautocomplete ul li .highlight {
     font-weight: bold;
 }
+
 .card-tt {
     padding: 12px;
     white-space: normal;
     text-transform: uppercase;
     text-align: center;
 }
+
 .parking-card .row,
 .parking-card .col {
     /*    padding: 0px;
     */
 }
+
 .parking-card.selected {
     background-color: rgba(59, 186, 207, 0.5);
 }
+
 .parking-card .col p {
     white-space: normal;
 }
+
 .parking-card-footer {
     min-height: 40px;
     padding-top: 10px;
 }
+
 .parking-card-footer .col {
     position: relative;
 }
+
 .parking-card-footer .col span {
     position: absolute;
     top: 50%;
 }
+
 .parking-card-footer .col-right span {
     right: 0px;
 }
+
 .col-right > div {
     float: right;
 }
+
 .parking-meter img {
     box-shadow: none;
     margin: auto;
     width: 70px;
     height: 30px;
 }
+
 .avail-green {
     font-weight: bold;
     color: #8cc04c;
 }
+
 .avail-red {
     font-weight: bold;
     color: #e84539;
 }
+
 .avail-yellow {
     font-weight: bold;
     color: #f39619;
 }
+
 .parking-popup .popup {
     width: 80%;
     max-width: 400px;
 }
+
 .parking-popup .popup-title {
     text-align: left;
     text-transform: uppercase;
 }
+
 .parking-popup .popup-head {
     display: none;
 }
+
 .parking-popup .button-close {
     background-color: gray !important;
 }
+
 .parking-popup .popup-buttons button:not(.button-close) {
     background-color: #3bbacf !important;
 }
+
 .parking-popup .popup-buttons button {
     white-space: normal;
     padding: 0px;
     color: #fff !important;
     margin-right: 4px;
 }
+
 .parking-popup .map-stop-title {
     text-transform: uppercase;
     font-size: 20px;
     color: #1e64ae;
 }
+
 .parking-popup .popup-icon {
     font-size: 30px;
     margin-right: 8px;
     margin-bottom: 8px;
 }
+
 .parking-popup .map-stop-name {
     text-align: center;
     font-weight: bold;
     font-size: 18px;
     margin-top: 20px;
 }
+
 .parking-popup .map-stop-hline {
     width: 100%;
     height: 1px;
     border-bottom: 3px solid #1e64ae;
 }
+
 .parking-popup .map-stop-nocourses {
     text-align: center;
 }
+
 .parking-card-footer .slots-text span {
     text-align: center;
     width: 100%;
 }
+
 .ion-header-bar .title {
     color: #fff !important;
 }
+
 .bar .button.button-icon:before {
     font-size: 24px !important;
 }
+
 .close-modal {
     font-size: 24px;
     padding-left: 16px;
     padding-top: 4px;
     line-height: 40px;
 }
+
 .stop-line-list .item {
     padding: 8px 16px;
     min-height: 0;
     white-space: normal;
 }
+
 .stop-line-grid .route-grid-element {
     margin: 4px 8px 4px 0;
     display: inline-block;
 }
+
 .stop-line-title {
     padding: 8px 16px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 .stop-line .row {
     padding: 0;
 }
+
 .stop-line .row .col {
     border-bottom: 1px solid #d2d2d2;
     padding: 16px 0px;
     border-right: 1px solid #d2d2d2;
 }
+
 .stop-line .row .col:last-child {
     border-right: 0;
 }
+
 .many-options {
     margin-top: 0px;
     margin-right: 100px;
 }
+
 .single-options {
     margin-top: 0px;
     margin-right: 0px;
 }
+
 .mfb-component__wrap {
     padding-top: 16px !important;
 }
+
 .empty-list-card {
     min-height: 50px;
     text-align: center;
 }
+
 .credits_title {
     text-align: center;
     color: #1e64ae;
@@ -644,50 +747,62 @@ line-height: 44px;
     margin-top: 20px;
     margin-bottom: 10px;
 }
+
 .credits_subtitle {
     text-align: center;
     color: #1e64ae;
     font-size: 18px;
     font-weight: bold;
 }
+
 .credits_row {
     padding: 0;
     margin-bottom: 10px;
 }
+
 .credits_row.last {
     margin-bottom: 20px;
 }
+
 .credits_row.version {
     color: #aaa;
 }
+
 .credits_row.version .col {
     font-size: 12px;
     line-height: 12px;
 }
+
 .credits_mail {
     color: black;
     font-size: 14px;
     font-weight: normal;
 }
+
 .credits_version {
     text-align: center;
 }
+
 .close-credits {
     padding: 8px;
 }
+
 .image.center {
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
+
 .popup {
     max-width: 400px !important;
     width: 90% !important;
 }
+
 .popup-buttons .button {
     background-color: #3bbacf;
     color: #fff;
 }
+
 .list-journey {
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .26);
     display: block;
@@ -696,12 +811,15 @@ line-height: 44px;
     position: relative;
     width: auto !important;
 }
+
 .home-list .list {
     padding: 16px 8px;
 }
+
 .home-list ion-item {
     padding: 0px;
 }
+
 .home-list .button {
     text-align: left;
     font-size: 16px;
@@ -712,17 +830,21 @@ line-height: 44px;
     padding: 0px 16px;
     text-transform: none;
 }
+
 .home-list .button i {
     margin-right: 16px;
 }
+
 .home-list .button i::before {
     font-size: 36px;
 }
+
 .line-background-for-list {
     background-image: url("../img/ic_point_line_list.png");
     background-repeat: no-repeat;
     background-position: center center;
 }
+
 .green-bottom {
     width: 100%;
     background-color: #4caf4f;
@@ -730,15 +852,18 @@ line-height: 44px;
     height: 24px;
     text-align: center;
 }
+
 .green-head {
     background-color: #4caf4f;
     padding-top: 4px;
     height: 40px;
     overflow: auto;
 }
+
 .green-thumb {
     float: right;
 }
+
 .green-thumb img {
     display: block;
     height: auto;
@@ -746,46 +871,57 @@ line-height: 44px;
     max-width: 30px;
     max-height: 30px;
 }
+
 .green-content {
     margin-left: 24px;
 }
+
 .green-title {
     color: white;
 }
+
 .trip-detail-panel {
     padding-top: 24px;
 }
+
 .placeautocomplete {
     position: relative;
 }
+
 .placeautocomplete-input {
     width: 100%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 .placeautocomplete-input:focus {
     text-overflow: clip;
 }
+
 .placeautocomplete.notempty .placeautocomplete-input {
     padding-left: 24px;
 }
+
 .placeautocomplete.notempty .placeautocomplete-input-clear {
     position: absolute;
     top: 0.5em;
     left: 0;
     color: #AAAAAA;
 }
+
 .plan-viaggia-fromto {
     margin: auto;
     color: #3bbacf;
     box-shadow: none;
     padding: 0 12px;
 }
+
 .plan-viaggia-fromto:hover {
     color: rgba(60, 186, 207, 0.5);
     box-shadow: none;
 }
+
 
 /*
 redefine style for checkbox .ion-checkmark:before {
@@ -804,12 +940,14 @@ redefine style for checkbox .ion-checkmark:before {
     visibility: visible;
 }
 */
+
 .list-of-icons {
     min-width: 50px;
     display: inline-block;
     vertical-align: middle;
     line-height: normal;
 }
+
 #table-header {
     white-space: nowrap;
     font-family: RobotoMono;
@@ -817,23 +955,26 @@ redefine style for checkbox .ion-checkmark:before {
     background-color: #fff;
     font-size: 12px;
     /*    left: 100px;*/
-
     z-index: 10;
 }
+
 #table-header div {
     border-bottom: 1px solid #bbb;
+    height: 25px;
 }
+
 #table-header div:first-child {
     color: #cd251c;
 }
+
 #table-table {
     white-space: nowrap;
     font-family: RobotoMono;
     /*    left: 100px;*/
-
     font-size: 12px;
     position: absolute;
 }
+
 #table-col {
     line-height: 20px;
     white-space: nowrap;
@@ -841,7 +982,6 @@ redefine style for checkbox .ion-checkmark:before {
     position: absolute;
     background-color: #fff;
     /*    width: 100px;*/
-
     border-right: 1px solid #bbb;
     z-index: 10;
     overflow: hidden;
@@ -849,82 +989,92 @@ redefine style for checkbox .ion-checkmark:before {
     padding-right: 5px;
     padding-left: 5px;
 }
-#table-corner {
-    font-size: 12px;
-    border-right: 1px solid #bbb;
-    position: absolute;
-    /*    width: 100px;*/
 
-    background-color: #fff;
-    z-index: 100;
-    text-align: center;
-    top: 50px;
-}
-#table-corner div {
-    border-bottom: 1px solid #bbb;
-}
 .table-container {
     padding: 0px;
 }
+
 .table-container ion-scroll {
     margin-top: 0;
 }
+
+.accessibilityBullet {
+    width: 20px;
+}
+
+.delay {
+    padding-left: 40px;
+}
+
 .markets-home img {
     height: 50px;
     width: 50px;
     margin-right: 12px;
     vertical-align: bottom;
 }
+
 .markets-home span {
     line-height: 50px;
 }
+
 .market-subtitle {
     text-align: center;
     font-weight: bold;
     color: #1e64ae;
 }
+
 .market-text1 {
     text-align: center;
     font-weight: bold;
 }
+
 .market-text2 {
     text-align: justify;
 }
+
 .length-price {
     position: absolute;
     right: 5px;
     bottom: 5px;
 }
+
 .card .trip-title {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
     padding: 5px;
 }
+
 .ionic-datepicker .right_arrow,
 .ionic-datepicker .left_arrow {
     margin: auto;
 }
+
 .timePickerColon {
     padding-top: 0px !important;
     margin-bottom: auto;
     margin-top: auto;
 }
+
 .timePickerArrows {
     padding-left: 0px;
     padding-right: 0px;
 }
+
 .close-modal {
     font-size: 32px;
     padding-top: 2px !important;
 }
+
 .platform-ios.platform-cordova:not(.fullscreen) .mfb-component--tr {
     margin-top: 45px;
 }
+
 .error {
     color: red;
     text-align: center;
 }
+
 .bookmark-list ion-item {
     padding: 0px;
     border: 1px solid #d2d2d2!important;
@@ -933,15 +1083,18 @@ redefine style for checkbox .ion-checkmark:before {
     border-radius: 2px;
     background-color: #fff;
 }
+
 .bookmark-list .bookmark {
     text-align: left;
     font-size: 16px;
     background-color: #fff;
     padding: 8px 8px;
 }
+
 .bookmark-list .ctrl {
     float: right;
 }
+
 .text_books {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -949,74 +1102,90 @@ redefine style for checkbox .ion-checkmark:before {
     display: block;
     width: inherit;
 }
+
 .bookmark-list .bookmark .img {
     font-size: 36px;
 }
+
 .bookmark-list .bookmark span {
     padding: 0 0 0 8px;
     overflow: hidden;
     text-overflow: ellipsis;
     /*  text-transform: uppercase;*/
-
     font-weight: 500;
 }
+
 .bookmark-list ion-item.activated {
     background-color: #d2d2d2;
 }
+
 .bookmark-list ion-item.activated .item-content {
     background-color: #d2d2d2;
 }
+
 .bookmark-list ion-item .item-content {
     background-color: #fff;
 }
+
 .bookmark-list ion-option-button,
 .bookmark-list ion-reorder-button {
     padding: 0 8px;
 }
+
 .bookmark-popup {
     color: rgb(41, 117, 167) !important;
     font-size: x-large;
 }
+
 .parking-title {
     white-space: nowrap;
 }
+
 .date-label {
     white-space: nowrap;
 }
+
 .parking-item-label {
     line-height: normal;
 }
+
 .parking-item-label.highlight {
     font-weight: bold;
 }
+
 .parking-info {
     margin-left: 16px;
     white-space: normal;
 }
+
 .bm-item-label {
     line-height: normal;
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 .bm-item-label.highlight {
     font-weight: bold;
 }
+
 .button-cancel {
     background-color: #a3a2a2 !important;
 }
+
 .alignright {
     float: right;
 }
+
 .button-home {
     color: white !important;
     box-shadow: none !important;
     padding-top: 10px !important;
     padding-left: 10px !important;
 }
+
 .header-badge {
     top: -30px !important;
     /*    left: 10px !important;*/
-
     font-size: x-small !important;
     margin-left: -5px !important;
     display: table !important;
@@ -1030,38 +1199,48 @@ redefine style for checkbox .ion-checkmark:before {
     padding: 2px 12px 2px 3px;
 */
 }
+
 .home_notification {
     margin-right: 20px !important;
     padding-right: 20px !important;
 }
+
 .notification-card {
     padding: 16px;
 }
+
 .notification-title {
     font-weight: bold;
     margin-top: 8px;
 }
+
 .notification-container {
     padding: 8px;
 }
+
 .notification-content {
     padding-top: 8px;
 }
+
 .bm-detail {
     font-size: 12px;
 }
+
 .control-tutorial {
     position: absolute;
     bottom: 10px;
     width: 100%;
 }
 
+
 /*close button of popup*/
+
 .leaflet-container a.leaflet-popup-close-button {
     font-size: 25px !important;
     line-height: 20px !important;
     padding: 8px 16px 0 0 !important;
 }
+
 .fullscreen-tutorial {
     max-width: 100%;
     max-height: 100%;
@@ -1073,18 +1252,22 @@ redefine style for checkbox .ion-checkmark:before {
     right: 0;
     top: 0;
 }
+
 .tutorial-button {
     font-size: large;
 }
+
 .transparent {
     background-color: rgba(0, 0, 0, 0.6) !important;
 }
+
 .image-modal {
     width: 100% !important;
     height: 100%;
     top: 0 !important;
     left: 0 !important;
 }
+
 .empty_bookmarks {
     display: -webkit-box;
     display: -moz-box;
@@ -1115,6 +1298,7 @@ redefine style for checkbox .ion-checkmark:before {
     -ms-flex-align: center;
     align-items: center;
 }
+
 .empty_home_ops {
     font-size: medium;
     color: #666;
@@ -1122,96 +1306,117 @@ redefine style for checkbox .ion-checkmark:before {
     white-space: normal;
     font-style: italic;
 }
+
 .empty_home_bookmarks {
     color: #1e64ae;
     font-size: medium;
     font-weight: bold;
     white-space: normal;
 }
+
 .row_empty_home {
     padding: 25px;
 }
+
 .tabs-positive .tabs {
     background-color: #1e64ae !important;
     border-color: #1e64ae !important;
     height: 56px;
 }
+
 .bus-ride {
     background-color: #1e64ae !important;
     border-color: #1e64ae !important;
     color: #fff;
     height: 56px;
 }
+
 .wheelchairIcon {
     margin-top: 7% !important;
     box-shadow: none !important;
 }
+
 .bookmarkTab .tab-item i {
     color: #000 !important;
 }
+
 .card h2 {
     font-size: 20px;
     font-weight: bold;
 }
+
 .card h6 {
     color: dimgray;
     font-size: 15px;
 }
+
 .bus-ride-text {
     font-size: 15px;
     color: dimgray;
     margin-left: 8px;
     margin-top: 20px;
 }
+
 .bus-ride-text-footer {
     font-size: 12px;
     text-align: center;
 }
+
 .tab-item .icon {
     margin-bottom: -10px;
     margin-top: -5px;
     /*    width: 24px;*/
-
     margin-top: 0px;
     /*    font-size: 24px;*/
 }
+
 .disableFocus {
     pointer-events: none;
     font-size: 40px !important;
 }
+
 .disableFocusItem {
     pointer-events: none;
 }
+
 .tab-title {
     font-size: 10px;
     pointer-events: none;
 }
+
 .full-width-card-icons {
     padding-left: 0px;
     padding-right: 0px;
 }
+
 .row.date-bar {
     padding: 10px !important;
     margin-top: 0px !important;
 }
+
 .date-bar {
     color: #fff !important;
     height: 56px !important;
 }
+
 
 /*
 .ride .tabs {
   padding-top: 7px;
 }
 */
+
 .ride .tabs i {
     color: black;
 }
 
+
 /*Style TT line page */
+
 .no-padding-item {
     padding: 0 !important;
 }
+
 .card-line {
     white-space: normal;
     text-transform: uppercase;
@@ -1225,27 +1430,35 @@ redefine style for checkbox .ion-checkmark:before {
     margin: 5px 8px !important;
 }
 
+
 /* Style table 1 page */
+
 .stop-row {
     padding: 10px !important;
 }
+
 .detail-icon {
     margin: 0 auto !important;
     padding: 5px;
     font-size: 25px;
 }
+
 .col-64 {
     flex: 0 0 63% !important;
     max-width: 63% !important;
 }
+
 .distance-col {
     padding-right: 0;
 }
 
+
 /* ttstop file style */
+
 .stop-list {
     margin-bottom: 20px !important;
 }
+
 .fermata-row {
     font-size: 16px !important;
     color: white;
@@ -1253,10 +1466,12 @@ redefine style for checkbox .ion-checkmark:before {
     box-shadow: 0 2px 4px rgba(0, 0, 0, .30);
     padding: 24px 0;
 }
+
 .fermata-row-description {
     text-align: center;
     width: 100%;
 }
+
 .fermata-row-description h3 {
     font-size: 15px;
     font-weight: 200;
@@ -1264,84 +1479,106 @@ redefine style for checkbox .ion-checkmark:before {
     text-transform: uppercase;
     margin: 0 auto;
 }
+
 .card-ttstop {
     margin: 10px 8px !important;
     padding: 10px;
     text-align: center;
 }
+
 .font-orari {
     font-size: 36px !important;
 }
 
+
 /* Bookmarks */
+
 .bookmark-row {
     padding-left: 0;
 }
+
 .bookmark-list {
     width: 100%;
 }
+
 .bookmark-item h6 {
     color: dimgray;
     font-size: 15px;
 }
+
 .bookmark-item h3 {
     font-weight: 100;
     font-size: 18px;
 }
+
 .full-screen-swapper {
     margin-bottom: 0 !important;
     margin-left: 4px !important;
     margin-right: 4px !important;
     margin-top: 65px !important;
 }
+
 .bookmark-item-lines {
     margin: 0 !important;
     padding: 20px 0 !important;
 }
+
 .bookmarks-label {
     font-size: 16px !important;
     text-transform: uppercase;
     font-weight: 200px;
 }
 
+
 /*
 .item-content {
     padding: 0 !important;
 }
 */
+
 .bookmark-item-stops {
     margin-bottom: 20px !important;
 }
+
 .bookmark-stop-title {
     font-size: 14px !important;
     text-transform: uppercase;
     font-weight: 300 !important;
     color: #fff;
 }
+
 .bookmark-stop-row {
     padding: 14px !important;
 }
 
+
 /*TimePicker style*/
+
 .ionic_timepicker_popup .heading {
     background-color: #1e64ae !important;
 }
+
 .ionic_timepicker_popup .button_set {
     background-color: #1e64ae !important;
 }
+
 .ionic_timepicker_popup .button_close {
     background-color: #1e64ae !important;
 }
+
 .time-picker-button {
     color: white;
     float: right;
     margin-right: 5%;
 }
+
 .heading {
     line-height: 44px !important;
 }
 
+
 /*Template style for IOS */
+
 
 /*
 .platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) {
@@ -1352,38 +1589,47 @@ redefine style for checkbox .ion-checkmark:before {
     top: 90px !important;
 }
 */
+
 .ride h2,
 .ride h3 {
     font-size: 18px !important;
     font-weight: 100;
 }
+
 .tab-item {
     max-width: 400px !important;
 }
+
 .card.bookmark .item .tabs {
     background-color: #fefefe !important;
     border-color: #fefefe !important;
 }
+
 .bar {
     box-shadow: none !important;
 }
+
 .tabs-positive .tabs {
     background-color: #1e64ae !important;
     border-color: #1e64ae !important;
     height: 56px !important;
 }
+
 .bar .buttons-left span,
 .bar .buttons-right span {
     margin-top: -5px !important;
 }
+
 .bar .buttons-right button.ion-ios-star-outline {
     margin-top: 5px !important;
 }
+
 #settings {
     height: 100%;
     /*    background-color: #509FD7;
     */
 }
+
 #settings .full-screen {
     position: absolute;
     top: 0;
@@ -1392,17 +1638,112 @@ redefine style for checkbox .ion-checkmark:before {
     right: 0;
     margin: auto;
 }
+
 #settings .settings-choose-mode {
     margin-left: 40px;
     margin-right: 40px;
     margin-top: 20px;
     margin-bottom: 20px;
     text-align: center;
+    height: 100px;
+    line-height: 100px;
 }
-#settings .startup-choose-mode {
+
+#settings .settings-choose-mode span {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+    font-size: 18px;
+}
+
+#settings .settings-choose-choices {
+    border-width: 1px 0px 1px 0px;
+    border-style: solid;
+    font-size: 16px;
+    border-color: lightgrey;
+}
+
+#startup .startup-choose-mode {
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    height: 200px;
+    line-height: 200px;
     background-color: #509FD7;
     color: white;
 }
+
+#startup .startup-choose-mode div {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+    height: 100%;
+}
+
+#startup .startup-choose-button {
+    padding-left: 40px;
+    padding-right: 40px;
+    text-align: center;
+    height: 100px;
+    line-height: 100px;
+    background-color: #509FD7;
+    color: white;
+    height: 100%;
+    padding-top: 30px;
+}
+
+#startup .radio-startup .item-content {
+    white-space: normal;
+}
+
+#startup .button-begin {
+    color: #fff;
+    background-color: #1e64ae;
+    border-radius: 12px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+#startup .scroll-content {
+    height: 100%;
+}
+
+#startup .scroll-content > div {
+    height: 100%;
+}
+
+#startup .scroll-content > div > div {
+    height: 100%;
+}
+
+#startup .startup-label-title {
+    font-size: 18px;
+    position: relative;
+    top: 8px;
+}
+
+#startup .startup-label-intro {
+    font-size: 18px;
+    position: relative;
+    top: 10px;
+}
+
+#startup .startup-label-string {
+    font-size: 14px;
+    position: relative;
+    top: 30px;
+}
+
+#startup .startup-radio-text {
+    font-weight: bold;
+}
+
+#startup .startup-radio-sub {}
+
 .button-clear.button-save {
     width: auto;
     min-width: 0px!important;
