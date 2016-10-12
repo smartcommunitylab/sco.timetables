@@ -1,6 +1,6 @@
 angular.module('viaggia.controllers.settings', [])
 
-.controller('SettingsCtrl', function ($scope, $filter, $state, $ionicHistory, settingsSrv) {
+.controller('SettingsCtrl', function ($scope, $filter, $state, $ionicHistory, Toast, settingsSrv) {
     $scope.title = $filter('translate')('settings_title');
     $scope.accessibilityChooses = settingsSrv.getAllAccessibilityMode();
     $scope.data = {
@@ -14,5 +14,6 @@ angular.module('viaggia.controllers.settings', [])
             disableBack: true
         });
         $state.go("app.home");
+        Toast.show($filter('translate')('setting_saved_toast'), "short", "bottom");
     }
 });

@@ -420,7 +420,8 @@ angular.module('viaggia', [
             startup_button: "Inizia",
             error_select_type_accessibility_feedback: 'Per visualizzare un percorso accessibile è necessario selezionare i mezzi pubblici o a piedi',
             not_acc_label: 'Questa linea non è accessibile',
-            startup_save: 'SALVA'
+            startup_save: 'SALVA',
+            setting_saved_toast: 'Nuova configurazione salvata correttamente'
 
         });
 
@@ -610,7 +611,8 @@ angular.module('viaggia', [
             startup_button: "Begin",
             error_select_type_accessibility_feedback: 'In order to get an accessible route, you must select public transport or foot',
             not_acc_label: 'This line is not accessible',
-            startup_save: 'SAVE'
+            startup_save: 'SAVE',
+            setting_saved_toast: 'The new configuration has been saved'
         });
 
 

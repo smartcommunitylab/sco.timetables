@@ -526,9 +526,11 @@ line-height: 44px;
 }
 */
 
+/*
 .nav-buttons-lat {
     margin-top: 5px;
 }
+*/
 
 .placeautocomplete ul {
     position: absolute;
@@ -1615,13 +1617,19 @@ redefine style for checkbox .ion-checkmark:before {
     height: 56px !important;
 }
 
+
+/*
 .bar .buttons-left span,
 .bar .buttons-right span {
     margin-top: -5px !important;
-}
+}*/
 
 .bar .buttons-right button.ion-ios-star-outline {
     margin-top: 5px !important;
+}
+
+.button-home {
+    margin-top: -5px !important;
 }
 
 #settings {

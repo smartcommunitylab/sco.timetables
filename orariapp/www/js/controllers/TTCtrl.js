@@ -873,7 +873,7 @@ angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
             return $scope.flagAccessibility ? 'ic_access' : 'ic_access_outline';
         }
     })
-    .controller('TTMapCtrl', function ($scope, $rootScope, $state, $stateParams, $timeout, $ionicModal, $ionicPopup, $filter, ionicMaterialMotion, ionicMaterialInk, mapService, Config, ttService, GeoLocate, Toast) {
+    .controller('TTMapCtrl', function ($scope, $rootScope, $state, $stateParams, $timeout, $ionicModal, $ionicPopup, $filter, ionicMaterialMotion, ionicMaterialInk, mapService, Config, ttService, GeoLocate, Toast, profileService) {
         $scope.allMarkers = null;
 
         var mapData = ttService.getTTMapData();
@@ -881,13 +881,37 @@ angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
         $scope.markerIcon = mapData.markerIcon;
         $scope.icon = mapData.icon;
         $scope.title = mapData.title;
-        $scope.routeIds = [];
-
+        $scope.ref = mapData.ref;
+        $scope.flagAccessibility = profileService.getAccessibility();
+        $scope.accessibilityStyle = getAccessibilityStyle($scope.ref);
+        if (!$scope.accesibilityKnow) {
+            $scope.flagAccessibility = false;
+        }
         var MAX_MARKERS = 20;
         $scope.$on('leafletDirectiveMap.ttMap.moveend', function (event) {
             $scope.filterMarkers();
         });
 
+
+        function getAccessibilityStyle(ref) {
+
+            //check if bus or train
+            if (ref === 'urbano') {
+                $scope.accesibilityKnow = true;
+            } else {
+                $scope.accesibilityKnow = false;
+            }
+            return $scope.flagAccessibility ? 'ic_access' : 'ic_access_outline';
+
+        }
+
+        $scope.toggleAccessibility = function () {
+
+            $scope.flagAccessibility = !$scope.flagAccessibility;
+            $scope.accessibilityStyle = getAccessibilityStyle($scope.ref);
+            $scope.filterMarkers(true);
+            profileService.setAccessibility($scope.flagAccessibility);
+        }
         var getAgencies = function () {
             var res = [];
             $scope.elements.forEach(function (e) {
@@ -896,21 +920,26 @@ angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
             return res;
         };
 
-        $scope.filterMarkers = function () {
+        $scope.filterMarkers = function (accessibility) {
             Config.loading();
             mapService.getMap('ttMap').then(function (map) {
                 var currBounds = map.getBounds();
-                if ($scope.allMarkers == null) {
+                if ($scope.allMarkers == null || accessibility) {
                     var agencyIds = getAgencies();
                     var list = ttService.getStopData(agencyIds);
                     var markers = [];
                     for (var i = 0; i < list.length; i++) {
+                        if (list[i].wheelChairBoarding == 1 || !$scope.flagAccessibility) {
+                            var iconUrl = 'img/' + $scope.markerIcon + '.png';
+                        } else {
+                            var iconUrl = 'img/ic_urbanBus_no_acc.png';
+                        }
                         markers.push({
                             stop: list[i],
                             lat: parseFloat(list[i].coordinates[0]),
                             lng: parseFloat(list[i].coordinates[1]),
                             icon: {
-                                iconUrl: 'img/' + $scope.markerIcon + '.png',
+                                iconUrl: iconUrl,
                                 iconSize: [36, 50],
                                 iconAnchor: [18, 50],
                                 popupAnchor: [-0, -50]
@@ -956,7 +985,7 @@ angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
                         zoom: 18
                     };
                 }, function () {
-                    $scope.filterMarkers();
+                    $scope.filterMarkers(false);
                 });
 
             });
@@ -970,12 +999,21 @@ angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
             $state.go('app.ttstop', {
                 stopId: $scope.popupStop.id,
                 agencyId: $scope.popupStop.agencyId,
-                ref: mapData.ref,
-                routeId: "Map"
+                ref: mapData.ref
             });
-        };
+        }
 
-        $scope.navigate = function () {};
+        $scope.navigate = function () {
+            planService.setPlanConfigure({
+                to: {
+                    name: $scope.popupStop.name,
+                    lat: $scope.popupStop.coordinates[0],
+                    long: $scope.popupStop.coordinates[1]
+                },
+            });
+            planService.setName('to', $scope.popupStop.name);
+            $state.go('app.plan');
+        };
 
         $scope.$on('leafletDirectiveMarker.ttMap.click', function (e, args) {
             var showPopup = function () {
@@ -988,12 +1026,16 @@ angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
                         {
                             text: $filter('translate')('btn_close'),
                             type: 'button-close'
-                        },
+                    },
+                        {
+                            text: '<i class="icon ion-navigate"></i>',
+                            onTap: $scope.navigate,
+                },
                         {
                             text: '<i class="icon ion-android-time"></i>',
                             onTap: $scope.showStopData
-                        }
-                    ]
+                }
+            ]
                 });
             };
 
