@@ -421,7 +421,11 @@ angular.module('viaggia', [
             error_select_type_accessibility_feedback: 'Per visualizzare un percorso accessibile è necessario selezionare i mezzi pubblici o a piedi',
             not_acc_label: 'Questa linea non è accessibile',
             startup_save: 'SALVA',
-            setting_saved_toast: 'Nuova configurazione salvata correttamente'
+            setting_saved_toast: 'Nuova configurazione salvata correttamente',
+            pop_up_expired_title: 'Versione scaduta',
+            pop_up__expired_template: 'Ci scusiamo ma non è più possibile utilizzare questa versione dell\'applicazione in quanto il periodo di prova è terminata',
+            pop_up_not_expired_title: 'Versione di prova',
+            pop_up_not_expired_template: 'Questa  è una versione di prova e terminerà il '
 
         });
 
@@ -612,7 +616,11 @@ angular.module('viaggia', [
             error_select_type_accessibility_feedback: 'In order to get an accessible route, you must select public transport or foot',
             not_acc_label: 'This line is not accessible',
             startup_save: 'SAVE',
-            setting_saved_toast: 'The new configuration has been saved'
+            setting_saved_toast: 'The new configuration has been saved',
+            pop_up_expired_title: 'Version expired',
+            pop_up__expired_template: 'The actual version of the app has expired',
+            pop_up_not_expired_title: 'Trial version',
+            pop_up_not_expired_template: 'The actual version of the app end on '
         });
 
 

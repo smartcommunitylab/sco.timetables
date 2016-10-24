@@ -312,6 +312,10 @@ angular.module('viaggia.services.conf', [])
             //          }, function(err) {
             //            console.log('Logging error: ', err);
             //          });
+        },
+        getExpirationDate: function () {
+            return mapJsonConfig["expirationDate"];
+
         }
     }
 })

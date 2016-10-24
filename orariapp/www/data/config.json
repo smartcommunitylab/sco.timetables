@@ -13,5 +13,6 @@
    ],
     "zoom_map": 15,
     "db_version": 25,
-    "accessibility": true
+    "accessibility": true,
+    "expirationDate": "15-11-2016"
 }
