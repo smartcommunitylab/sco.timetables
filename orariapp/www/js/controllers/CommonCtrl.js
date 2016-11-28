@@ -158,7 +158,8 @@ angular.module('viaggia.controllers.common', [])
     var questionnaireWindow = null;
     var processThat = false;
 
-    var url = 'https://in-app.welive.smartcommunitylab.it/html/index.html?app=' + Config.getWeLiveAppId() + '&pilotId=Trento&callback=http://localhost' + '&lang=' + $translate.use().toUpperCase();
+    var url = 'https://in-app.cloudfoundry.welive.eu/html/index.html?app=' + Config.getWeLiveAppId() + '&pilotId=Trento&callback=http://localhost' + '&lang=' + $translate.use().toUpperCase();
+    $translate.use().toUpperCase();
 
     //Open the questionnaire page in the InAppBrowser
     if (!questionnaireWindow) {

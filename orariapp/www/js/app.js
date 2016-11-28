@@ -418,6 +418,7 @@ angular.module('viaggia', [
       settings_choose_standard_subtext: "Ottimizzata per utenti con diverse capacità visive.",
       startup_select_intro: "Configura la tua app!",
       startup_select_label: "Scegli la modalità di visualizzazione della app (in seguito potrai modificare questa impostazione dal menù):",
+      setting_select_label: "Scegli la modalità di visualizzazione della app :",
       startup_button: "Inizia",
       error_select_type_accessibility_feedback: 'Per visualizzare un percorso accessibile è necessario selezionare i mezzi pubblici o a piedi',
       not_acc_label: 'Questa linea non è accessibile',
