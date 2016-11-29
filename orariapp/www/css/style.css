@@ -1626,7 +1626,7 @@ redefine style for checkbox .ion-checkmark:before {
 }*/
 
 .bar .buttons-right button.ion-ios-star-outline {
-  margin-top: 5px !important;
+  /*  margin-top: 5px !important;*/
 }
 
 .button-home {

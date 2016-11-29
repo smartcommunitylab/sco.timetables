@@ -1,43 +1,43 @@
 <ion-modal-view>
-    <ion-header-bar align-title="center" class="bar-positive-100">
-        <div class="buttons">
-            <i class="icon close-modal" ng-class="{'ion-android-arrow-back': platform.isAndroid(), 'ion-ios-arrow-back': !platform.isAndroid()}" ng-click="closeCredits()"></i>
-        </div>
-        <h1 class="title">Credits</h1>
+  <ion-header-bar align-title="center" class="bar-positive-100">
+    <div class="buttons">
+      <i class="icon close-modal" ng-class="{'ion-android-arrow-back': platform.isAndroid(), 'ion-ios-arrow-back': !platform.isAndroid()}" ng-click="closeCredits()"></i>
+    </div>
+    <div class="title">Credits</div>
 
-    </ion-header-bar>
-    <ion-content class="padding">
-        <div class="row">
-            <div class="col">
-                <div class="credits_title">{{'app_name'|translate}}</div>
-            </div>
-        </div>
-        <div class="row credits_row version">
-            <div class="col credits_version" ng-bind-html="version"></div>
-            <span></span>
-        </div>
-        <div class="row credits_row">
-            <div class="col col-center">
-                <a href="#" onclick="window.open('http://www.comune.trento.it/', '_system', 'location=yes'); return false;"><img class="image center" src="img/credits/TN_logo.png" width="100%" />
-                </a>
-            </div>
-            <!--</div>-->
-            <!--<div class="row credits_row">-->
-            <div class="col col-center">
-                <a href="#" onclick="window.open('http://www.welive.eu', '_system', 'location=yes'); return false;"><img class="image center" src="img/credits/weLive_logo.png" width="63%" />
-                </a>
-            </div>
-        </div>
-        <div style="text-align:center">
-            <div class="col">
-                <p ng-bind-html="credits_info_p1"></p>
-            </div>
-        </div>
-        <div class="row credits_row" style="text-align:center;">
-            <div class="col col-center">
-                <a href="#" onclick="window.open('http://europa.eu/index_en.htm', '_system', 'location=yes'); return false;"><img class="image center" src="img/credits/EU_logo.png" width="40%" />
-                </a>
-            </div>
-        </div>
-    </ion-content>
+  </ion-header-bar>
+  <ion-content class="padding">
+    <div class="row">
+      <div class="col">
+        <div class="credits_title">{{'app_name'|translate}}</div>
+      </div>
+    </div>
+    <div class="row credits_row version">
+      <div class="col credits_version" ng-bind-html="version"></div>
+      <span></span>
+    </div>
+    <div class="row credits_row">
+      <div class="col col-center">
+        <a href="#" onclick="window.open('http://www.comune.trento.it/', '_system', 'location=yes'); return false;"><img class="image center" src="img/credits/TN_logo.png" width="100%" />
+        </a>
+      </div>
+      <!--</div>-->
+      <!--<div class="row credits_row">-->
+      <div class="col col-center">
+        <a href="#" onclick="window.open('http://www.welive.eu', '_system', 'location=yes'); return false;"><img class="image center" src="img/credits/weLive_logo.png" width="63%" />
+        </a>
+      </div>
+    </div>
+    <div style="text-align:center">
+      <div class="col">
+        <p ng-bind-html="credits_info_p1"></p>
+      </div>
+    </div>
+    <div class="row credits_row" style="text-align:center;">
+      <div class="col col-center">
+        <a href="#" onclick="window.open('http://europa.eu/index_en.htm', '_system', 'location=yes'); return false;"><img class="image center" src="img/credits/EU_logo.png" width="40%" />
+        </a>
+      </div>
+    </div>
+  </ion-content>
 </ion-modal-view>

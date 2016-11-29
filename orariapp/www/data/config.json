@@ -1,7 +1,7 @@
 {
   "apptoken": "oraritrento",
   "appid": "trento",
-  "appversion": "1.0.0",
+  "appversion": "0.2.0",
   "appname": "Trento Orari Trasporti",
   "serverURL": "https://tn.smartcommunitylab.it/core.mobility",
   "contact_link": "mailto:viaggia@smartcommunitylab.it?subject=OrariTrento:%20segnalazione%20problema",
