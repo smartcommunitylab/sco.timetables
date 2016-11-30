@@ -53,8 +53,9 @@ angular.module('viaggia.services.conf', [])
         return '#000';
     };
 
-    var weliveAppId = 'trento_transporttimes';
-    //var weliveLoggingToken = LOGGING_TOKEN;
+    var weliveAppId = 'OrariTrasporti';
+    var weliveAppName = 'Trento Orari Trasporti';
+    var weliveLoggingToken = LOGGING_TOKEN;
 
     var HTTP_CONFIG = {
         timeout: 5000
@@ -298,20 +299,20 @@ angular.module('viaggia.services.conf', [])
             return ttJsonConfig.stopVisualization[agencyId];
         },
         isDarkColor: isDarkColor,
-        log: function (type, customAttrs) {
-            //          if (customAttrs == null) customAttrs = {};
-            //          customAttrs.uuid = ionic.Platform.device().uuid;
-            //          customAttrs.appname = mapJsonConfig['appname'];
-            //          $http.post('https://dev.welive.eu/dev/api/log/'+weliveAppId,{
-            //            appId: weliveAppId,
-            //            type: type,
-            //            timestamp: new Date().getTime(),
-            //            custom_attr: customAttrs
-            //          },{headers:{Authorization:'Bearer '+weliveLoggingToken}})
-            //          .then(function(){
-            //          }, function(err) {
-            //            console.log('Logging error: ', err);
-            //          });
+        log: function(type, customAttrs) {
+          if (customAttrs == null) customAttrs = {};
+          customAttrs.uuid = ionic.Platform.device().uuid;
+          customAttrs.appname = weliveAppName;
+          $http.post('https://dev.welive.eu/dev/api/log/'+weliveAppId,{
+            appId: weliveAppId,
+            type: type,
+            timestamp: new Date().getTime(),
+            custom_attr: customAttrs
+          },{headers:{Authorization:'Bearer '+weliveLoggingToken}})
+          .then(function(){
+          }, function(err) {
+            console.log('Logging error: ', err);
+          });
         },
         getExpirationDate: function () {
             return mapJsonConfig["expirationDate"];
