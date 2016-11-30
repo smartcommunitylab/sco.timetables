@@ -110,7 +110,7 @@ angular.module('viaggia.services.bookmarks', [])
         resultTitle = tokens.join(delimiter); //remove first part could be different and keep only the last part
         tokens = list[i].state.split(delimiter).slice(start);
         resultBookmarks = tokens.join(delimiter);
-        if (resultTitle == resultBookmarks && list[i].routeId == null) return i;
+        if (resultTitle == resultBookmarks && (list[i].routeId == null || list[i].routeId == "")) return i;
       }
       return -1;
     },

@@ -13,7 +13,7 @@
       <div class="full-screen-swapper" ng-if="tab == 0">
 
         <ion-item class="item-icon-left bookmark-item bookmark-item-stops" ng-class="{'bookmark-margin':!showReorder}" item="item" ng-repeat="m in bookmarks track by $index" ng-last-repeat="bookmarks" ng-if="m.type.indexOf('STOP') > -1" aria-label="Linea {{title[$index]}}. Fermata: {{m.label}}. Clicca per visualizzare gli orari.">
-          <div class="row bookmark-stop-row" ng-style="{'background-color':m.color}" ng-init="thereIsALine()">
+          <div class="row bookmark-stop-row" ng-if="m.color" ng-style="{'background-color':m.color}" ng-init="thereIsALine()">
             <h3 class="bookmark-stop-title disableFocusItem">LINEA {{title[$index]}}</h3>
           </div>
           <div class="row stop-row" aria-label="Clicca per visualizzare gli orari" ng-click="showStopData($index)">
@@ -70,31 +70,9 @@
           <h4 class="disableFocusItem">{{'no_data' | translate}}</h4>
         </div>
       </div>
-
     </ion-list>
 
   </div>
 
-  <!--<ion-list class="bookmark-list" can-swipe="true" show-reorder="showReorder">
-                <!--            <ion-item id="focusHere" class="item-icon-left" ng-class="{'bookmark-margin':!showReorder}" item="item" ng-repeat="m in bookmarks track by $index" ng-last-repeat="bookmarks" ng-click="go(m.state)">
-                <ion-item id="focusHere" class="item-icon-left" ng-class="{'bookmark-margin':!showReorder}" item="item" ng-repeat="m in bookmarks track by $index" ng-click="go(m.state)">
-                    <h2>
-              <i class="icon img" ng-class="m.icon" style="{{'color: '+m.color}}"></i>
-              <span>{{m.label | translate}}</span>
-            </h2>
-                    <ion-option-button ng-if="m.removable" class="button button-clear" ng-click="delete($index, $event)"><i class="icon ion-android-delete"></i></ion-option-button>
-                    <ion-reorder-button class="button button-clear ion-drag" on-reorder="reorder($fromIndex, $toIndex)"></ion-reorder-button>
-                </ion-item>
-            </ion-list><
-    -->
-
-
-
-  <!--
-  <div ng-if="(!bookmarks || bookmarks.length == 0)" class="text-center" aria-label="{{'no_data'|translate}}" role="alert">
-    <h4 class="disableFocusItem">{{'no_data' | translate}}</h4>
-  </div>
--->
-  <!--  </div>-->
 
 </ion-content>

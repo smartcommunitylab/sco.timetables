@@ -12,36 +12,36 @@ angular.module('viaggia.controllers.bookmarks', [])
     $scope.tab = $index;
     console.log("Tab Index Changed in", $scope.tab);
   };
-  $scope.thereIsAStop = function () {
-    $scope.noStop = false;
-  }
-  $scope.thereIsALine = function () {
-      $scope.noLine = false;
-    }
-    //  $scope.$on('$ionicView.beforeEnter', function () {
-    //    ('alert 2');
-    //  });
-  $rootScope.$watch('bookmarksListDirty', function (a, b) {
-    if (a != null && b != a) {
-      console.log('alert');
-      $rootScope.bookmarksListDirty = null;
-    }
-  });
+  //  $scope.thereIsAStop = function () {
+  //    $scope.noStop = false;
+  //  }
+  //  $scope.thereIsALine = function () {
+  //      $scope.noLine = false;
+  //    }
+  //  $scope.$on('$ionicView.beforeEnter', function () {
+  //    ('alert 2');
+  //  });
+  //  $rootScope.$watch('bookmarksListDirty', function (a, b) {
+  //    if (a != null && b != a) {
+  //      console.log('alert');
+  //      $rootScope.bookmarksListDirty = null;
+  //    }
+  //  });
   $scope.init = function () {
     Config.init().then(function () {
       bookmarkService.getBookmarks().then(function (list) {
-        //        $scope.bookmarks = list;
-        //        for (var i = 0; i < $scope.bookmarks.length; i++) {
-        //          if ($scope.bookmarks[i].type == 'STOP') {
-        //            $scope.noStop = false;
-        //          }
-        //          if ($scope.bookmarks[i].type != 'STOP') {
-        //            $scope.noLine = false;
-        //          }
-        //        }
+        bookmarks = list;
+        for (var i = 0; i < bookmarks.length; i++) {
+          if (bookmarks[i].type == 'STOP') {
+            $scope.noStop = false;
+          }
+          if (bookmarks[i].type != 'STOP') {
+            $scope.noLine = false;
+          }
+        }
         //        $scope.noLine = false;
         //        $scope.noStop = false;
-        console.log($scope.bookmarks);
+        //console.log(bookmarks);
         $scope.getBookmarkTitle(list);
       });
     });
@@ -54,9 +54,14 @@ angular.module('viaggia.controllers.bookmarks', [])
     for (var key in list) {
       var stop = list[key];
       if (stop.type.indexOf("TRAIN") < 0 && stop.type.indexOf("TRANSIT") < 0) {
-        var split = stop.data.split(":");
-        $scope.title.push(split[0].trim() + " - " + Config.getNewDestination(split[1]));
+        if (stop.data.indexOf(":") > 0) {
+          var split = stop.data.split(":");
+          $scope.title.push(split[0].trim() + " - " + Config.getNewDestination(split[1]));
+        } else {
+          $scope.title.push(stop.data);
+        }
       } else {
+        //$scope.title.push(Config.getNewDestination(stop.label));
         $scope.title.push(Config.getNewDestination(stop.data));
         console.log("PUSHED: ", Config.getNewDestination(stop.data));
       }

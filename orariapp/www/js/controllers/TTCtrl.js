@@ -1118,7 +1118,7 @@ angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
   })
 
 .controller('TTStopCtrl', function ($scope, $rootScope, $state, $stateParams, $timeout, $location, $ionicPopup, $filter, ionicMaterialMotion, ionicMaterialInk, Config, ttService, bookmarkService, stopNameSrv) {
-
+  $scope.bookmarkStyle = bookmarkService.getBookmarkStyle($location.path());
   var group = Config.getTTData($stateParams.ref, $stateParams.agencyId, $stateParams.groupId);
   if (group && group.color) $scope.color = group.color;
 
@@ -1192,7 +1192,15 @@ angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
       // $scope.bookmarkStyle = style;
     });
   };
+  $scope.bookmarkNoAccStop = function () {
+    var ref = Config.getTTData($stateParams.ref);
+    var transportType = ($stateParams.groupId == 'Funivia') ? 'TRANSIT' : ref.transportType;
+    $rootScope.bookmarksListDirty = true;
 
+    bookmarkService.toggleBookmark($location.path(), $scope.stopData.name, transportType + 'STOP', $scope.title, $scope.title, null, $scope.stopData.id, $stateParams.routeId, true).then(function (style) {
+      $scope.bookmarkStyle = style;
+    });
+  };
   $scope.openDirectionPopup = function (index) {
 
     $scope.selectedStop = stopNameSrv.getStop(index);
