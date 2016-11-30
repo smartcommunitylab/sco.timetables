@@ -51,14 +51,14 @@ angular.module('viaggia.controllers.home', [])
     $rootScope.viewTitle = $filter('translate')(titles[tab]);
   }
   $scope.action = function () {
-    if ($scope.tab == 2) $rootScope.forceTutorial();
+    if ($scope.homeTab == 2) $rootScope.forceTutorial();
     else $scope.showMap();
   }
   $scope.go = function (state) {
     $location.path(state);
   }
   $scope.showMap = function () {
-    var ref = refs[$scope.tab];
+    var ref = refs[$scope.homeTab];
     var data = Config.getTTData(ref);
     var vis = {
       title: $scope.viewTitle,

@@ -330,7 +330,7 @@ angular.module('viaggia', [
       btn_nav_to: 'Indicazioni stradali',
       btn_next_trips: 'Vedi prossimi orari',
       lbl_stop: 'Fermata',
-      err_too_many_markers: 'Too many objects on the map. Please zoom in.',
+      err_too_many_markers: 'Troppi oggetti da visualizzare. Si prega di aumentare lo zoom della mappa.',
       lbl_lines: 'Corse:',
       lbl_line: 'Linea',
       popup_delete_trip_message: 'Sicuro di voler eleminare il viaggio salvato?',
