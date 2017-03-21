@@ -18,9 +18,10 @@ angular.module('viaggia.controllers.bookmarks', [])
   //  $scope.thereIsALine = function () {
   //      $scope.noLine = false;
   //    }
-  //  $scope.$on('$ionicView.beforeEnter', function () {
-  //    ('alert 2');
-  //  });
+  // $scope.$on('$ionicView.beforeEnter', function () {
+  //   init();
+  // });
+
   //  $rootScope.$watch('bookmarksListDirty', function (a, b) {
   //    if (a != null && b != a) {
   //      console.log('alert');
@@ -32,10 +33,9 @@ angular.module('viaggia.controllers.bookmarks', [])
       bookmarkService.getBookmarks().then(function (list) {
         bookmarks = list;
         for (var i = 0; i < bookmarks.length; i++) {
-          if (bookmarks[i].type == 'STOP') {
+          if (bookmarks[i].type.endsWith('STOP')) {
             $scope.noStop = false;
-          }
-          if (bookmarks[i].type != 'STOP') {
+          } else {
             $scope.noLine = false;
           }
         }

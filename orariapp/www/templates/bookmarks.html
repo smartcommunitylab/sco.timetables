@@ -46,7 +46,7 @@
           <ion-option-button ng-if="m.removable" class="button button-clear" ng-click="delete($index, $event)" aria-label="Elimina dai preferiti" role="button"><i class="icon ion-android-delete disableFocusItem"></i></ion-option-button>
           <ion-reorder-button class="button button-clear ion-drag" on-reorder="reorder($fromIndex, $toIndex)"></ion-reorder-button>
         </ion-item>
-        <div ng-if="noLine || noStop" class="text-center" aria-label="{{'no_data'|translate}}" role="alert">
+        <div ng-if="noLine" class="text-center" aria-label="{{'no_data'|translate}}" role="alert">
           <h4 class="disableFocusItem">{{'no_data' | translate}}</h4>
         </div>
       </div>
