@@ -6,7 +6,7 @@ angular.module('viaggia.controllers.bookmarks', [])
   $scope.noLine = true;
   $scope.noStop = true;
   $scope.tab = 0;
-  $scope.tabs = ["FERMATE", "LINEE"];
+  $scope.tabs = [$filter('translate')('lbl_stops'), $filter('translate')('lbl_lines')];
 
   $scope.select = function ($index) {
     $scope.tab = $index;

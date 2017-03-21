@@ -9,7 +9,7 @@
   </ion-nav-buttons>
   <ion-tabs class="tabs-icon-only tabs-positive" role="tablist" delegate-handle="homeTabs">
 
-    <ion-tab icon="ic_urban-bus" on-select="select(0)" aria-label="Orari Urbani" title="Orari urbani" role="tab">
+    <ion-tab icon="ic_urban-bus" on-select="select(0)" aria-label="Orari Urbani" title={{'menu_real_time_bus_urban'|translate}} role="tab">
       <ion-view ng-if="homeTab == 0">
         <ion-content has-header="true" ng-controller="TTRouteListCtrl" ng-init="init('urbano')">
           <div ng-include="'templates/ttroutelist.html'"></div>
@@ -17,7 +17,7 @@
       </ion-view>
     </ion-tab>
 
-    <ion-tab icon="ic_train" on-select="select(1)" aria-label="Orari Treni" title="Orari treni" role="tab">
+    <ion-tab icon="ic_train" on-select="select(1)" aria-label="Orari Treni" title={{'menu_real_time_train'|translate}} role="tab">
       <ion-view ng-if="homeTab == 1">
         <ion-content has-header="true" ng-controller="TTRouteListCtrl" ng-init="init('trains')">
           <div ng-include="'templates/ttroutelist.html'"></div>
@@ -25,7 +25,7 @@
       </ion-view>
     </ion-tab>
 
-    <ion-tab icon="ion-ios-star" on-select="select(2)" aria-label="Preferiti" title="Preferiti" role="tab">
+    <ion-tab icon="ion-ios-star" on-select="select(2)" aria-label="Preferiti" title={{'menu_bookmarks'|translate}} role="tab">
       <ion-view ng-if="homeTab == 2">
         <div ng-include="'templates/bookmarks.html'" ng-controller="BookmarksCtrl" ng-init="init()"></div>
       </ion-view>

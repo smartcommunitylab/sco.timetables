@@ -9,8 +9,9 @@ angular.module('viaggia.controllers.busRide', ['ionic', 'ionic-timepicker'])
         , closeLabel: 'Chiudi'
     };
     ionicTimePickerProvider.configTimePicker(timePickerObj);
-})
-.controller('BusRideCtrl', function ($scope, $stateParams, $timeout, ionicTimePicker, ttService, GeoLocate) {
+    })
+    
+.controller('BusRideCtrl', function ($scope, $stateParams, $timeout, ionicTimePicker, ttService, GeoLocate, $filter) {
 
     var ipObj1 = {
         callback: function (val) {
@@ -23,6 +24,8 @@ angular.module('viaggia.controllers.busRide', ['ionic', 'ionic-timepicker'])
                 //console.log("H: ", selectedTime.getUTCHours(), " M: ", selectedTime.getUTCMinutes());
             }
         }
+        , setLabel: $filter('translate')('pop_up_ok')
+        , closeLabel: $filter('translate')('pop_up_cancel')
     };
     
     $scope.currentTime = function () {

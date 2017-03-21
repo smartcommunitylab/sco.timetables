@@ -19,16 +19,16 @@
                     <a><i class="icon ion-arrow-right-b disableFocusItem"></i></a>
                 </div>
             </div>
-            <h6 class="bus-ride-text">Fermata più vicina</h6>
+            <h6 class="bus-ride-text">{{'lbl_near_stop'|translate}}</h6>
             <div class="card ride" aria-label="Linea {{title}}. Fermata più vicina: {{nearestStop.name}}. Ora di Arrivo: {{nearestStopTime | number: 2}}. Servizio disabili {{nearestStop.wcAvailable}}">
                 <div class="item item-text-wrap no-padding-item">
                     <div class="row stop-row">
                         <div class="col col-64">
-                            <h6 class="disableFocusItem">Fermata</h6>
+                            <h6 class="disableFocusItem">{{'lbl_stop' | translate}}</h6>
                             <h3 class="disableFocusItem">{{nearestStop.name}}</h3>
                         </div>
                         <div class="col distance-col">
-                            <h6 class="disableFocusItem">Ora di arrivo</h6>
+                            <h6 class="disableFocusItem">{{'lbl_ora' | translate}}</h6>
                             <h2 class="disableFocusItem">{{nearestStopTime | date:'HH.mm'}}</h2>
                         </div>
                     </div>
@@ -54,17 +54,17 @@
                     </div>
                 </div>
             </div>
-            <h6 class="bus-ride-text">Elenco fermate</h6>
+            <h6 class="bus-ride-text">{{'lbl_stop_list | translate'}}</h6>
 
             <div class="card ride ride-card" ng-repeat="stop in arrayOfStops" aria-label="Linea {{title}}. Fermata: {{stop.name}}. Ora di Arrivo: {{stop.times[0] | date:'HH.mm'}}. Servizio disabili {{stop.wcAvailable}}">
                 <div class="item item-text-wrap no-padding-item">
                     <div class="row stop-row">
                         <div class="col col-64">
-                            <h6 class="disableFocusItem">Fermata</h6>
+                            <h6 class="disableFocusItem">{{'lbl_stop' | translate}}</h6>
                             <h2 class="disableFocusItem">{{stop.name}}</h2>
                         </div>
                         <div class="col">
-                            <h6 class="disableFocusItem">Ora di Arrivo</h6>
+                            <h6 class="disableFocusItem">{{'lbl_ora' | translate}}</h6>
                             <h2 class="disableFocusItem">{{stop.times[0] | date:'HH.mm'}}</h2>
                         </div>
                     </div>
@@ -97,9 +97,9 @@
         </ion-content>
 
         <ion-tabs class="tabs-icon-only tabs-positive" role="tablist">
-            <ion-tab ng-click="prevRide()" icon="ion-arrow-left-b" aria-label="Corsa precedente" title="Corsa precedente" role="tab"></ion-tab>
-            <ion-tab icon="ion-ios-clock-outline" ng-click="openTimePicker()" aria-label="Inserisci ora" title="Inserisci ora" role="tab"></ion-tab>
-            <ion-tab ng-click="nextRide()" icon="ion-arrow-right-b" aria-label="Corsa successiva" title="Corsa successiva" role="tab"></ion-tab>
+            <ion-tab ng-click="prevRide()" icon="ion-arrow-left-b" aria-label="Corsa precedente" title="{{'lbl_prv_trip' | translate}}" role="tab"></ion-tab>
+            <ion-tab icon="ion-ios-clock-outline" ng-click="openTimePicker()" aria-label="Inserisci ora" title="{{'lbl_insert_time' | translate}}" role="tab"></ion-tab>
+            <ion-tab ng-click="nextRide()" icon="ion-arrow-right-b" aria-label="Corsa successiva" title="{{'lbl_next_trip' | translate}}" role="tab"></ion-tab>
         </ion-tabs>
     </div>
     <div>

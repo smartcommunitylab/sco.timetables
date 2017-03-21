@@ -405,6 +405,8 @@ angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
         getStopsList($scope.stopData, $scope.runningLineDate, 1);
       }
     }
+    , setLabel: $filter('translate')('pop_up_ok')
+    , closeLabel: $filter('translate')('pop_up_cancel')
   };
 
 
