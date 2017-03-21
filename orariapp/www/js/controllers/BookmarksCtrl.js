@@ -3,13 +3,12 @@ angular.module('viaggia.controllers.bookmarks', [])
 .controller('BookmarksCtrl', function ($scope, $rootScope, $location, $filter, $ionicHistory, $timeout, $ionicPopup, settingsSrv, $ionicListDelegate, $state, $ionicModal, Config, bookmarkService, stopNameSrv) {
   $scope.languageTutorial = "en";
   $scope.title = [];
-  $scope.noLine = true;
-  $scope.noStop = true;
   $scope.tab = 0;
   $scope.tabs = [$filter('translate')('lbl_stops'), $filter('translate')('lbl_lines')];
 
   $scope.select = function ($index) {
     $scope.tab = $index;
+    $scope.init();
     console.log("Tab Index Changed in", $scope.tab);
   };
   //  $scope.thereIsAStop = function () {
@@ -29,6 +28,9 @@ angular.module('viaggia.controllers.bookmarks', [])
   //    }
   //  });
   $scope.init = function () {
+    // default.
+    $scope.noLine = true;
+    $scope.noStop = true;
     Config.init().then(function () {
       bookmarkService.getBookmarks().then(function (list) {
         bookmarks = list;
