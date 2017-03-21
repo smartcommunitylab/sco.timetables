@@ -1120,7 +1120,14 @@ angular.module('viaggia.controllers.timetable', ['ionic', 'ionic-timepicker'])
   })
 
 .controller('TTStopCtrl', function ($scope, $rootScope, $state, $stateParams, $timeout, $location, $ionicPopup, $filter, ionicMaterialMotion, ionicMaterialInk, Config, ttService, bookmarkService, stopNameSrv) {
-  $scope.bookmarkStyle = bookmarkService.getBookmarkStyle($location.path());
+  
+  if ($stateParams.stopId) {
+    var stop = ttService.getStop($stateParams.agencyId, $stateParams.stopId);
+    $scope.bookmarkStyle = bookmarkService.getBookmarkStyleStop(stop.name, $stateParams.routeId);
+  } else {
+    $scope.bookmarkStyle = bookmarkService.getBookmarkStyle($location.path());
+  }
+  
   var group = Config.getTTData($stateParams.ref, $stateParams.agencyId, $stateParams.groupId);
   if (group && group.color) $scope.color = group.color;
 

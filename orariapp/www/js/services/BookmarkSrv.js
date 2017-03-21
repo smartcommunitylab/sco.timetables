@@ -104,9 +104,9 @@ angular.module('viaggia.services.bookmarks', [])
       var list = getBookmarks();
       for (var i = 0; i < list.length; i++) {
         // if (title == list[i].state) return i;
-        delimiter = '/',
-          start = 3,
-          tokens = title.split(delimiter).slice(start);
+        delimiter = '/';
+        start = 3;
+        tokens = title.split(delimiter).slice(start);
         resultTitle = tokens.join(delimiter); //remove first part could be different and keep only the last part
         tokens = list[i].state.split(delimiter).slice(start);
         resultBookmarks = tokens.join(delimiter);
