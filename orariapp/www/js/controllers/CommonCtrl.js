@@ -190,6 +190,11 @@ angular.module('viaggia.controllers.common', [])
             $scope.accepting = acceptStr != 'true';
         });
 
+        $scope.link = function () {
+            var url = 'https://secure.edps.europa.eu/EDPSWEB/webdav/site/mySite/shared/Documents/EDPS/DataProt/Legislation/Dir_1995_46_EN.pdf';
+            window.open(url, '_system', 'location=yes');
+        }
+
         $scope.acceptPrivacy = function () {
             localStorage["orariapp_isPrivacyAccepted"] = true;
             $ionicHistory.nextViewOptions({

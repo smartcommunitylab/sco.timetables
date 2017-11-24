@@ -20,7 +20,7 @@
             "hasMap": true,
             "markerIcon": "ic_train",
             "icon": "ic_train",
-            "transportType" : "TRAIN",
+            "transportType": "TRAIN",
             "elements": [
                 {
                     "agencyId": "5",
@@ -40,8 +40,8 @@
                             "color": "#cd251c",
                             "showTrips": true
                         }
-          ]
-        },
+                    ]
+                },
                 {
                     "agencyId": "6",
                     "color": "#cd251c",
@@ -60,8 +60,8 @@
                             "color": "#cd251c",
                             "showTrips": true
                         }
-          ]
-        },
+                    ]
+                },
                 {
                     "agencyId": "10",
                     "color": "#cd251c",
@@ -78,9 +78,9 @@
                             "color": "#cd251c",
                             "title": "Malé - Trento"
                         }
-          ]
-        }
-      ]
+                    ]
+                }
+            ]
         },
         "urbano": {
             "view": "grid",
@@ -88,7 +88,7 @@
             "hasMap": true,
             "markerIcon": "ic_urbanBus",
             "icon": "ic_urban-bus",
-            "transportType" : "BUS",
+            "transportType": "BUS",
             "elements": [
                 {
                     "agencyId": "12",
@@ -104,8 +104,8 @@
                                     "title": "P. Dante - Osp. S. Chiara - Clarina - P. Dante",
                                     "label": "A"
                                 }
-              ]
-            },
+                            ]
+                        },
                         {
                             "label": "B",
                             "color": "#717780",
@@ -116,8 +116,8 @@
                                     "title": "Piazza Dante - Laste - Piazza Dante",
                                     "label": "B"
                                 }
-              ]
-            },
+                            ]
+                        },
                         {
                             "label": "C",
                             "color": "#000000",
@@ -134,8 +134,8 @@
                                     "title": "RSA Angeli Custodi - RSA S. Bartolomeo",
                                     "label": "C"
                                 }
-              ]
-            },
+                            ]
+                        },
                         {
                             "label": "NP",
                             "color": "#7f8080",
@@ -146,8 +146,8 @@
                                     "title": "Navetta parcheggi: Ex Zuffo - Monte Baldo - Ex Zuffo",
                                     "label": "NP"
                                 }
-              ]
-            },
+                            ]
+                        },
                         {
                             "label": "1",
                             "color": "#1a3f6f",
@@ -164,8 +164,8 @@
                                     "title": "Sopramonte - P.Dante - Ospedale",
                                     "label": "1"
                                 }
-              ]
-            },
+                            ]
+                        },
                         {
                             "label": "2",
                             "color": "#d4592c",
@@ -176,8 +176,8 @@
                                     "title": "Piedicastello - Stazione - Osp. S. Chiara - Regione - Piedicastello",
                                     "label": "2"
                                 }
-              ]
-            },
+                            ]
+                        },
                         {
                             "label": "3",
                             "color": "#bf2c26",
@@ -194,8 +194,8 @@
                                     "title": "Villazzano 3 - P. Dante - Gardolo - Cortesano",
                                     "label": "3"
                                 }
-              ]
-            },
+                            ]
+                        },
                         {
                             "label": "4",
                             "color": "#0977b7",
@@ -212,8 +212,8 @@
                                     "title": "Madonna Bianca - Via Degasperi - Regione - Roncafort - Gardolo",
                                     "label": "4"
                                 }
-              ]
-            },
+                            ]
+                        },
                         {
                             "label": "5",
                             "color": "#f8ad1e",
@@ -230,8 +230,8 @@
                                     "title": "Oltrecastello - Povo - P.Aquila - P. Dante",
                                     "label": "5"
                                 }
-              ]
-            },
+                            ]
+                        },
                         {
                             "label": "6",
                             "color": "#6eae46",
@@ -248,8 +248,8 @@
                                     "title": "Grotta - Villazzano - P. Dante - Vela",
                                     "label": "6"
                                 }
-              ]
-            },
+                            ]
+                        },
                         {
                             "label": "7",
                             "color": "#179585",
@@ -266,8 +266,8 @@
                                     "title": "Gocciadoro - Piazza Dante - Melta - Canova",
                                     "label": "7"
                                 }
-              ]
-            },
+                            ]
+                        },
                         {
                             "label": "8",
                             "color": "#543428",
@@ -284,8 +284,8 @@
                                     "title": "Mattarello -  Piazza Dante -  Centochiavi",
                                     "label": "8"
                                 }
-              ]
-            },
+                            ]
+                        },
                         {
                             "label": "9",
                             "color": "#894d2d",
@@ -302,8 +302,8 @@
                                     "title": "Villamontagna - Cognola - S. Donà - P. Dante",
                                     "label": "9"
                                 }
-              ]
-            },
+                            ]
+                        },
                         {
                             "label": "10",
                             "color": "#125547",
@@ -320,8 +320,8 @@
                                     "title": "Cognola / Montevaccino - Martignano - P. Dante",
                                     "label": "10"
                                 }
-              ]
-            },
+                            ]
+                        },
                         {
                             "label": "11",
                             "color": "#572f75",
@@ -338,8 +338,8 @@
                                     "title": "Spini di Gardolo - Via Brennero - Piazza Dante",
                                     "label": "11"
                                 }
-              ]
-            },
+                            ]
+                        },
                         {
                             "label": "12",
                             "color": "#922840",
@@ -356,8 +356,8 @@
                                     "title": "Romagnano - Ravina - Via Ghiaie - P. Dante",
                                     "label": "12"
                                 }
-              ]
-            },
+                            ]
+                        },
                         {
                             "label": "13",
                             "color": "#b55f8e",
@@ -374,8 +374,8 @@
                                     "title": "Povo - S. Rocco - Rosmini - Piazza Dante",
                                     "label": "13"
                                 }
-              ]
-            },
+                            ]
+                        },
                         {
                             "label": "14",
                             "color": "#db8fac",
@@ -392,8 +392,8 @@
                                     "title": "Belvedere Ravina - Via Sanseverino - P. Dante",
                                     "label": "14"
                                 }
-              ]
-            },
+                            ]
+                        },
                         {
                             "label": "15",
                             "color": "#81bb46",
@@ -410,8 +410,8 @@
                                     "title": "Spini di Gardolo - Interporto - Piazza Dante",
                                     "label": "15"
                                 }
-              ]
-            },
+                            ]
+                        },
                         {
                             "label": "16",
                             "color": "#262e5f",
@@ -428,8 +428,8 @@
                                     "title": "Povo - Cognola - Martignano - Centochiavi",
                                     "label": "16"
                                 }
-              ]
-            },
+                            ]
+                        },
                         {
                             "label": "17",
                             "color": "#2993c4",
@@ -446,8 +446,8 @@
                                     "title": "Lavis - S.Lazzaro - Via Bolzano - P.Dante",
                                     "label": "17"
                                 }
-              ]
-            },
+                            ]
+                        },
                         {
                             "label": "Funivia",
                             "color": "#016a6a",
@@ -465,11 +465,51 @@
                                     "title": "Funivia Sardagna Trento",
                                     "label": "Sardagna - Trento"
                                 }
-              ]
-            }
-          ]
-        }
-      ]
+                            ]
+                        },
+                        {
+                            "label": "CM",
+                            "color": "#f8ad1e",
+                            "routes": [
+                                {
+                                    "routeId": "CMA",
+                                    "routeSymId": "CMA",
+                                    "title": "Povo - Borino - Celva - Passo Cimirlo",
+                                    "label": "Povo - Borino - Celva - Passo Cimirlo",
+                                    "wheelChairBoarding": 1
+                                },
+                                {
+                                    "routeId": "CMR",
+                                    "routeSymId": "CMR",
+                                    "title": "Passo Cimirlo - Celva - Borino - Povo",
+                                    "label": "Passo Cimirlo - Celva - Borino - Povo",
+                                    "wheelChairBoarding": 1
+                                }
+                            ]
+                        },
+                        {
+                            "label": "G",
+                            "color": "#572f75",
+                            "routes": [
+                                {
+                                    "routeId": "%20GA",
+                                    "routeSymId": "%20GA",
+                                    "title": "Gardolo - Gardolo di Mezzo e Spini",
+                                    "label": "Gardolo - Gardolo di Mezzo e Spini",
+                                    "wheelChairBoarding": 1
+                                },
+                                {
+                                    "routeId": "%20GR",
+                                    "routeSymId": "%20GR",
+                                    "title": "Spini e Gardolo di Mezzo - Gardolo",
+                                    "label": "Spini e Gardolo di Mezzo - Gardolo",
+                                    "wheelChairBoarding": 1
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
         }
     }
 }
