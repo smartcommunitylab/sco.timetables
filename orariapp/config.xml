@@ -1,5 +1,4 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="128" id="it.smartcommunitylab.orari.trento" version="0.2.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Trento Orari Trasporti</name>
     <description>Trento Orari Trasporti</description>
     <author email="info@smartcommunitylab.it" href="http://www.smartcommunitylab.it/">Smart Community Lab</author>
