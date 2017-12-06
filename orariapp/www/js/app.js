@@ -436,7 +436,7 @@ angular.module('viaggia', [
       pop_up__expired_template: 'Ci scusiamo ma non è più possibile utilizzare questa versione dell\'applicazione in quanto il periodo di prova è terminata',
       pop_up_not_expired_title: 'Versione di prova',
       pop_up_not_expired_template: 'Questa  è una versione di prova e terminerà il '
-
+      terms_refused_alert_text: 'Termini rifiutati.'
     });
 
 
@@ -622,25 +622,6 @@ angular.module('viaggia', [
       lbl_reject: "Reject",
       "credits_info": "The WeLive project has been financed under European Commission's H2020 programme for research, development and innovation under agreement #64584",
       app_name: " Trento Transport Timetable",
-      label_button_side_menu: "Side Navigation Menu",
-      label_button_go_back: "Back",
-      settings_title: "Settings",
-      settings_choose_acc: "Visually impaired or blind",
-      settings_choose_acc_subtext: "Compatible with descriptive audio tools installed on the device (TalkBack / VoiceOver). To activate them, go to the \"Accessibility\" section in the device settings.",
-      settings_choose_standard: "Sighted",
-      settings_choose_standard_subtext: "Optimized for different views (with the possibility to zoom the text within the timetables).",
-      startup_select_intro: "Configure your app!",
-      startup_select_label: "Select the app display mode (later, you will be able to change this setting from the menu):",
-      setting_select_label: "Select the app display mode :",
-      startup_button: "Begin",
-      error_select_type_accessibility_feedback: 'In order to get an accessible route, you must select public transport or foot',
-      not_acc_label: 'This line is not accessible',
-      startup_save: 'SAVE',
-      setting_saved_toast: 'The new configuration has been saved',
-      pop_up_expired_title: 'Version expired',
-      pop_up__expired_template: 'The actual version of the app has expired',
-      pop_up_not_expired_title: 'Trial version',
-      pop_up_not_expired_template: 'The actual version of the app end on '
     });
 
 

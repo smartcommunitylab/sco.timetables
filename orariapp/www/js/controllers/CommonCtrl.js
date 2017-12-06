@@ -54,6 +54,35 @@ angular.module('viaggia.controllers.common', [])
         {
           text: $filter('translate')("pop_up_cancel"),
           type: 'button-cancel'
+    $scope.closeCredits = function () {
+        $scope.creditsModal.hide();
+    };
+    $scope.openCredits = function () {
+      $rootScope.credits_info_p1 = $filter('translate')('credits_info');
+      $scope.creditsModal.show();
+    }
+        /*pop up managers*/
+        //    $scope.newPlan = function () {
+        //        planService.setTripId(null); //reset data for pianification
+        //        $state.go('app.plan');
+        //    };
+    $scope.popupLoadingShow = function () {
+        $ionicLoading.show({
+            template: $filter('translate')("pop_up_loading")
+        });
+    };
+    $scope.popupLoadingHide = function () {
+        $ionicLoading.hide();
+    };
+
+    $scope.showConfirm = function (template, title, functionOnTap) {
+        var confirmPopup = $ionicPopup.confirm({
+            title: title,
+            template: template,
+            buttons: [
+                {
+                    text: $filter('translate')("pop_up_cancel"),
+                    type: 'button-cancel'
                             },
         {
           text: $filter('translate')("pop_up_ok"),
@@ -271,6 +300,33 @@ angular.module('viaggia.controllers.common', [])
   };
 
 })
+        $scope.link = function () {
+            var url = 'https://secure.edps.europa.eu/EDPSWEB/webdav/site/mySite/shared/Documents/EDPS/DataProt/Legislation/Dir_1995_46_EN.pdf';
+            window.open(url, '_system', 'location=yes');
+        }
+
+        $scope.acceptPrivacy = function () {
+            localStorage["orariapp_isPrivacyAccepted"] = true;
+            $ionicHistory.nextViewOptions({
+                disableBack: true
+            });
+            $state.go('app.home');
+        };
+
+        $scope.refusePrivacy = function () {
+            var myPopup = $ionicPopup.show({
+                template: "<center>" + $filter('translate')('terms_refused_alert_text') + "</center>",
+                cssClass: 'custom-class custom-class-popup'
+            });
+            $timeout(function () { myPopup.close(); }, 1800) //close the popup after 1.8 seconds for some reason
+                .then(function () {
+                    navigator.app.exitApp(); // sometimes doesn't work with Ionic View
+                    ionic.Platform.exitApp();
+                    console.log('App closed');
+                });
+        };
+
+    })
 
 
 ;
