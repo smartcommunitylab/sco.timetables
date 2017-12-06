@@ -435,7 +435,7 @@ angular.module('viaggia', [
       pop_up_expired_title: 'Versione scaduta',
       pop_up__expired_template: 'Ci scusiamo ma non è più possibile utilizzare questa versione dell\'applicazione in quanto il periodo di prova è terminata',
       pop_up_not_expired_title: 'Versione di prova',
-      pop_up_not_expired_template: 'Questa  è una versione di prova e terminerà il '
+      pop_up_not_expired_template: 'Questa  è una versione di prova e terminerà il ',
       terms_refused_alert_text: 'Termini rifiutati.'
     });
 

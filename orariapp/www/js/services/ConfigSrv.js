@@ -45,9 +45,6 @@ angular.module('viaggia.services.conf', [])
       return "da " + newTitle[0] + " a " + newTitle[newTitle.length - 1];
     }
 
-    var weliveAppId = 'OrariTrasporti';
-    var weliveAppName = 'Trento Orari Trasporti';
-    var weliveLoggingToken = LOGGING_TOKEN;
 
   };
 
@@ -281,40 +278,6 @@ angular.module('viaggia.services.conf', [])
             res = searchRec(res.groups[i], groupIds, idx + 1);
             break;
           }
-            if (!!groupId) {
-                var groupIds = groupId.split(',');
-                res = searchRec(res, groupIds, 0);
-            }
-            if (!!routeId) {
-                for (var i = 0; i < res.routes.length; i++) {
-                    if (res.routes[i].routeId == routeId) {
-                        res = res.routes[i];
-                        break;
-                    }
-                }
-            }
-            return res;
-        },
-        flattenData: flattenData,
-        getStopVisualization: function (agencyId) {
-            if (!ttJsonConfig || !ttJsonConfig.stopVisualization || !ttJsonConfig.stopVisualization[agencyId]) return {};
-            return ttJsonConfig.stopVisualization[agencyId];
-        },
-        isDarkColor: isDarkColor,
-        log: function(type, customAttrs) {
-          if (customAttrs == null) customAttrs = {};
-          customAttrs.uuid = ionic.Platform.device().uuid;
-          customAttrs.appname = weliveAppName;
-          $http.post('https://dev.welive.eu/dev/api/log/'+weliveAppId,{
-            appId: weliveAppId,
-            type: type,
-            timestamp: new Date().getTime(),
-            custom_attr: customAttrs
-          },{headers:{Authorization:'Bearer '+weliveLoggingToken}})
-          .then(function(){
-          }, function(err) {
-            console.log('Logging error: ', err);
-          });
         }
         return res;
       };

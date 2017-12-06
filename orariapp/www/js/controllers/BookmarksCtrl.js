@@ -160,7 +160,7 @@ angular.module('viaggia.controllers.bookmarks', [])
   $scope.showTutorial = function () {
     if (doTutorial()) {
       if (window.cordova && window.cordova.plugins.screenorientation) {
-        screen.lockOrientation('portrait');
+        window.screen.orientation.lock('portrait');
       }
       $ionicModal.fromTemplateUrl('templates/bookmarkstutorial.html', {
         scope: $scope,
@@ -177,7 +177,7 @@ angular.module('viaggia.controllers.bookmarks', [])
   $scope.closeTutorial = function () {
     $scope.closeModal();
     if (window.cordova && window.cordova.plugins.screenorientation) {
-      screen.unlockOrientation()
+      window.screen.orientation.unlock();
     }
     window.localStorage.setItem(Config.getAppId() + '_tutorialDone', true);
   }
