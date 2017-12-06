@@ -1,0 +1,27 @@
+<ion-view title="{{title}}" id="settings">
+  <ion-nav-buttons side="right">
+    <button class="button-clear button-save" ng-click="selectAcc()" aria-label="{{'startup_save'|translate}}">{{'startup_save'|translate}}</button>
+
+  </ion-nav-buttons>
+  <ion-content scroll="false">
+    <div data-tap-disabled="true">
+      <div class="settings-choose-mode" aria-label="{{'startup_select_label'|translate}}">
+        <span>{{'setting_select_label'|translate}}</span>
+      </div>
+      <ion-list>
+        <ion-radio class="settings-choose-choices" ng-repeat="item in accessibilityChooses" ng-value="item.value" ng-model="data.typeOfAccessibility" aria-label="{{ item.text }}">
+          <span class="settings-radio-text" aria-label="{{item.text}}">{{ item.text }}</span>
+          <br> <span class="settings-radio-sub" aria-label="{{item.subtext}}">{{ item.subtext }}</span>
+
+        </ion-radio>
+
+      </ion-list>
+      <!--
+<div class="startup-choose-mode text-center">
+    <button class="button" ng-click="selectAcc()">{{'startup_button'|translate}}</button>
+</div>
+-->
+    </div>
+  </ion-content>
+
+</ion-view>

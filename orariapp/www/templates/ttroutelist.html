@@ -1,15 +1,12 @@
-        <ion-list class="route-list" ng-if="view == 'list'">
-            <ion-item ng-repeat="elem in elements" ng-last-repeat="elements" ng-click="selectElement(elem)">
-                <div class="card card-tt" style="{{elem.color ? ('color:'+textColor(elem.color)+';background-color: '+elem.color) : ''}}">{{elem.title}}</div>
-            </ion-item>
-        </ion-list>
-        <div ng-if="view == 'grid'">
-            <div class="row route-grid-row" ng-repeat="row in gridRows">
-                <div class="col text-center" ng-repeat="elem in row" ng-click="selectElement(elem)">
-                    <div class="route-grid-element" ng-if="elem.label" style="{{elem.color ? ('background-color: '+elem.color) : 'color:#000;border: 4px solid #000; text-shadow: none;'}}">
-                        <span ng-if="!elem.gridCode">{{elem.label}}</span>
-                        <span ng-if="elem.gridCode"><i class="icon" ng-class="elem.gridCode"></i></span>
-                    </div>
-                </div>
-            </div>
-        </div>
+<ion-list class="route-list" ng-if="view == 'list'">
+  <ion-item class="no-padding-item" ng-repeat="elem in elements" ng-last-repeat="elements" ng-click="selectElement(elem)">
+    <div class="card card-line" style="{{elem.color ? ('color:'+textColor(elem.color)+';background-color: '+elem.color) : ''}}">{{elem.title}}</div>
+  </ion-item>
+</ion-list>
+<div ng-if="view == 'grid'">
+  <div class="row route-grid-row card-list" ng-repeat="row in gridRows">
+    <div class="col text-center padding-3" ng-repeat="elem in row" ng-click="selectElement(elem)">
+      <div id="{{elem.label}}" class="route-grid-element box-shadow-card" ng-if="elem.label" style="{{elem.color ? ('background-color: '+elem.color) : 'color:#000;border: 4px solid #000; text-shadow: none;'}}" aria-label="Linea {{elem.label}}" role="button"> <span class="disableFocus" ng-if="!elem.gridCode">{{elem.label}}</span> <span class="disableFocus" ng-if="elem.gridCode"><i class="icon" ng-class="elem.gridCode"></i></span> </div>
+    </div>
+  </div>
+</div>

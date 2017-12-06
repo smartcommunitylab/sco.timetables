@@ -91,6 +91,7 @@ angular.module('viaggia.services.geo', [])
       return localization.promise.then(function (myPosition) {
         //console.log('myPosition: ' + JSON.stringify(myPosition));
         //console.log('gotoPosition: ' + JSON.stringify(gotoPosition));
+        //console.log(GL.distance(myPosition, gotoPosition));
         return GL.distance(myPosition, gotoPosition);
       });
     }

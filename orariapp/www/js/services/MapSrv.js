@@ -34,12 +34,16 @@ angular.module('viaggia.services.map', [])
         return myLocation;
     };
 
+    mapService.getDistances = function() {
+        GeoLocate.distance(mapService.getMyLocation())
+    }
     //init map with tile server provider and show my position
     mapService.initMap = function (mapId) {
         var deferred = $q.defer();
 
         leafletData.getMap(mapId).then(function (map) {
                 cachedMap[mapId] = map;
+                 L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.{ext}', {
                 L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.{ext}', {
                     type: 'map',
                     ext: 'png',
@@ -66,6 +70,7 @@ angular.module('viaggia.services.map', [])
             GeoLocate.locate().then(function (e) {
                 $timeout(function () {
                     map.setView(L.latLng(e[0], e[1]), zoom);
+                    console.log("coordinate", e[0], e[1]);
                 });
             });
         });
@@ -116,7 +121,7 @@ angular.module('viaggia.services.map', [])
                 //                markers.push(getMarkerParkAndWalk(trip.leg[i]));
                 //            }
             var bound = [trip.leg[i].from.lat, trip.leg[i].from.lon];
-
+            console.log(trip.leg[i].from.lat, trip.leg[i].from.lon);
         }
         //add the arrival place
         markers.push({

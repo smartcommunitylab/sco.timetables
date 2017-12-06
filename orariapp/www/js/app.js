@@ -60,7 +60,13 @@ angular.module('viaggia', [
     'viaggia.services.map',
     'viaggia.services.timetable',
     'viaggia.services.geo',
-    'viaggia.services.bookmarks'
+    'viaggia.services.bookmarks',
+    'viaggia.services.settings',
+    'viaggia.services.profile',
+    'viaggia.controllers.busRide',
+    'viaggia.controllers.map',
+    'viaggia.controllers.settings',
+  'viaggia.controllers.directives'
 ])
 
 .run(function ($ionicPlatform, $cordovaFile, $rootScope, $translate, DataManager, Config, GeoLocate) {
@@ -107,7 +113,7 @@ angular.module('viaggia', [
         } else {
           DataManager.syncStopData();
         }
-        Config.log('AppStarted',{});
+        Config.log('AppStarted', {});
       });
 
       $rootScope.platform = ionic.Platform;
@@ -159,7 +165,7 @@ angular.module('viaggia', [
         }
       })
       .state('app.ttstop', {
-        url: "/ttstop/:ref/:agencyId/:stopId",
+        url: "/ttstop/:ref/:agencyId/:stopId/:routeId",
         views: {
           'menuContent': {
             templateUrl: "templates/ttstop.html",
@@ -177,37 +183,56 @@ angular.module('viaggia', [
           }
         }
       })
+      .state('app.ttacc', {
+        cache: false,
+        url: "/ttcc/:ref/:agencyId/:groupId/:routeId",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/tableAcc.html",
+            controller: 'TTAccCtrl'
+          }
+        }
+      })
       .state('app.tt', {
         cache: false,
         url: "/tt/:ref/:agencyId/:groupId/:routeId",
         views: {
           'menuContent': {
-            templateUrl: "templates/table1.html",
+            templateUrl: "templates/tableNoAcc.html",
             controller: 'TTCtrl'
           }
         }
       })
-      .state('app.termine', {
-          url: '/termine'
-          , views: {
-              'menuContent': {
-                  templateUrl: 'templates/termine.html'
-                  , controller: 'TermsCtrl'
-              }
+      .state('app.settings', {
+        cache: false,
+        url: "/settings",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/settings.html",
+            controller: 'SettingsCtrl'
           }
+        }
       })
-    ;
+      .state('app.termine', {
+        url: '/termine',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/termine.html',
+            controller: 'TermsCtrl'
+          }
+        }
+      });
 
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise(function ($injector) {
-        var acceptStr = localStorage["orariapp_isPrivacyAccepted"];
-        var isPrivacyAccepted = acceptStr == 'true';
-        if (isPrivacyAccepted) {
-            return '/app/home';
-        } else {
-            return '/app/termine';
-        }
+      var acceptStr = localStorage["orariapp_isPrivacyAccepted"];
+      var isPrivacyAccepted = acceptStr == 'true';
+      if (isPrivacyAccepted) {
+        return '/app/home';
+      } else {
+        return '/app/termine';
+      }
     });
 
     $translateProvider.translations('it', {
@@ -230,6 +255,7 @@ angular.module('viaggia', [
       menu_terms_of_service: "Termini di utilizzo",
       menu_login: "Login",
       menu_logout: "Logout",
+      menu_settings: "Impostazioni",
       plan_from: 'Da',
       plan_to: 'A',
       plan_day: 'Giorno',
@@ -304,9 +330,17 @@ angular.module('viaggia', [
       btn_nav_to: 'Indicazioni stradali',
       btn_next_trips: 'Vedi prossimi orari',
       lbl_stop: 'Fermata',
-      err_too_many_markers: 'Too many objects on the map. Please zoom in.',
-      lbl_lines: 'Corse:',
+      lbl_stops: 'Fermate',
+      err_too_many_markers: 'Troppi oggetti da visualizzare. Si prega di aumentare lo zoom della mappa.',
+      lbl_lines: 'Corse',
       lbl_line: 'Linea',
+      lbl_near_stop: 'Fermata più vicina',
+      lbl_ora: 'Ora di arrivo',
+      lbl_stop_list: 'Elenco fermate',
+      lbl_prv_trip: 'Corsa precedente',
+      lbl_next_trip: 'Corsa prossima',
+      lbl_insert_time: 'Inserisci ora',
+      lbl_time_now: 'Adesso',
       popup_delete_trip_message: 'Sicuro di voler eleminare il viaggio salvato?',
       popup_delete_trip_title: 'Elimina',
       tripdeleted_message_feedback: 'Il viaggio selezionato è stato eliminato',
@@ -383,6 +417,25 @@ angular.module('viaggia', [
       lbl_reject: "Rifiuto",
       "credits_info": "Il progetto WeLive è stato finanziato dal programma H2020  della Commissione Europea per la ricerca, lo sviluppo tecnologico e l'innovazione secondo l'accordo N° 645845",
       app_name: "Trento Orari Trasporti",
+      label_button_side_menu: "Menu laterale",
+      label_button_go_back: "Torna indietro",
+      settings_title: "Impostazioni",
+      settings_choose_acc: "Per ipovedenti e non-vedenti",
+      settings_choose_acc_subtext: "Compatibile con supporti audiodescrittivi installati sul device (TalkBack / VoiceOver). Per attivarli, accedi alla sezione \"Accesso facilitato\" nelle impostazioni del dispositivo.",
+      settings_choose_standard: "Per vedenti",
+      settings_choose_standard_subtext: "Ottimizzata per differenti modalità di visualizzazione (con possibilità di ingrandire il testo nelle tabelle).",
+      startup_select_intro: "Configura la tua app!",
+      startup_select_label: "Scegli la modalità di visualizzazione della app (in seguito potrai modificare questa impostazione dal menù):",
+      setting_select_label: "Scegli la modalità di visualizzazione della app :",
+      startup_button: "Inizia",
+      error_select_type_accessibility_feedback: 'Per visualizzare un percorso accessibile è necessario selezionare i mezzi pubblici o a piedi',
+      not_acc_label: 'Questa linea non è accessibile',
+      startup_save: 'SALVA',
+      setting_saved_toast: 'Nuova configurazione salvata correttamente',
+      pop_up_expired_title: 'Versione scaduta',
+      pop_up__expired_template: 'Ci scusiamo ma non è più possibile utilizzare questa versione dell\'applicazione in quanto il periodo di prova è terminata',
+      pop_up_not_expired_title: 'Versione di prova',
+      pop_up_not_expired_template: 'Questa  è una versione di prova e terminerà il '
       terms_refused_alert_text: 'Termini rifiutati.'
     });
 
@@ -407,6 +460,7 @@ angular.module('viaggia', [
       menu_terms_of_service: "Terms of use",
       menu_login: "Login",
       menu_logout: "Logout",
+      menu_settings: "Settings",
       plan_from: 'From',
       plan_to: 'To',
       plan_day: 'Day',
@@ -481,9 +535,17 @@ angular.module('viaggia', [
       btn_nav_to: 'Directions',
       btn_next_trips: 'See next trips',
       lbl_stop: 'Stop',
+      lbl_stops: 'Stops',
       err_too_many_markers: 'Too many objects on the map. Please zoom in.',
-      lbl_lines: 'Lines:',
+      lbl_lines: 'Lines',
       lbl_line: 'Line',
+      lbl_near_stop: 'Nearest stop',
+      lbl_ora: 'Arrival Time',
+      lbl_stop_list: 'Stop List',
+      lbl_prv_trip: 'Previous trip',
+      lbl_next_trip: 'Next trip',
+      lbl_insert_time: 'Insert time',
+      lbl_time_now: 'Now',
       popup_delete_trip_message: 'Are you sure to delete the saved journey?',
       popup_delete_trip_title: 'Delete',
       tripdeleted_message_feedback: 'The selected journey has been deleted',
@@ -560,8 +622,6 @@ angular.module('viaggia', [
       lbl_reject: "Reject",
       "credits_info": "The WeLive project has been financed under European Commission's H2020 programme for research, development and innovation under agreement #64584",
       app_name: " Trento Transport Timetable",
-      terms_refused_alert_text: 'Terms refused.'
-
     });
 
 
@@ -585,4 +645,13 @@ angular.module('viaggia', [
     }
   };
 })
-;
+
+.filter('startFrom', function () {
+  return function (input, start) {
+    if (input) {
+      start = +start;
+      return input.slice(start);
+    }
+    return [];
+  }
+});

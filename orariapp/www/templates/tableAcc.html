@@ -1,0 +1,104 @@
+<style>
+  .scroll-content {
+    height: calc(100% - 100px) !important;
+  }
+</style>
+<ion-view title="{{title}}">
+  <ion-nav-buttons side="right">
+    <!--    <button class="button button-icon button-clear" ng-class="getBookmarkStyle()" role="button" aria-label="Aggiungi la linea nei preferiti" ng-click="bookmarkLine(color)"></button>-->
+    <button class="button button-icon button-clear" ng-class="bookmarkStyle" role="button" aria-label="Aggiungi la linea nei preferiti" ng-click="bookmarkLine(color)"></button>
+  </ion-nav-buttons>
+  <ion-content id="content" has-header="true" has-bouncing="false">
+    <ion-refresher pulling-text="Trascina per aggiornare la posizione..." on-refresh="reloadLine()"></ion-refresher>
+    <div class="row date-bar" style="background-color: {{color}}; color: {{textColor(color)}} !important; margin-top:13px;">
+      <div class="col col-25 tt-day btn" ng-click="prevDate()" role="button" aria-label="Giorno precedente">
+        <a><i class="icon ion-arrow-left-b disableFocusItem"></i></a>
+      </div>
+      <div class="col col-50 tt-day">{{runningDate | dowDate}} {{runningDate | date : 'dd/MM/yyyy'}}</div>
+      <div class="col col-25 tt-day btn" ng-click="nextDate()" aria-label="Giorno successivo" role="button">
+        <a><i class="icon ion-arrow-right-b disableFocusItem"></i></a>
+      </div>
+    </div>
+    <h6 class="bus-ride-text">{{'lbl_near_stop' | translate}}</h6>
+    <div class="card ride" aria-label="Linea {{title}}. Fermata più vicina: {{nearestStop.name}}. Ora di Arrivo: {{nearestStopTime | number: 2}}. Servizio disabili {{nearestStop.wcAvailable}}">
+      <div class="item item-text-wrap no-padding-item">
+        <div class="row stop-row">
+          <div class="col col-64">
+            <h6 class="disableFocusItem">{{'lbl_stop' | translate}}</h6>
+            <h3 class="disableFocusItem">{{nearestStop.name}}</h3>
+          </div>
+          <div class="col distance-col">
+            <h6 class="disableFocusItem">{{'lbl_ora' | translate}}</h6>
+            <h2 class="disableFocusItem">{{nearestStopTime | date:'HH.mm'}}</h2>
+          </div>
+        </div>
+        <div class="row stop-row">
+
+        </div>
+
+      </div>
+      <div class="item item-divider full-width-card-icons" ng-controller="TTStopCtrl" ng-init="setStopDataInit()">
+        <div class="tabs tabs-icon-only">
+          <a class="tab-item" ng-show="nearestStop.wheelchair > 1" aria-label="Servizio disabili disponibile" role="button">
+            <img src="img/wheelchair.svg" class="icon wheelchairIcon disableFocusItem" />
+          </a>
+          <a class="tab-item" aria-label="Visualizza gli orari della fermata" role="button" ng-click="showStopData(nearestStop.id)">
+            <i class="icon ion-clock disableFocusItem"></i>
+          </a>
+          <a class="tab-item" aria-label="Aggiungi la fermata ai preferiti" role="button" ng-click="bookmarkStop(getIndexOfNearest(),color,nearestStop.id)">
+            <i class="icon disableFocusItem" ng-class="getStopBookmarkStyle(nearestStop.name)"></i>
+          </a>
+          <a class="tab-item" aria-label="Ottieni Indicazioni Stradali" ng-click="openDirectionPopup(getIndexOfNearest())" role="button">
+            <i class="icon ion-ios-location disableFocusItem"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <h6 class="bus-ride-text">{{'lbl_stop_list' | translate}}</h6>
+
+    <div class="card ride ride-card" ng-repeat="stop in arrayOfStops" aria-label="Linea {{title}}. Fermata: {{stop.name}}. Ora di Arrivo: {{stop.times[0] | date:'HH.mm'}}. Servizio disabili {{stop.wcAvailable}}">
+      <div class="item item-text-wrap no-padding-item">
+        <div class="row stop-row">
+          <div class="col col-64">
+            <h6 class="disableFocusItem">{{'lbl_stop' | translate}}</h6>
+            <h2 class="disableFocusItem">{{stop.name}}</h2>
+          </div>
+          <div class="col">
+            <h6 class="disableFocusItem">{{'lbl_ora' | translate}}</h6>
+            <h2 class="disableFocusItem">{{stop.times[0] | date:'HH.mm'}}</h2>
+          </div>
+        </div>
+        <div class="row" style="color: {{color}};" ng-click="show = !show" aria-label="Visualizza Dettagli fermata" role="button">
+          <i class="detail-icon" ng-class="{'icon ion-ios-arrow-down': !show, 'icon ion-ios-arrow-up': show}"></i>
+        </div>
+      </div>
+      <div ng-show="show" class="item item-divider full-width-card-icons" ng-controller="TTStopCtrl" ng-init="setStopDataInit($index)">
+        <div class="tabs tabs-icon-only">
+          <a class="tab-item disableFocusItem" ng-show="stop.wheelchair > 1" aria-label="Servizio disabili disponibile">
+            <img src="img/wheelchair.svg" class="icon wheelchairIcon disableFocusItem"></i>
+          </a>
+          <a class="tab-item" aria-label="Visualizza gli orari della fermata" role="button" ng-click="showStopData(stop.id)">
+            <i class="icon ion-clock disableFocusItem"></i>
+          </a>
+          <a class="tab-item" aria-label="Aggiungi la fermata ai preferiti" role="button" ng-click="bookmarkStop($index, color, stop.id)">
+            <i class="icon disableFocusItem" ng-class="getStopBookmarkStyle(stop.name)"></i>
+          </a>
+          <a class="tab-item" aria-label="Ottieni Indicazioni Stradali" ng-click="openDirectionPopup($index)" role="button">
+            <i class="icon ion-ios-location disableFocusItem"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <!---------------------------------------------------------------->
+    <div ng-if="tt && tt.tripIds.length == 0" class="text-center">
+      <h4>{{'no_tt' | translate}}</h4>
+    </div>
+    <div id="measurer" style="white-space: nowrap;font-family: RobotoMono;font-size: 12px;color: transparent;background-color: transparent;position:absolute;">123456789</div>
+  </ion-content>
+
+  <ion-tabs class="tabs-icon-only tabs-positive" role="tablist">
+    <ion-tab ng-click="prevRide()" icon="ion-arrow-left-b" aria-label="Corsa precedente" title="{{'lbl_prv_trip' | translate}}" role="tab"></ion-tab>
+    <ion-tab icon="ion-ios-clock-outline" ng-click="openTimePicker()" aria-label="Inserisci ora" title="{{'lbl_insert_time' | translate}}" role="tab"></ion-tab>
+    <ion-tab ng-click="nextRide()" icon="ion-arrow-right-b" aria-label="Corsa successiva" title="{{'lbl_next_trip' | translate}}" role="tab"></ion-tab>
+  </ion-tabs>
+</ion-view>
