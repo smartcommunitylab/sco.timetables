@@ -3,7 +3,7 @@
         "resource_folder": "config/instances/TRENTO",
         "widget_id" : "it.smartcommunitylab.orari.trento",
         "version": "0.2.4",
-        "version_code": "138",
+        "version_code": "148",
         "app_name": "Trento Orari Trasporti"
     }
 }
